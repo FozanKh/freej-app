@@ -1,0 +1,73 @@
+/// Flutter icons FzIcons
+import 'package:flutter/widgets.dart';
+
+class FzIcons {
+  FzIcons._();
+
+  static const _kFontFam = 'FzIcons';
+
+  static const IconData analysis = IconData(0xe800, fontFamily: _kFontFam);
+  static const IconData armMuscles = IconData(0xe801, fontFamily: _kFontFam);
+  static const IconData assignment = IconData(0xe802, fontFamily: _kFontFam);
+  static const IconData back = IconData(0xe803, fontFamily: _kFontFam);
+  static const IconData bell = IconData(0xe804, fontFamily: _kFontFam);
+  static const IconData bicycle = IconData(0xe805, fontFamily: _kFontFam);
+  static const IconData blocks = IconData(0xe807, fontFamily: _kFontFam);
+  static const IconData bmi = IconData(0xe808, fontFamily: _kFontFam);
+  static const IconData bone = IconData(0xe80a, fontFamily: _kFontFam);
+  static const IconData building = IconData(0xe80b, fontFamily: _kFontFam);
+  static const IconData call = IconData(0xe80c, fontFamily: _kFontFam);
+  static const IconData certificate = IconData(0xe80d, fontFamily: _kFontFam);
+  static const IconData coach = IconData(0xe80e, fontFamily: _kFontFam);
+  static const IconData comment = IconData(0xe80f, fontFamily: _kFontFam);
+  static const IconData competition = IconData(0xe810, fontFamily: _kFontFam);
+  static const IconData dietFilled = IconData(0xe811, fontFamily: _kFontFam);
+  static const IconData diet = IconData(0xe812, fontFamily: _kFontFam);
+  static const IconData download = IconData(0xe813, fontFamily: _kFontFam);
+  static const IconData edit = IconData(0xe814, fontFamily: _kFontFam);
+  static const IconData envelope = IconData(0xe815, fontFamily: _kFontFam);
+  static const IconData event = IconData(0xe816, fontFamily: _kFontFam);
+  static const IconData exam = IconData(0xe817, fontFamily: _kFontFam);
+  static const IconData eye = IconData(0xe818, fontFamily: _kFontFam);
+  static const IconData feedback = IconData(0xe819, fontFamily: _kFontFam);
+  static const IconData female = IconData(0xe81a, fontFamily: _kFontFam);
+  static const IconData footsteps = IconData(0xe81b, fontFamily: _kFontFam);
+  static const IconData groupFilled = IconData(0xe81c, fontFamily: _kFontFam);
+  static const IconData h2o = IconData(0xe81d, fontFamily: _kFontFam);
+  static const IconData heartFilled = IconData(0xe81f, fontFamily: _kFontFam);
+  static const IconData home = IconData(0xe820, fontFamily: _kFontFam);
+  static const IconData levels = IconData(0xe821, fontFamily: _kFontFam);
+  static const IconData male = IconData(0xe824, fontFamily: _kFontFam);
+  static const IconData medal = IconData(0xe825, fontFamily: _kFontFam);
+  static const IconData muscles = IconData(0xe826, fontFamily: _kFontFam);
+  static const IconData obesity = IconData(0xe828, fontFamily: _kFontFam);
+  static const IconData personSharp = IconData(0xe829, fontFamily: _kFontFam);
+  static const IconData presentation = IconData(0xe82a, fontFamily: _kFontFam);
+  static const IconData privacyPolicy = IconData(0xe82b, fontFamily: _kFontFam);
+  static const IconData project = IconData(0xe82c, fontFamily: _kFontFam);
+  static const IconData report = IconData(0xe82d, fontFamily: _kFontFam);
+  static const IconData running = IconData(0xe82e, fontFamily: _kFontFam);
+  static const IconData search = IconData(0xe82f, fontFamily: _kFontFam);
+  static const IconData settingsFilled = IconData(0xe830, fontFamily: _kFontFam);
+  static const IconData settings = IconData(0xe831, fontFamily: _kFontFam);
+  static const IconData speakerOutlined = IconData(0xe832, fontFamily: _kFontFam);
+  static const IconData spine = IconData(0xe833, fontFamily: _kFontFam);
+  static const IconData stack = IconData(0xe834, fontFamily: _kFontFam);
+  static const IconData star = IconData(0xe835, fontFamily: _kFontFam);
+  static const IconData stepChain = IconData(0xe836, fontFamily: _kFontFam);
+  static const IconData stretching = IconData(0xe837, fontFamily: _kFontFam);
+  static const IconData time = IconData(0xe838, fontFamily: _kFontFam);
+  static const IconData transFat = IconData(0xe839, fontFamily: _kFontFam);
+  static const IconData treadmillLight = IconData(0xe83a, fontFamily: _kFontFam);
+  static const IconData trophyFilled = IconData(0xe83c, fontFamily: _kFontFam);
+  static const IconData turnOff = IconData(0xe83d, fontFamily: _kFontFam);
+  static const IconData warningFilled = IconData(0xe83e, fontFamily: _kFontFam);
+  static const IconData weight = IconData(0xe83f, fontFamily: _kFontFam);
+  static const IconData yoga = IconData(0xe840, fontFamily: _kFontFam);
+  static const IconData flagHolder = IconData(0xe874, fontFamily: _kFontFam);
+  static const IconData whatsappFilled = IconData(0xe876, fontFamily: _kFontFam);
+  static const IconData flag = IconData(0xe877, fontFamily: _kFontFam);
+  static const IconData whatsapp = IconData(0xe878, fontFamily: _kFontFam);
+  static const IconData treadmill = IconData(0xe879, fontFamily: _kFontFam);
+  static const IconData body = IconData(0xe87a, fontFamily: _kFontFam);
+}

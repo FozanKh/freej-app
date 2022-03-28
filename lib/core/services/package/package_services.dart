@@ -13,8 +13,8 @@ enum AppVersionStatus { updated, canUpdate, mustUpdate }
 
 class PackageService {
   static final configsUrl = '${RequestManger.baseUrl}/utilities/configs/';
-  static const iosAppURL = 'https://apps.apple.com/us/app/yumealz/id1611997387';
-  static const androidAppURL = 'https://play.google.com/store/apps/details?id=com.yumealz';
+  static const iosAppURL = 'https://apps.apple.com/us/app/freej/';
+  static const androidAppURL = 'https://play.google.com/store/apps/details?id=com.freej';
 
   static Future<List<dynamic>> getApplicationVersion() async {
     String url;
@@ -66,7 +66,7 @@ class PackageService {
       } else if (Platform.isAndroid) {
         Nav.openUrl(context, url: androidAppURL);
       } else {
-        Nav.openUrl(context, url: 'https://yumealz.com');
+        Nav.openUrl(context, url: 'https://freej.com');
       }
     } else if (userAction == true && versionStatus == AppVersionStatus.canUpdate) {
       if (Platform.isIOS) {
@@ -74,7 +74,7 @@ class PackageService {
       } else if (Platform.isAndroid) {
         Nav.openUrl(context, url: androidAppURL);
       } else {
-        Nav.openUrl(context, url: 'https://yumealz.com');
+        Nav.openUrl(context, url: 'https://freej.com');
       }
     }
     return true;

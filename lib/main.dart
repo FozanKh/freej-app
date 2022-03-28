@@ -61,7 +61,7 @@ class _MyAppState extends State<MyApp> {
           child: MaterialApp(
             navigatorKey: MyApp._appKey,
             debugShowCheckedModeBanner: false,
-            title: 'yumealz',
+            title: 'freej',
             locale: _locale,
             supportedLocales: appSupportedLocales,
             localizationsDelegates: const [

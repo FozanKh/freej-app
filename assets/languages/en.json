@@ -24,7 +24,13 @@
   "update": "Update",
   "copied": "Copied",
   "welcome": "Welcome",
+  "building": "Building",
+  "buildings": "Buildings",
+  "room": "Room",
+  "rooms": "Rooms",
 
+  "welcome_to_freej": "Welcome to Freej",
+  "login_subtitle": "Where you can communicate better with your neighbors",
   "have_account": "have an account?",
   "dont_have_account": "Don't have an account?",
   "create_account": "Create Account",

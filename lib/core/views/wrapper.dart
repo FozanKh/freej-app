@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:freej/app/auth/services/auth_services.dart';
+import 'package:freej/app/auth/views/login_view.dart';
 import 'package:provider/provider.dart';
 import 'package:freej/app/scaffold/views/main_scaffold.dart';
 
@@ -33,6 +35,11 @@ class _WrapperState extends State<Wrapper> {
   Widget build(BuildContext context) {
     // print("access: ${authToken.access?.token}");
     // print("refresh: ${authToken.refresh?.token}");
-    return const MainScaffold();
+    // AuthServices.logout(context);
+    if (authToken.isActive) {
+      return const MainScaffold();
+    } else {
+      return const LoginView();
+    }
   }
 }

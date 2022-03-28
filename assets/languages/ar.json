@@ -24,7 +24,13 @@
   "update": "حدث",
   "copied": "تم النسخ",
   "welcome": "أهلا",
+  "building": "المبنى",
+  "buildings": "مباني",
+  "room": "الغرفة",
+  "rooms": "غرف",
 
+  "welcome_to_freej": "مرحبًا بك في الفريج",
+  "login_subtitle": "حيث يمكنك التواصل بشكل أفضل مع جيرانك",
   "have_account": "لديك حساب؟",
   "dont_have_account": "ليس لديك حساب؟",
   "create_account": "سجل",

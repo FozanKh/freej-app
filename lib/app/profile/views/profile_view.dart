@@ -37,12 +37,23 @@ class _ProfileViewState extends State<ProfileView> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.width / 3,
+                  clipBehavior: Clip.hardEdge,
+                  alignment: Alignment.center,
+                  // height: MediaQuery.of(context).size.width / 3,
                   width: MediaQuery.of(context).size.width / 3,
-                  decoration: BoxDecoration(
-                    color: kBlack,
+                  decoration: const BoxDecoration(
+                    color: kWhite,
                     shape: BoxShape.circle,
-                    border: Border.all(color: kPrimaryColor, width: 1),
+                  ),
+                  foregroundDecoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: kPrimaryColor, width: 2),
+                  ),
+                  child: const CachedImage(
+                    url:
+                        'https://firebasestorage.googleapis.com/v0/b/fozan-kh.appspot.com/o/IMG_2873-min.png?alt=media&token=d06c92b2-9028-44d1-821e-826104145b7b',
+                    fit: BoxFit.fill,
+                    shape: BoxShape.circle,
                   ),
                 ),
                 const SizedBox(height: 15),

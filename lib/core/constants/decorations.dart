@@ -74,28 +74,40 @@ class TextStyles {
     height: 1.1,
   );
 
+  /// fontWeight: FontWeight.bold, letterSpacing: 0.7, fontSize: 32
   static TextStyle get logo => fredokaOne.copyWith(fontWeight: FontWeight.bold, letterSpacing: 0.7, fontSize: 32);
 
+  /// fontWeight: FontWeight.bold, letterSpacing: 0.7, fontSize: 26
   static TextStyle get t1 => varelaRound.copyWith(fontWeight: FontWeight.bold, letterSpacing: 0.7, fontSize: 26);
 
+  /// fontWeight: FontWeight.bold, letterSpacing: 0.4, fontSize: 22
   static TextStyle get t2 => varelaRound.copyWith(fontWeight: FontWeight.bold, letterSpacing: 0.4, fontSize: 22);
 
+  /// fontSize: 20
   static TextStyle get h1 => varelaRound.copyWith(fontSize: 20);
 
+  /// fontSize: 18
   static TextStyle get h2 => varelaRound.copyWith(fontSize: 18);
 
+  /// fontSize: 16
   static TextStyle get body1 => varelaRound.copyWith(fontSize: 16);
 
+  /// fontSize: 14
   static TextStyle get body2 => varelaRound.copyWith(fontSize: 14);
 
+  /// fontSize: 13
   static TextStyle get body3 => varelaRound.copyWith(fontSize: 13);
 
+  /// fontSize: 16, letterSpacing: 1.75
   static TextStyle get callOut => varelaRound.copyWith(fontSize: 16, letterSpacing: 1.75);
 
+  /// fontWeight: FontWeight.bold
   static TextStyle get callOutFocus => callOut.copyWith(fontWeight: FontWeight.bold);
 
+  /// letterSpacing: 1.75
   static TextStyle get button => callOut.copyWith(letterSpacing: 1.75);
 
+  /// fontWeight: FontWeight.normal
   static TextStyle get buttonSelected => button.copyWith(fontWeight: FontWeight.normal);
 
   static TextStyle get footnote => body3;
@@ -104,6 +116,7 @@ class TextStyles {
 
   static TextStyle get hint2 => hint.withSize(11);
 
+  /// letterSpacing: 0.3
   static TextStyle get caption => footnote.copyWith(letterSpacing: 0.3);
 }
 

@@ -155,5 +155,10 @@
   "privacy_policy": "Privacy Policy",
   "about_freej": "About freej",
   "about_us": "About Us",
-  "contact_us": "Contact Us"
+  "contact_us": "Contact Us",
+  "personal_information": "Personal information",
+  "building_information": "Building information",
+  "own_items": "Own items",
+  "notifications": "Notifications",
+  "display_mode": "Display mode"
 }

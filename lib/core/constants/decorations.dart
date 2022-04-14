@@ -19,6 +19,8 @@ class Insets {
 }
 
 class Sizes {
+  static const double xxlCardHeight = 120.0;
+
   static const double xlCardHeight = 120.0;
 
   static const double lCardHeight = 80.0;
@@ -141,6 +143,9 @@ class Styles {
   ];
   static const List<BoxShadow> boxShadowTop = [
     BoxShadow(blurRadius: 4, color: Colors.black12, offset: Offset(0, -1)),
+  ];
+  static const List<BoxShadow> boxShadowBottom = [
+    BoxShadow(blurRadius: 3, spreadRadius: 0, color: Colors.black12, offset: Offset(0, 3)),
   ];
   static const List<BoxShadow> boxShadowHeavy = [
     BoxShadow(blurRadius: 10, color: Colors.black38, offset: Offset(-2, 2)),

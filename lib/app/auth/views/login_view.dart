@@ -54,7 +54,7 @@ class _LoginViewState extends State<LoginView> {
                     RoundedTextFormField(
                       title: "email".translate,
                       hint: 'name@example.com',
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.text,
                       validator: controller.emailValidator,
                     ),
                     const SizedBox(height: 10),

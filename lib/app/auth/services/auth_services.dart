@@ -16,8 +16,7 @@ class AuthServices {
   static final _loginUrl = "${RequestManger.baseUrl}/auth/access/";
   static final _registerUrl = "${RequestManger.baseUrl}/auth/register/";
   static final _conformRegistrationUrl = "${RequestManger.baseUrl}/auth/register-confirmation/";
-  static final _buildingsUrl = "${RequestManger.baseUrl}/campuses/<pk>/buildings/";
-  static final _userProfileUrl = "${RequestManger.baseUrl}/customers/me/";
+  static final _userProfileUrl = "${RequestManger.baseUrl}/campuses/residents/me/";
   static final refreshTokenUrl = "${RequestManger.baseUrl}/auth/refresh/";
 
   static Future<AuthToken> login({required String username, required String password}) async {
@@ -25,10 +24,9 @@ class AuthServices {
       'username': username,
       'password': password,
     };
-    // return AuthToken.fromMap(
-    //   await RequestManger.fetchObject(url: _loginUrl, method: Method.POST, body: body, needsAuth: false),
-    // );
-    return AuthToken.fromMap(kAuthTokenSample);
+    return AuthToken.fromMap(
+      await RequestManger.fetchObject(url: _loginUrl, method: Method.POST, body: body, needsAuth: false),
+    );
   }
 
   static Future<void> getOtp({
@@ -42,7 +40,7 @@ class AuthServices {
       "room_id": room,
     };
     log('hitting otp endpoint', name: 'getOtp/AuthService');
-    // await RequestManger.fetchObject(url: _registerUrl, method: Method.POST, body: body, needsAuth: false);
+    await RequestManger.fetchObject(url: _registerUrl, method: Method.POST, body: body, needsAuth: false);
   }
 
   static Future<void> conformRegistration({
@@ -58,22 +56,12 @@ class AuthServices {
       "otp": otp,
     };
     log('hitting register endpoint', name: 'register/AuthService');
-    // await RequestManger.fetchObject(url: _conformRegistrationUrl, method: Method.POST, body: body, needsAuth: false);
-  }
-
-  static Future<List<Building>> getBuildings() async {
-    log('getting supported corporates', name: 'getSupportedCorporates/AuthService');
-
-    // return (await RequestManger.fetchList(url: _buildingsUrl, method: Method.GET, needsAuth: false))
-    //     .map((e) => Building.fromMap(e))
-    //     .toList();
-    return kBuildingsSample.map((e) => Building.fromMap(e)).toList();
+    await RequestManger.fetchObject(url: _conformRegistrationUrl, method: Method.POST, body: body, needsAuth: false);
   }
 
   static Future<User> getUserProfile() async {
     log('hitting user profile endpoint', name: 'register/AuthService');
-    // return User.fromMap(await RequestManger.fetchObject(url: _userProfileUrl, method: Method.GET));
-    return User.fromMap(kUserSample);
+    return User.fromMap(await RequestManger.fetchObject(url: _userProfileUrl, method: Method.GET));
   }
 
   static Future<bool> refreshAuthTokens(AuthToken authToken) async {

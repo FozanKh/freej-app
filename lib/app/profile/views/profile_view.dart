@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../core/exports/core.dart';
 import '../../auth/models/user.dart';
+import '../../auth/services/auth_services.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({Key? key}) : super(key: key);
@@ -81,6 +82,13 @@ class _ProfileViewState extends State<ProfileView> {
                 Divider(),
                 ProfileOptionCard(icon: PhosphorIcons.share_network_fill, onTap: () {}, title: 'share'.translate),
                 ProfileOptionCard(icon: PhosphorIcons.info_fill, onTap: () {}, title: 'contact_us'.translate),
+                Divider(),
+                ProfileOptionCard(
+                  icon: PhosphorIcons.sign_out,
+                  onTap: () => AuthServices.logout(context),
+                  title: 'logout'.translate,
+                  color: kRed2,
+                ),
               ],
             ),
           )
@@ -94,27 +102,35 @@ class ProfileOptionCard extends StatelessWidget {
   final IconData icon;
   final String title;
   final VoidCallback onTap;
+  final Color? color;
 
   const ProfileOptionCard({
     Key? key,
     required this.icon,
     required this.title,
     required this.onTap,
+    this.color,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(icon, color: kPrimaryColor),
-        const SizedBox(width: 20),
-        Text(
-          title,
-          style: TextStyles.h1.withColor(kPrimaryColor),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        color: kTransparent,
+        child: Row(
+          children: [
+            Icon(icon, color: color ?? kPrimaryColor),
+            const SizedBox(width: 20),
+            Text(
+              title,
+              style: TextStyles.h1.withColor(color ?? kPrimaryColor),
+            ),
+            const Spacer(),
+            Icon(PhosphorIcons.caret_right, color: color ?? kPrimaryColor),
+          ],
         ),
-        const Spacer(),
-        const Icon(PhosphorIcons.caret_right, color: kPrimaryColor),
-      ],
+      ),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:freej/app/auth/controllers/login_controller.dart';
 import 'package:freej/app/auth/services/auth_services.dart';
+import 'package:freej/app/campus/repositories/building_repository.dart';
 
 import '../../../core/exports/core.dart';
 import '../../campus/models/building.dart';
@@ -13,7 +14,7 @@ class RegistrationController {
   final BuildContext context;
   Room? selectedRoom;
   Building? selectedBuilding;
-  Future<List<Building>>? availableBuildings = AuthServices.getBuildings();
+  Future<List<Building>>? availableBuildings = BuildingRepository.instance.getAllBuildings();
   final String email;
   String password = '';
   String name = '';

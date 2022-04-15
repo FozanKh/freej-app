@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart' show Alignment, Color, Colors, LinearGradient, RadialGradient;
 
 // [Main] Colors
-const kPrimaryColor = Color(0xFFFF9800);
+const kPrimaryColor = Color(0xFFf2994a);
 const kPrimaryColorDark = Color(0xFFFF6E40);
-const kPrimaryColorLight = Color(0xFFFFAB40);
+// const kPrimaryColorLight = Color(0xFFFFAB40);
+const kPrimaryColorLight = Color(0xFFFCE5D2);
 const kSecondaryColor = Color(0xFF0067FF);
 const kSecondaryColorDark = Color(0xFF4094FF);
 const kSecondaryColorLight = Color(0xFF40D1FF);

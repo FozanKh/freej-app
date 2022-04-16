@@ -12,3 +12,4 @@ export 'separated_column.dart';
 export 'full_screen_banner.dart';
 export 'icon_text.dart';
 export 'loading_dialog.dart';
+export 'progress_indicator.dart';

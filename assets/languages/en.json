@@ -26,6 +26,9 @@
   "welcome": "Welcome",
   "building": "Building",
   "buildings": "Buildings",
+  "campus": "Campus",
+  "advertisement": "Advertisement",
+  "advertisements": "Advertisements",
   "room": "Room",
   "rooms": "Rooms",
 
@@ -127,6 +130,12 @@
     "updated": "You are on the latest version on freej",
     "canUpdate": "There is a new update available",
     "mustUpdate": "You application version is outdated, you must update your application to continue"
+  },
+
+  "AnnouncementType": {
+    "building": "Building",
+    "campus": "Campus",
+    "advertisement": "Advertisement"
   },
 
   "edit_email": "Edit Email",

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:freej/app/annoucement/views/announcements_view.dart';
 import 'package:freej/app/home/views/home_view.dart';
 import 'package:freej/app/profile/views/profile_view.dart';
 import 'package:freej/core/localization/constants.dart';
@@ -20,7 +21,7 @@ class MainScaffoldController {
   void init() {
     _pages = [
       const HomeView(),
-      Container(),
+      const AnnouncementView(),
       const ProfileView(),
     ];
     currentIndex = 0;
@@ -33,7 +34,7 @@ class MainScaffoldController {
 
   List<BottomNavigationBarItem> get _getNavBarItems => [
         BottomNavigationBarItem(icon: const Icon(FzIcons.home), label: translateText('home', context: context)),
-        BottomNavigationBarItem(icon: const Icon(Icons.history_rounded), label: 'page2'.translate),
+        BottomNavigationBarItem(icon: const Icon(Icons.speaker_phone_outlined), label: 'announcements'.translate),
         BottomNavigationBarItem(icon: const Icon(CupertinoIcons.profile_circled), label: 'profile'.translate),
       ];
 }

@@ -26,6 +26,9 @@
   "welcome": "أهلا",
   "building": "المبنى",
   "buildings": "مباني",
+  "campus": "الحرم الجامعي",
+  "advertisement": "إعلان",
+  "advertisements": "إعلانات",
   "room": "الغرفة",
   "rooms": "غرف",
 
@@ -127,6 +130,12 @@
     "updated": "أنت على اخر اصدار",
     "canUpdate": "تحديث جديد متاح في المتجر",
     "mustUpdate": "تحديث جديد متاح في المتجر، يجب عليك تحديث التطبيق للمتابعة"
+  },
+
+  "AnnouncementType": {
+    "building": "المبنى",
+    "campus": "الحرم الجامعي",
+    "advertisement": "إعلان"
   },
 
   "edit_email": "تحرير البريد الإلكتروني",

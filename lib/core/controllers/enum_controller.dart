@@ -1,4 +1,5 @@
 class Enums {
+  Enums._();
   static T? fromString<T>(Iterable<T> values, String value) {
     return values.firstWhere(
       (type) => type.toString().split(".").last == value.replaceAll(' ', '_'),

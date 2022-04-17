@@ -5,8 +5,9 @@ import '../../events/models/event.dart';
 
 class EventCard extends StatelessWidget {
   final Event event;
+  final VoidCallback joinEventCallback;
 
-  const EventCard({Key? key, required this.event}) : super(key: key);
+  const EventCard({Key? key, required this.event, required this.joinEventCallback}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
@@ -46,7 +47,7 @@ class EventCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       RoundedButton(
-                        onTap: () {},
+                        onTap: joinEventCallback,
                         title: "join".translate,
                         textStyle: TextStyles.body2.withColor(kGreen).withWeight(FontWeight.w600),
                         shrink: true,

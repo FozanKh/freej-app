@@ -33,6 +33,7 @@ class EventsTab extends StatelessWidget {
                 events.data!.length,
                 (index) => EventCard(
                   event: (events.data![index]),
+                  joinEventCallback: () => controller.joinEvent(events.data![index]),
                 ),
               ).toList(),
             ),

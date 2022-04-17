@@ -4,6 +4,7 @@ import '../models/event.dart';
 class EventServices {
   static final _eventsUrl = '${RequestManger.baseUrl}/events/';
   static final _eventUrl = '${RequestManger.baseUrl}/events/<pk>/';
+  static final _eventApplicationUrl = '${RequestManger.baseUrl}/events/applications/<pk>/';
 
   static Future<List<Event>> getAllEvents() async {
     return (await RequestManger.fetchList(url: _eventsUrl, method: Method.GET)).map((e) => Event.fromMap(e)).toList();
@@ -45,5 +46,15 @@ class EventServices {
       "date": event.date.toIso8601String()
     };
     return Event.fromMap(await RequestManger.fetchObject(url: _eventsUrl, method: Method.POST, body: body));
+  }
+
+  static Future<void> joinEvent(Event event) async {
+    await RequestManger.fetchObject(
+        url: _eventApplicationUrl.replaceAll("<pk>", event.id.toString()), method: Method.POST);
+  }
+
+  static Future<void> leaveEvent(Event event) async {
+    await RequestManger.fetchObject(
+        url: _eventApplicationUrl.replaceAll("<pk>", event.id.toString()), method: Method.DELETE);
   }
 }

@@ -178,5 +178,6 @@
   "items": "Items",
   "event": "فعالية",
   "events": "فعاليات",
-  "join": "إنضم"
+  "join": "إنضم",
+  "event_joined_successfully": "تم انضمام الفعالية بنجاح"
 }

@@ -178,5 +178,6 @@
   "items": "Items",
   "event": "Event",
   "events": "Events",
-  "join": "Join"
+  "join": "Join",
+  "event_joined_successfully": "Event joined successfully"
 }

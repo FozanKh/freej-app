@@ -169,5 +169,14 @@
   "building_information": "Building information",
   "own_items": "Own items",
   "notifications": "Notifications",
-  "display_mode": "Display mode"
+  "display_mode": "Display mode",
+
+  "your_are_in_building": "You Are in Building",
+  "service": "Service",
+  "services": "Services",
+  "item": "Item",
+  "items": "Items",
+  "event": "Event",
+  "events": "Events",
+  "join": "Join"
 }

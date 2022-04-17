@@ -19,7 +19,7 @@ class Insets {
 }
 
 class Sizes {
-  static const double xxlCardHeight = 120.0;
+  static const double xxlCardHeight = 160.0;
 
   static const double xlCardHeight = 120.0;
 
@@ -59,7 +59,8 @@ class TextStyles {
   static const TextStyle fredokaOne = TextStyle(
     fontFamily: Fonts.fredokaOne,
     fontWeight: FontWeight.w400,
-    color: kFontsColor,
+    // TODO: make sure removing the color here doesn't have any effect on random views
+    // color: kFontsColor,
     height: 1.1,
     fontFamilyFallback: [
       'Tajawal',
@@ -69,7 +70,8 @@ class TextStyles {
   static const TextStyle varelaRound = TextStyle(
     fontFamily: Fonts.varelaRound,
     fontWeight: FontWeight.w400,
-    color: kFontsColor,
+    // TODO: make sure removing the color here doesn't have any effect on random views
+    // color: kFontsColor,
     fontFamilyFallback: [
       'Tajawal',
     ],

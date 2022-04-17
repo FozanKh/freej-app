@@ -169,5 +169,14 @@
   "building_information": "معلومات المبنى",
   "own_items": "أشيائي",
   "notifications": "التنبيهات",
-  "display_mode": "وضع العرض"
+  "display_mode": "وضع العرض",
+
+  "your_are_in_building": "أنت في المبنى",
+  "service": "الخدمة",
+  "services": "الخدمات",
+  "item": "Item",
+  "items": "Items",
+  "event": "فعالية",
+  "events": "فعاليات",
+  "join": "إنضم"
 }

@@ -3,7 +3,9 @@ import 'package:freej/app/home/components/home_app_bar.dart';
 import 'package:freej/app/home/components/post_card.dart';
 
 import '../../../core/exports/core.dart';
+import '../components/event_card.dart';
 import '../controllers/home_view_controller.dart';
+import 'tabs/events_page.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -19,7 +21,7 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
   @override
   void initState() {
     controller = HomeViewController(context);
-    tabController = TabController(length: 2, vsync: this);
+    tabController = TabController(length: 3, vsync: this);
     super.initState();
   }
 
@@ -41,6 +43,7 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
               tabs: [
                 Tab(child: Text('services'.translate, textAlign: TextAlign.center)),
                 Tab(child: Text('items'.translate, textAlign: TextAlign.center)),
+                Tab(child: Text('events'.translate, textAlign: TextAlign.center)),
               ],
             ),
           ),
@@ -57,7 +60,7 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
                     ),
                     child: SeparatedColumn(
                       separator: const Divider(color: kTransparent),
-                      children: List.generate(10, (index) => PostCard()).toList(),
+                      children: List.generate(10, (index) => const PostCard()).toList(),
                     ),
                   ),
                 ),
@@ -70,10 +73,11 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
                     ),
                     child: SeparatedColumn(
                       separator: const Divider(color: kTransparent),
-                      children: List.generate(10, (index) => PostCard()).toList(),
+                      children: List.generate(10, (index) => const PostCard()).toList(),
                     ),
                   ),
                 ),
+                EventsTab(controller: controller),
               ],
             ),
           )

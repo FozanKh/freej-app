@@ -11,6 +11,7 @@ const kSecondaryColorLight = Color(0xFF40D1FF);
 const kTransparent = Colors.transparent;
 const kWhite = Colors.white;
 const kBlack = Colors.black;
+const kGreen = Color(0xFF6BCB77);
 const kFontsColor = Color(0xFF313131);
 const kGrey = Color(0xFF8898A4);
 const kInActiveColor = Colors.grey; //Color(0xFF555555);

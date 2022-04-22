@@ -10,13 +10,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final vmodel = SplashScreenViewModel();
+  final controller = SplashScreenViewModel();
 
   @override
   void initState() {
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
-      vmodel.preLunchActivities(context);
-      vmodel.lunch(context);
+      controller.preLunchActivities(context);
+      controller.lunch(context);
     });
     super.initState();
   }
@@ -29,6 +29,8 @@ class _SplashScreenState extends State<SplashScreen> {
         color: kPrimaryColor,
         padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height / 4),
         alignment: Alignment.center,
+        child: FadeIn(
+            child: Image.asset(Assets.kFreejWhiteLogoAsset), delay: 200, duration: const Duration(milliseconds: 200)),
       ),
     );
   }

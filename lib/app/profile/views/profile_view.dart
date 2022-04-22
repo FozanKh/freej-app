@@ -75,7 +75,7 @@ class _ProfileViewState extends State<ProfileView> {
               children: [
                 ProfileOptionCard(
                   icon: PhosphorIcons.user_circle_fill,
-                  onTap: () => Nav.openPage(context: context, page: EditProfileView()),
+                  onTap: () => Nav.openPage(context: context, page: const EditProfileView()),
                   title: 'personal_information'.translate,
                 ),
                 ProfileOptionCard(
@@ -83,10 +83,10 @@ class _ProfileViewState extends State<ProfileView> {
                 ProfileOptionCard(icon: PhosphorIcons.nut_fill, onTap: () {}, title: 'own_items'.translate),
                 ProfileOptionCard(icon: PhosphorIcons.bell_fill, onTap: () {}, title: 'notifications'.translate),
                 ProfileOptionCard(icon: PhosphorIcons.moon_fill, onTap: () {}, title: 'display_mode'.translate),
-                Divider(),
+                const Divider(),
                 ProfileOptionCard(icon: PhosphorIcons.share_network_fill, onTap: () {}, title: 'share'.translate),
                 ProfileOptionCard(icon: PhosphorIcons.info_fill, onTap: () {}, title: 'contact_us'.translate),
-                Divider(),
+                const Divider(),
                 ProfileOptionCard(
                   icon: PhosphorIcons.sign_out,
                   onTap: () => AuthServices.logout(context),

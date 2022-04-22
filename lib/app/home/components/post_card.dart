@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:freej/core/constants/phosphor_icons.dart';
 import 'package:freej/core/exports/core.dart';
 
 class PostCard extends StatelessWidget {

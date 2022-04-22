@@ -4,6 +4,7 @@ import 'package:freej/app/home/components/post_card.dart';
 
 import '../../../core/exports/core.dart';
 import '../controllers/home_view_controller.dart';
+import 'tabs/events_page.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -15,11 +16,11 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin {
   late final HomeViewController controller;
   late final TabController tabController;
-
+ 
   @override
   void initState() {
     controller = HomeViewController(context);
-    tabController = TabController(length: 2, vsync: this);
+    tabController = TabController(length: 3, vsync: this);
     super.initState();
   }
 
@@ -41,6 +42,7 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
               tabs: [
                 Tab(child: Text('services'.translate, textAlign: TextAlign.center)),
                 Tab(child: Text('items'.translate, textAlign: TextAlign.center)),
+                Tab(child: Text('events'.translate, textAlign: TextAlign.center)),
               ],
             ),
           ),
@@ -50,30 +52,19 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
               children: [
                 SingleChildScrollView(
                   padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minHeight: MediaQuery.of(context).size.height - kToolbarHeight,
-                      minWidth: MediaQuery.of(context).size.width,
-                    ),
-                    child: SeparatedColumn(
-                      separator: const Divider(color: kTransparent),
-                      children: List.generate(10, (index) => PostCard()).toList(),
-                    ),
+                  child: SeparatedColumn(
+                    separator: const Divider(color: kTransparent),
+                    children: List.generate(10, (index) => const PostCard()).toList(),
                   ),
                 ),
                 SingleChildScrollView(
                   padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minHeight: MediaQuery.of(context).size.height - kToolbarHeight,
-                      minWidth: MediaQuery.of(context).size.width,
-                    ),
-                    child: SeparatedColumn(
-                      separator: const Divider(color: kTransparent),
-                      children: List.generate(10, (index) => PostCard()).toList(),
-                    ),
+                  child: SeparatedColumn(
+                    separator: const Divider(color: kTransparent),
+                    children: List.generate(10, (index) => const PostCard()).toList(),
                   ),
                 ),
+                EventsTab(controller: controller),
               ],
             ),
           )

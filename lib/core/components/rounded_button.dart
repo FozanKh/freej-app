@@ -17,6 +17,7 @@ class RoundedButton extends StatelessWidget {
   final TextStyle? textStyle;
   final bool enabled;
   final bool elevated;
+  final bool shrink;
   final void Function() onTap;
 
   const RoundedButton({
@@ -36,6 +37,7 @@ class RoundedButton extends StatelessWidget {
     this.textStyle,
     this.gradient,
     this.elevated = false,
+    this.shrink = false,
   })  : assert(child == null || title == null),
         assert(child != null || title != null),
         super(key: key);
@@ -47,7 +49,7 @@ class RoundedButton extends StatelessWidget {
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        height: height ?? Sizes.mCardHeight,
+        height: shrink ? null : height ?? Sizes.mCardHeight,
         alignment: Alignment.center,
         margin: margin ?? const EdgeInsets.only(top: 10),
         padding: padding ?? const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15),

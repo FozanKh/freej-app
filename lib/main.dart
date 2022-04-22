@@ -87,7 +87,7 @@ class _MyAppState extends State<MyApp> {
               appBarTheme: AppBarTheme(
                 backgroundColor: kBackgroundColor,
                 titleTextStyle: TextStyles.t1.withColor(kFontsColor),
-                iconTheme: const IconThemeData(color: kFontsColor),
+                iconTheme: const IconThemeData(color: kPrimaryColor),
                 elevation: 0,
               ),
             ),

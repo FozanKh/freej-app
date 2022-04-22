@@ -8,6 +8,7 @@ class RoundedTextFormField extends StatefulWidget {
   final String? hint;
   final String? label;
   final Color? fillColor;
+  final Color? borderColor;
   final bool isBordered;
   final bool minimal;
   final bool autofocus;
@@ -70,6 +71,7 @@ class RoundedTextFormField extends StatefulWidget {
     this.initialValue,
     this.validator,
     this.autovalidateMode,
+    this.borderColor,
   }) : super(key: key);
 
   @override
@@ -210,7 +212,8 @@ class _RoundedTextFormFieldState extends State<RoundedTextFormField> {
                   ? null
                   : OutlineInputBorder(
                       gapPadding: 5,
-                      borderSide: BorderSide(color: widget.isBordered ? Colors.grey : kTransparent),
+                      borderSide:
+                          BorderSide(color: widget.isBordered ? widget.borderColor ?? Colors.grey : kTransparent),
                       borderRadius: widget.borderRadius ?? Borders.mBorderRadius,
                     ),
               disabledBorder: widget.minimal

@@ -169,5 +169,18 @@
   "building_information": "Building information",
   "own_items": "Own items",
   "notifications": "Notifications",
-  "display_mode": "Display mode"
+  "display_mode": "Display mode",
+
+  "your_are_in_building": "You Are in Building",
+  "service": "Service",
+  "services": "Services",
+  "item": "Item",
+  "items": "Items",
+  "event": "Event",
+  "events": "Events",
+  "join": "Join",
+  "event_joined_successfully": "Event joined successfully",
+  "event_left_successfully": "Event left successfully",
+  "leave_event_assertion": "Are you sure you want to leave this event?",
+  "join_event_assertion": "Are you sure you want to join this event?"
 }

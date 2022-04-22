@@ -169,5 +169,18 @@
   "building_information": "معلومات المبنى",
   "own_items": "أشيائي",
   "notifications": "التنبيهات",
-  "display_mode": "وضع العرض"
+  "display_mode": "وضع العرض",
+
+  "your_are_in_building": "أنت في المبنى",
+  "service": "الخدمة",
+  "services": "الخدمات",
+  "item": "Item",
+  "items": "Items",
+  "event": "فعالية",
+  "events": "فعاليات",
+  "join": "إنضم",
+  "event_left_successfully": "تم الخروج من الفعالية بنجاح",
+  "event_joined_successfully": "تم الانضمام الى الفعالية بنجاح",
+  "leave_event_assertion": "هل أنت متأكد أنك تريد مغادرة هذه الفعالية؟",
+  "join_event_assertion": "هل أنت متأكد أنك تريد الانضمام إلى هذه الفعالية؟"
 }

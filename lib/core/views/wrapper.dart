@@ -20,7 +20,7 @@ class _WrapperState extends State<Wrapper> {
 
   @override
   void initState() {
-    PackageService.checkUpdates(context);
+    // PackageService.checkUpdates(context);
     SharedPreference.instance.init(context);
     super.initState();
   }
@@ -33,7 +33,7 @@ class _WrapperState extends State<Wrapper> {
 
   @override
   Widget build(BuildContext context) {
-    // print("access: ${authToken.access?.token}");
+    print("access: ${authToken.access?.token}");
     // print("refresh: ${authToken.refresh?.token}");
     // AuthServices.logout(context);
     if (authToken.isActive) {

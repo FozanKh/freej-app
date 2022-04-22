@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../core/exports/core.dart';
 import '../../auth/models/user.dart';
 import '../../auth/services/auth_services.dart';
+import 'edit_profile_view.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({Key? key}) : super(key: key);
@@ -73,7 +74,10 @@ class _ProfileViewState extends State<ProfileView> {
               contentPadding: const EdgeInsets.symmetric(horizontal: Insets.m * 2),
               children: [
                 ProfileOptionCard(
-                    icon: PhosphorIcons.user_circle_fill, onTap: () {}, title: 'personal_information'.translate),
+                  icon: PhosphorIcons.user_circle_fill,
+                  onTap: () => Nav.openPage(context: context, page: EditProfileView()),
+                  title: 'personal_information'.translate,
+                ),
                 ProfileOptionCard(
                     icon: PhosphorIcons.buildings_fill, onTap: () {}, title: 'building_information'.translate),
                 ProfileOptionCard(icon: PhosphorIcons.nut_fill, onTap: () {}, title: 'own_items'.translate),

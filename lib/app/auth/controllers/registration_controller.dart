@@ -71,11 +71,11 @@ class RegistrationController {
     await LoginController(context, email: email, password: password).signIn(validate: false);
   }
 
-  void selectRoom({Room? corporate, String? other}) {
-    if (selectedRoom == corporate) {
+  void selectRoom({Room? room, String? other}) {
+    if (selectedRoom == room) {
       selectedRoom = null;
     } else {
-      selectedRoom = corporate;
+      selectedRoom = room;
     }
   }
 }

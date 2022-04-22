@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'user_building.dart';
+
 class Campus {
   Campus({
     required this.id,
@@ -6,6 +10,7 @@ class Campus {
     required this.nameAr,
     required this.nameEn,
     required this.emailDomain,
+    required this.building,
   });
 
   final int id;
@@ -14,6 +19,7 @@ class Campus {
   final String nameAr;
   final String nameEn;
   final String emailDomain;
+  final UserBuilding building;
 
   Campus copyWith({
     int? id,
@@ -22,6 +28,7 @@ class Campus {
     String? nameAr,
     String? nameEn,
     String? emailDomain,
+    UserBuilding? building,
   }) =>
       Campus(
         id: id ?? this.id,
@@ -30,7 +37,12 @@ class Campus {
         nameAr: nameAr ?? this.nameAr,
         nameEn: nameEn ?? this.nameEn,
         emailDomain: emailDomain ?? this.emailDomain,
+        building: building ?? this.building,
       );
+
+  factory Campus.fromJson(String str) => Campus.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
 
   factory Campus.fromMap(Map<String, dynamic> json) => Campus(
         id: json["id"],
@@ -39,6 +51,7 @@ class Campus {
         nameAr: json["name_ar"],
         nameEn: json["name_en"],
         emailDomain: json["email_domain"],
+        building: UserBuilding.fromMap(json["building"]),
       );
 
   Map<String, dynamic> toMap() => {
@@ -48,5 +61,6 @@ class Campus {
         "name_ar": nameAr,
         "name_en": nameEn,
         "email_domain": emailDomain,
+        "building": building.toMap(),
       };
 }

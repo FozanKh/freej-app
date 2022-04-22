@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
+import '../../campus/models/building.dart';
 import '../../campus/models/campus.dart';
+import '../../campus/models/user_building.dart';
 import 'account.dart';
 
 class User extends ChangeNotifier {
@@ -32,6 +34,8 @@ class User extends ChangeNotifier {
 
   String? get email => account?.username;
   bool get isLoggedIn => id != null;
+
+  UserBuilding get building => campusDetails!.building;
 
   User copyWith({
     int? id,

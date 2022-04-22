@@ -5,7 +5,7 @@ import '../../../events/models/event.dart';
 import '../../components/event_card.dart';
 import '../../controllers/home_view_controller.dart';
 
-class EventsTab extends StatelessWidget {
+class EventsTab extends StatefulWidget {
   final HomeViewController controller;
   const EventsTab({
     Key? key,
@@ -13,30 +13,31 @@ class EventsTab extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<EventsTab> createState() => _EventsTabState();
+}
+
+class _EventsTabState extends State<EventsTab> {
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Event>>(
-      future: controller.getAllEvents(),
+      future: widget.controller.getAllEvents(),
       builder: (context, events) {
         if (!events.hasData || (events.data?.isEmpty ?? true)) {
           return const Center(child: CircularProgressIndicator());
         }
         return SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: MediaQuery.of(context).size.height - kToolbarHeight,
-              minWidth: MediaQuery.of(context).size.width,
-            ),
-            child: SeparatedColumn(
-              separator: const Divider(color: kTransparent),
-              children: List.generate(
-                events.data!.length,
-                (index) => EventCard(
-                  event: (events.data![index]),
-                  joinEventCallback: () => controller.joinEvent(events.data![index]),
-                ),
-              ).toList(),
-            ),
+          child: SeparatedColumn(
+            separator: const Divider(color: kTransparent),
+            children: List.generate(
+              events.data!.length,
+              (index) => EventCard(
+                event: (events.data![index]),
+                joinEventCallback: () => events.data![index].isJoined
+                    ? widget.controller.leaveEvent(events.data![index]).then((value) => setState(() {}))
+                    : widget.controller.joinEvent(events.data![index]).then((value) => setState(() {})),
+              ),
+            ).toList(),
           ),
         );
       },

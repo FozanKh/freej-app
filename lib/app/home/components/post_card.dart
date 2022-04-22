@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:freej/core/constants/phosphor_icons.dart';
 import 'package:freej/core/exports/core.dart';
 
 class PostCard extends StatelessWidget {
@@ -10,7 +9,7 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Sizes.xxlCardHeight * 1.75,
+      height: Sizes.xxlCardHeight,
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
         borderRadius: Borders.mBorderRadius,
@@ -21,7 +20,7 @@ class PostCard extends StatelessWidget {
         children: [
           Image.asset(
             Assets.kFreejLogoAsset,
-            height: MediaQuery.of(context).size.height / 5,
+            height: Sizes.xxlCardHeight,
           ),
           // const Icon(
           //   PhosphorIcons.warning_circle_fill,

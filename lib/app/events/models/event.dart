@@ -1,8 +1,11 @@
 import 'dart:convert';
 
+import 'package:freej/app/events/models/host.dart';
 import 'package:freej/core/controllers/enum_controller.dart';
 
 enum EventType { sport, study, helpSession, game, other }
+enum EventStatus { new_event, finished, cancelled }
+enum EventApplicationStatus { joined, cancelled }
 
 class Event {
   Event({
@@ -21,7 +24,7 @@ class Event {
   });
 
   final int id;
-  final String? applicationStatus;
+  final EventApplicationStatus? applicationStatus;
   final DateTime createdAt;
   final DateTime modifiedAt;
   final EventType type;
@@ -30,12 +33,13 @@ class Event {
   final String? locationUrl;
   final DateTime date;
   final String status;
-  final int host;
+  final Host host;
   final int campus;
+  bool get isJoined => applicationStatus == EventApplicationStatus.joined;
 
   Event copyWith({
     int? id,
-    String? applicationStatus,
+    EventApplicationStatus? applicationStatus,
     DateTime? createdAt,
     DateTime? modifiedAt,
     EventType? type,
@@ -44,7 +48,7 @@ class Event {
     String? locationUrl,
     DateTime? date,
     String? status,
-    int? host,
+    Host? host,
     int? campus,
   }) =>
       Event(
@@ -68,7 +72,9 @@ class Event {
 
   factory Event.fromMap(Map<String, dynamic> json) => Event(
         id: json["id"],
-        applicationStatus: json["application_status"],
+        applicationStatus: json["application_status"] != null
+            ? Enums.fromString(EventApplicationStatus.values, json["application_status"])
+            : null,
         createdAt: DateTime.parse(json["created_at"]),
         modifiedAt: DateTime.parse(json["modified_at"]),
         type: Enums.fromString(EventType.values, json["type"]) ?? EventType.other,
@@ -77,13 +83,13 @@ class Event {
         locationUrl: json["location_url"],
         date: DateTime.parse(json["date"]),
         status: json["status"],
-        host: json["host"],
+        host: Host.fromMap(json["host"]),
         campus: json["campus"],
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
-        "application_status": applicationStatus,
+        "application_status": applicationStatus != null ? Enums.valueString(applicationStatus) : null,
         "created_at": createdAt.toIso8601String(),
         "modified_at": modifiedAt.toIso8601String(),
         "type": type.name,
@@ -92,7 +98,7 @@ class Event {
         "location_url": locationUrl,
         "date": date.toIso8601String(),
         "status": status,
-        "host": host,
+        "host": host.toMap(),
         "campus": campus,
       };
 }

@@ -10,6 +10,7 @@ class EventCard extends StatelessWidget {
   const EventCard({Key? key, required this.event, required this.joinEventCallback}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    print(event.toMap().prettyJson);
     return DefaultTextStyle(
       style: const TextStyle(color: kWhite),
       child: Container(
@@ -48,8 +49,9 @@ class EventCard extends StatelessWidget {
                     children: [
                       RoundedButton(
                         onTap: joinEventCallback,
-                        title: "join".translate,
-                        textStyle: TextStyles.body2.withColor(kGreen).withWeight(FontWeight.w600),
+                        title: event.isJoined ? "leave".translate : "join".translate,
+                        textStyle:
+                            TextStyles.body2.withColor(event.isJoined ? kRed2 : kGreen).withWeight(FontWeight.w600),
                         shrink: true,
                         buttonColor: kWhite,
                         margin: EdgeInsets.zero,

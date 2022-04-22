@@ -26,9 +26,30 @@ class HomeViewController {
     pr.show();
 
     try {
+      if (!(await AlertDialogBox.showAssertionDialog(context, message: "join_event_assertion".translate) ?? false)) {
+        return;
+      }
       await EventServices.joinEvent(event);
+      await EventRepository.instance.getAllEvents(refresh: true);
       pr.hide();
       AlertDialogBox.showAlert(context, message: "event_joined_successfully".translate);
+    } catch (e) {
+      pr.hide();
+      AlertDialogBox.showAlert(context, message: e.toString().translate);
+    }
+  }
+
+  Future<void> leaveEvent(Event event) async {
+    pr.show();
+
+    try {
+      if (!(await AlertDialogBox.showAssertionDialog(context, message: "leave_event_assertion".translate) ?? false)) {
+        return;
+      }
+      await EventServices.leaveEvent(event);
+      await EventRepository.instance.getAllEvents(refresh: true);
+      pr.hide();
+      AlertDialogBox.showAlert(context, message: "event_left_successfully".translate);
     } catch (e) {
       pr.hide();
       AlertDialogBox.showAlert(context, message: e.toString().translate);

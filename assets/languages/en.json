@@ -179,5 +179,8 @@
   "event": "Event",
   "events": "Events",
   "join": "Join",
-  "event_joined_successfully": "Event joined successfully"
+  "event_joined_successfully": "Event joined successfully",
+  "event_left_successfully": "Event left successfully",
+  "leave_event_assertion": "Are you sure you want to leave this event?",
+  "join_event_assertion": "Are you sure you want to join this event?"
 }

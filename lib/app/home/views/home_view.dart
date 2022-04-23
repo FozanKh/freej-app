@@ -15,26 +15,31 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin {
   late final HomeViewController controller;
-  late final TabController tabController;
- 
+
   @override
   void initState() {
-    controller = HomeViewController(context);
-    tabController = TabController(length: 3, vsync: this);
+    controller = HomeViewController(context, this);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const HomeAppBar(height: kToolbarHeight * 1.3, user: null),
+      floatingActionButton: controller.homeFloatingActionButton,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             decoration: const BoxDecoration(boxShadow: Styles.boxShadowBottom, color: kBackgroundColor),
             child: TabBar(
-              controller: tabController,
+              controller: controller.tabController,
               labelColor: kPrimaryColor,
               isScrollable: false,
               unselectedLabelColor: kDark3,
@@ -48,7 +53,7 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
           ),
           Expanded(
             child: TabBarView(
-              controller: tabController,
+              controller: controller.tabController,
               children: [
                 SingleChildScrollView(
                   padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),

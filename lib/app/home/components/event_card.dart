@@ -10,7 +10,6 @@ class EventCard extends StatelessWidget {
   const EventCard({Key? key, required this.event, required this.joinEventCallback}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    print(event.toMap().prettyJson);
     return DefaultTextStyle(
       style: const TextStyle(color: kWhite),
       child: Container(

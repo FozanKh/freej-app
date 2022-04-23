@@ -9,7 +9,7 @@ class PostServices {
   static Future<List<Post>> getAllOffers() async {
     return (await RequestManger.fetchList(
       url: _offersUrl,
-      method: Method.POST,
+      method: Method.GET,
     ))
         .map((e) => Post.fromMap(e))
         .toList();
@@ -18,7 +18,7 @@ class PostServices {
   static Future<List<Post>> getAllRequests() async {
     return (await RequestManger.fetchList(
       url: _requestsUrl,
-      method: Method.POST,
+      method: Method.GET,
     ))
         .map((e) => Post.fromMap(e))
         .toList();

@@ -183,5 +183,17 @@
   "event_left_successfully": "Event left successfully",
   "leave_event_assertion": "Are you sure you want to leave this event?",
   "join_event_assertion": "Are you sure you want to join this event?",
-  "edit_your_profile": "Edit your profile"
+  "edit_your_profile": "Edit your profile",
+  "join_building_whatsapp_group": "Join building Whatsapp group",
+
+  "is_the_problem_solved": "Is the problem solved?",
+
+  "MaintenanceIssueType": {
+    "halls": "Halls",
+    "rooms": "Rooms",
+    "bathrooms": "Bathrooms",
+    "other": "Other"
+  },
+  "are_you_sure_the_problem_is_solved": "Are you sure the problem is solved?",
+  "no_whatsapp_group_for_your_building_yet_contact": "No WhatsApp group for your building yet, please contact your building supervisor."
 }

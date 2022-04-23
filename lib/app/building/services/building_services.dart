@@ -1,0 +1,37 @@
+import '../../../core/services/api/request_manager.dart';
+import '../../campus/models/building.dart';
+import '../models/maintenance_issue.dart';
+
+class BuildingServices {
+  static final _maintenanceIssuesUrl = "${RequestManger.baseUrl}/campuses/residents/me/building-issues/";
+  static final _fixMaintenanceIssueUrl = "${RequestManger.baseUrl}/campuses/residents/me/fix-building-issues/<pk>/";
+  static final _buildingsUrl = "${RequestManger.baseUrl}/campuses/<pk>/buildings/";
+
+  // TODO: Make [campusId] required
+  // TODO: implement real API request
+  static Future<List<Building>> getAllBuildings({int campusId = 1}) async {
+    return (await RequestManger.fetchList(
+      url: _buildingsUrl.replaceAll("<pk>", campusId.toString()),
+      method: Method.GET,
+      needsAuth: false,
+    ))
+        .map((e) => Building.fromMap(e))
+        .toList();
+  }
+
+  static Future<List<MaintenanceIssue>> getAllMaintenanceIssues() async {
+    return (await RequestManger.fetchList(
+      url: _maintenanceIssuesUrl,
+      method: Method.GET,
+    ))
+        .map((e) => MaintenanceIssue.fromMap(e))
+        .toList();
+  }
+
+  static Future<MaintenanceIssue> fixMaintenanceIssue(MaintenanceIssue issue) async {
+    return MaintenanceIssue.fromMap(await RequestManger.fetchObject(
+      url: _fixMaintenanceIssueUrl.replaceAll("<pk>", issue.id.toString()),
+      method: Method.POST,
+    ));
+  }
+}

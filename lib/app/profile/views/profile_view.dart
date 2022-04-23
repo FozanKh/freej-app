@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freej/app/profile/views/building_view.dart';
 import 'package:freej/core/constants/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
@@ -79,7 +80,10 @@ class _ProfileViewState extends State<ProfileView> {
                   title: 'personal_information'.translate,
                 ),
                 ProfileOptionCard(
-                    icon: PhosphorIcons.buildings_fill, onTap: () {}, title: 'building_information'.translate),
+                  icon: PhosphorIcons.buildings_fill,
+                  onTap: () => Nav.openPage(context: context, page: const BuildingView()),
+                  title: 'building_information'.translate,
+                ),
                 ProfileOptionCard(icon: PhosphorIcons.nut_fill, onTap: () {}, title: 'own_items'.translate),
                 ProfileOptionCard(icon: PhosphorIcons.bell_fill, onTap: () {}, title: 'notifications'.translate),
                 ProfileOptionCard(icon: PhosphorIcons.moon_fill, onTap: () {}, title: 'display_mode'.translate),

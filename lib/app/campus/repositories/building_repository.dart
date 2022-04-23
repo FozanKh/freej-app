@@ -1,5 +1,5 @@
+import '../../building/services/building_services.dart';
 import '../models/building.dart';
-import '../services/building_service.dart';
 
 class BuildingRepository {
   BuildingRepository._();

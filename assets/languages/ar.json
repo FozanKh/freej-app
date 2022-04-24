@@ -202,5 +202,10 @@
   "submit": "إرسال",
   "please_choose_issue_type": "الرجاء اختيار نوع طلب الصيانة",
   "please_enter_proper_description": "الرجاء إدخال وصف المناسب",
-  "maintenance_issue_created_successfully": "تم إنشاء طلب الصيانة بنجاح"
+  "please_enter_proper_title": "الرجاء إدخال عنوان المناسب",
+  "maintenance_issue_created_successfully": "تم إنشاء طلب الصيانة بنجاح",
+  "complete_your_profile": "أكمل ملفك الشخصي",
+  "send_announcement": "إرسال إعلان",
+  "title": "العنوان",
+  "announcement_created_successfully": "تم إرسال الإعلان بنجاح"
 }

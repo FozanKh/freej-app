@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:freej/app/annoucement/views/announcements_view.dart';
+import 'package:freej/app/announcement/views/announcements_view.dart';
 import 'package:freej/app/home/views/home_view.dart';
 import 'package:freej/app/profile/views/profile_view.dart';
 import 'package:freej/core/localization/constants.dart';

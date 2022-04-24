@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:freej/app/annoucement/componenets/announcement_card.dart';
+import 'package:freej/app/announcement/componenets/announcement_card.dart';
 
 import '../../../core/exports/core.dart';
 import '../../home/components/home_app_bar.dart';
@@ -29,6 +29,7 @@ class _AnnouncementViewState extends State<AnnouncementView> with SingleTickerPr
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const HomeAppBar(height: kToolbarHeight * 1.3, user: null),
+      floatingActionButton: controller.fab,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

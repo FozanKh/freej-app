@@ -201,5 +201,10 @@
   "submit": "Submit",
   "please_choose_issue_type": "Please choose an issue type",
   "please_enter_proper_description": "Please enter proper description",
-  "maintenance_issue_created_successfully": "Maintenance issue created successfully"
+  "please_enter_proper_title": "Please enter proper title",
+  "maintenance_issue_created_successfully": "Maintenance issue created successfully",
+  "complete_your_profile": "Complete Your Profile",
+  "send_announcement": "Send announcement",
+  "title": "Title",
+  "announcement_created_successfully": "Announcement created successfully"
 }

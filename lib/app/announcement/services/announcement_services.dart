@@ -26,21 +26,26 @@ class AnnouncementServices {
         .toList();
   }
 
-  static Future<List<Announcement>> sendAnnouncement(Announcement announcement) async {
-    return (await RequestManger.fetchList(
-      url: _sendAnnouncementUrl,
-      method: Method.POST,
-    ))
-        .map((e) => Announcement.fromMap(e))
-        .toList();
+  static Future<Announcement> sendAnnouncement(String title, String description) async {
+    Map<String, dynamic> body = {
+      "title": title,
+      "body": description,
+    };
+    return Announcement.fromMap(
+      await RequestManger.fetchObject(
+        url: _sendAnnouncementUrl,
+        method: Method.POST,
+        body: body,
+      ),
+    );
   }
 
-  static Future<List<Announcement>> deleteAnnouncement(Announcement announcement) async {
-    return (await RequestManger.fetchList(
-      url: _announcementUrl.replaceAll("<pk>", announcement.id.toString()),
-      method: Method.DELETE,
-    ))
-        .map((e) => Announcement.fromMap(e))
-        .toList();
+  static Future<Announcement> deleteAnnouncement(Announcement announcement) async {
+    return Announcement.fromMap(
+      await RequestManger.fetchObject(
+        url: _announcementUrl.replaceAll("<pk>", announcement.id.toString()),
+        method: Method.DELETE,
+      ),
+    );
   }
 }

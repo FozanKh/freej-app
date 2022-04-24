@@ -61,6 +61,7 @@ class RegistrationController {
       );
       await signIn();
       log('Registration done successfully', name: "conformRegistration/RegistrationController");
+      Nav.popPage(context, args: true);
     } catch (e) {
       AlertDialogBox.showAlert(context, message: e.toString());
       log(e.toString());

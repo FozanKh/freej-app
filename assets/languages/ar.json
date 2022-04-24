@@ -196,5 +196,11 @@
   },
 
   "are_you_sure_the_problem_is_solved": "هل أنت متأكد أنه تم حل المشكلة؟",
-  "no_whatsapp_group_for_your_building_yet_contact": "لا توجد مجموعة WhatsApp للمبنى الخاص بك حتى الآن ، يرجى التواصل مع مشرف المبنى."
+  "no_whatsapp_group_for_your_building_yet_contact": "لا توجد مجموعة WhatsApp للمبنى الخاص بك حتى الآن ، يرجى التواصل مع مشرف المبنى.",
+  "solved": "تم الحل",
+  "maintenance_issue_type": "نوع طلب الصيانة",
+  "submit": "إرسال",
+  "please_choose_issue_type": "الرجاء اختيار نوع طلب الصيانة",
+  "please_enter_proper_description": "الرجاء إدخال وصف المناسب",
+  "maintenance_issue_created_successfully": "تم إنشاء طلب الصيانة بنجاح"
 }

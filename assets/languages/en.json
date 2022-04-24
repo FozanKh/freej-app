@@ -195,5 +195,11 @@
     "other": "Other"
   },
   "are_you_sure_the_problem_is_solved": "Are you sure the problem is solved?",
-  "no_whatsapp_group_for_your_building_yet_contact": "No WhatsApp group for your building yet, please contact your building supervisor."
+  "no_whatsapp_group_for_your_building_yet_contact": "No WhatsApp group for your building yet, please contact your building supervisor.",
+  "solved": "Solved",
+  "maintenance_issue_type": "Maintenance issue type",
+  "submit": "Submit",
+  "please_choose_issue_type": "Please choose an issue type",
+  "please_enter_proper_description": "Please enter proper description",
+  "maintenance_issue_created_successfully": "Maintenance issue created successfully"
 }

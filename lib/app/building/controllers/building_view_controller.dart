@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freej/app/building/models/maintenance_issue.dart';
 import 'package:freej/app/building/services/building_services.dart';
+import 'package:freej/core/components/bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/exports/core.dart';
@@ -11,6 +12,7 @@ class BuildingViewController {
   final BuildContext context;
   late final ProgressDialog pr;
   List<MaintenanceIssue> maintenanceIssues = [];
+  GlobalKey<RefreshIndicatorState> maintenanceIssuesRefreshKey = GlobalKey<RefreshIndicatorState>();
 
   BuildingViewController(this.context) {
     pr = ProgressDialog(context);
@@ -26,7 +28,8 @@ class BuildingViewController {
   }
 
   Future<void> fixMaintenanceIssue(MaintenanceIssue issue) async {
-    if (!(await AlertDialogBox.showAssertionDialog(context, message: "are_you_sure_the_problem_is_solved") ?? false)) {
+    if (!(await AlertDialogBox.showAssertionDialog(context, message: "are_you_sure_the_problem_is_solved".translate) ??
+        false)) {
       return;
     }
     await pr.show();
@@ -37,6 +40,21 @@ class BuildingViewController {
     } catch (e) {
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: e.toString());
+    }
+  }
+
+  Future<bool> createMaintenanceIssue(MaintenanceIssueType type, String description) async {
+    await pr.show();
+    try {
+      await BuildingServices.createMaintenanceIssue(type, description);
+      MaintenanceIssueRepository.instance.getAllMaintenanceIssues(refresh: true);
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: 'maintenance_issue_created_successfully');
+      return true;
+    } catch (e) {
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: e.toString());
+      return false;
     }
   }
 

@@ -5,17 +5,17 @@ import '../../../core/controllers/enum_controller.dart';
 enum MaintenanceIssueType { halls, rooms, bathrooms, other }
 
 class MaintenanceIssue implements Comparable {
-  MaintenanceIssue({
-    required this.id,
-    required this.createdAt,
-    required this.modifiedAt,
-    required this.type,
-    required this.description,
-    required this.reportedFixed,
-    required this.status,
-    required this.reportedBy,
-    required this.building,
-  });
+  MaintenanceIssue(
+      {required this.id,
+      required this.createdAt,
+      required this.modifiedAt,
+      required this.type,
+      required this.description,
+      required this.reportedFixed,
+      required this.status,
+      required this.reportedBy,
+      required this.building,
+      required this.reportedFixedBy});
 
   final int id;
   final DateTime createdAt;
@@ -26,6 +26,7 @@ class MaintenanceIssue implements Comparable {
   final String status;
   final int reportedBy;
   final int building;
+  final List<int> reportedFixedBy;
 
   MaintenanceIssue copyWith({
     int? id,
@@ -37,6 +38,7 @@ class MaintenanceIssue implements Comparable {
     String? status,
     int? reportedBy,
     int? building,
+    List<int>? reportedFixedBy,
   }) =>
       MaintenanceIssue(
         id: id ?? this.id,
@@ -48,6 +50,7 @@ class MaintenanceIssue implements Comparable {
         status: status ?? this.status,
         reportedBy: reportedBy ?? this.reportedBy,
         building: building ?? this.building,
+        reportedFixedBy: reportedFixedBy ?? this.reportedFixedBy,
       );
 
   factory MaintenanceIssue.fromJson(String str) => MaintenanceIssue.fromMap(json.decode(str));
@@ -64,6 +67,7 @@ class MaintenanceIssue implements Comparable {
         status: json["status"],
         reportedBy: json["reported_by"],
         building: json["building"],
+        reportedFixedBy: List<int>.from(json["reported_fixed_by"]),
       );
 
   Map<String, dynamic> toMap() => {
@@ -76,6 +80,7 @@ class MaintenanceIssue implements Comparable {
         "status": status,
         "reported_by": reportedBy,
         "building": building,
+        "reported_fixed_by": reportedFixedBy,
       };
 
   @override
@@ -96,7 +101,8 @@ class MaintenanceIssue implements Comparable {
         other.reportedFixed == reportedFixed &&
         other.status == status &&
         other.reportedBy == reportedBy &&
-        other.building == building;
+        other.building == building &&
+        other.reportedFixedBy == reportedFixedBy;
   }
 
   @override
@@ -109,6 +115,7 @@ class MaintenanceIssue implements Comparable {
         reportedFixed.hashCode ^
         status.hashCode ^
         reportedBy.hashCode ^
-        building.hashCode;
+        building.hashCode ^
+        reportedFixedBy.hashCode;
   }
 }

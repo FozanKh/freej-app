@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freej/app/building/controllers/building_view_controller.dart';
+import 'package:freej/app/building/views/create_maintenance_issue_view.dart';
+import 'package:freej/core/components/bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/constants/phosphor_icons.dart';
@@ -35,6 +37,12 @@ class _BuildingViewState extends State<BuildingView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(PhosphorIcons.wrench),
+        onPressed: () => showCustomBottomSheet(context,
+            child: CreateMaintenanceIssueView(callback: controller.createMaintenanceIssue),
+            title: 'create_issue'.translate),
+      ),
       body: Column(
         children: [
           Container(
@@ -95,6 +103,7 @@ class _BuildingViewState extends State<BuildingView> {
               if (!issues.hasData) return const Center(child: CircularProgressIndicator());
               return Expanded(
                 child: RefreshIndicator(
+                  key: controller.maintenanceIssuesRefreshKey,
                   onRefresh: () => controller.getAllMaintenanceIssues(refresh: true).then((value) => setState(() {})),
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
@@ -106,7 +115,7 @@ class _BuildingViewState extends State<BuildingView> {
                           maintenanceIssue: controller.maintenanceIssues[index],
                           onTap: () => controller
                               .fixMaintenanceIssue(controller.maintenanceIssues[index])
-                              .then((value) => setState(() {})),
+                              .then((value) => controller.maintenanceIssuesRefreshKey.currentState?.show()),
                         ),
                       ).toList(),
                     ),

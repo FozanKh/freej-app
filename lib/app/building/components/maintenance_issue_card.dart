@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:freej/core/exports/core.dart';
+import 'package:provider/provider.dart';
 
+import '../../auth/models/user.dart';
 import '../models/maintenance_issue.dart';
 
 class MaintenanceIssueCard extends StatelessWidget {
@@ -68,38 +70,43 @@ class MaintenanceIssueCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Bounce(
-                      onTap: onTap,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10).relative(),
-                        child: Text(
-                          'is_the_problem_solved'.translate,
-                          style: TextStyles.body2
-                              .copyWith(
-                                color: kHintFontsColor,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline,
-                              )
-                              .withColor(kHintFontsColor)
-                              .withWeight(FontWeight.bold),
-                          maxLines: 6,
-                          overflow: TextOverflow.ellipsis,
+                    if (!maintenanceIssue.reportedFixedBy.contains(context.read<User>().id))
+                      Bounce(
+                        onTap: onTap,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10).relative(),
+                          child: Text(
+                            'is_the_problem_solved'.translate,
+                            style: TextStyles.body2
+                                .copyWith(
+                                  color: kHintFontsColor,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.underline,
+                                )
+                                .withColor(kHintFontsColor)
+                                .withWeight(FontWeight.bold),
+                            maxLines: 6,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                      ),
-                    ),
+                      )
+                    else
+                      const Spacer(),
                     if (maintenanceIssue.reportedFixed > 0)
                       Container(
                         height: 27.5,
-                        width: 27.5,
+                        // width: 27.5,
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          shape: BoxShape.circle,
+                          // shape: BoxShape.circle,
                           color: kLight3,
                           boxShadow: Styles.boxShadow,
                           border: Border.all(color: kGreen, width: 2),
+                          borderRadius: Borders.lBorderRadius,
                         ),
                         child: Text(
-                          maintenanceIssue.reportedFixed.toString(),
+                          "${"solved".translate}: ${maintenanceIssue.reportedFixed.toString()}",
                           style: TextStyles.body2.withColor(kFontsColor).withWeight(FontWeight.bold),
                         ),
                       ),

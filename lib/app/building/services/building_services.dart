@@ -34,4 +34,18 @@ class BuildingServices {
       method: Method.POST,
     ));
   }
+
+  static Future<MaintenanceIssue> createMaintenanceIssue(MaintenanceIssueType type, String description) async {
+    Map<String, dynamic> body = {
+      "type": type.name,
+      "description": description,
+    };
+    return MaintenanceIssue.fromMap(
+      await RequestManger.fetchObject(
+        url: _maintenanceIssuesUrl,
+        method: Method.POST,
+        body: body,
+      ),
+    );
+  }
 }

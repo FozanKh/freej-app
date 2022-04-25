@@ -219,6 +219,11 @@
   "announcement_deleted_successfully": "Announcement deleted successfully",
   "you_dont_have_permission": "You do not have permission for this action",
   "delete_announcement": "Delete this announcement",
+  "submit_changes": "Submit Changes",
+
+  "event_deleted_successfully": "Event deleted successfully",
+  "delete_event": "Delete this event",
+  "edit_event": "Edit Event",
 
   "EventType": {
     "sport": "Sport",

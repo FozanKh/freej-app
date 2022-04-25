@@ -7,8 +7,10 @@ import '../models/event.dart';
 
 class EditEventView extends StatefulWidget {
   final Function callback;
+  final Function deleteCallback;
   final Event event;
-  const EditEventView({Key? key, required this.callback, required this.event}) : super(key: key);
+  const EditEventView({Key? key, required this.callback, required this.event, required this.deleteCallback})
+      : super(key: key);
 
   @override
   State<EditEventView> createState() => _EditEventViewState();
@@ -91,7 +93,7 @@ class _EditEventViewState extends State<EditEventView> {
         ),
         const SizedBox(height: 30),
         RoundedButton(
-          title: "submit".translate,
+          title: "submit_changes".translate,
           onTap: () async {
             if (title.length < 4) {
               AlertDialogBox.showAlert(context, message: 'please_enter_proper_title');
@@ -103,7 +105,16 @@ class _EditEventViewState extends State<EditEventView> {
               Nav.popPage(context);
             }
           },
-        )
+        ),
+        RoundedButton(
+          title: "delete_event".translate,
+          buttonColor: kRed2,
+          onTap: () async {
+            if (await widget.deleteCallback(widget.event.id)) {
+              Nav.popPage(context);
+            }
+          },
+        ),
       ],
     );
   }

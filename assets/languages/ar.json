@@ -220,6 +220,11 @@
   "announcement_deleted_successfully": "تم حذف الإعلان بنجاح",
   "you_dont_have_permission": "ليس لديك إذن بهذا الإجراء",
   "delete_announcement": "حذف هذا الإعلان",
+  "submit_changes": "أرسل التغييرات",
+
+  "event_deleted_successfully": "تم حذف الفعالية بنجاح",
+  "delete_event": "حذف هذه الفعالية",
+  "edit_event": "تعديل الفعالية",
 
   "EventType": {
     "sport": "رياضة",

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freej/app/events/repositories/event_repository.dart';
 import 'package:freej/core/exports/core.dart';
-
 import '../../../core/components/bottom_sheet.dart';
 import '../../../core/constants/phosphor_icons.dart';
 import '../../events/models/event.dart';
@@ -110,7 +109,8 @@ class HomeViewController {
 
   Future<void> startEditingEvent(Event event) async {
     await showCustomBottomSheet(context,
-        child: EditEventView(callback: editEvent, event: event), title: 'edit_event'.translate);
+        child: EditEventView(callback: editEvent, deleteCallback: deleteEvent, event: event),
+        title: 'edit_event'.translate);
   }
 
   Future<bool> editEvent(String name, EventType type, String description, DateTime date, {int? id}) async {
@@ -122,6 +122,26 @@ class HomeViewController {
       eventsRefreshKey.currentState?.show();
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: "event_created_successfully".translate);
+      return true;
+    } catch (e) {
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: e.toString().translate);
+      return false;
+    }
+  }
+
+  Future<bool> deleteEvent(int id) async {
+    if (!(await AlertDialogBox.showAssertionDialog(context,
+            message: translateText("assurance_alert", arguments: ['delete_event'])) ??
+        false)) {
+      return false;
+    }
+    pr.show();
+    try {
+      await EventServices.deleteEvent(id);
+      eventsRefreshKey.currentState?.show();
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: "event_deleted_successfully".translate);
       return true;
     } catch (e) {
       await pr.hide();

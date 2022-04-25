@@ -13,6 +13,7 @@ class HomeViewController {
   final BuildContext context;
   late ProgressDialog pr;
   late final TabController tabController;
+  GlobalKey<RefreshIndicatorState> eventsRefreshKey = GlobalKey<RefreshIndicatorState>();
 
   HomeViewController(this.context, state) {
     pr = ProgressDialog(context);
@@ -49,9 +50,9 @@ class HomeViewController {
     }
   }
 
-  Future<List<Event>> getAllEvents() async {
+  Future<List<Event>> getAllEvents({refresh = false}) async {
     try {
-      return EventRepository.instance.getAllEvents();
+      return EventRepository.instance.getAllEvents(refresh: refresh);
     } catch (e) {
       AlertDialogBox.showAlert(context, message: e.toString().translate);
     }
@@ -66,7 +67,7 @@ class HomeViewController {
         return;
       }
       await EventServices.joinEvent(event);
-      await EventRepository.instance.getAllEvents(refresh: true);
+      eventsRefreshKey.currentState?.show();
       pr.hide();
       AlertDialogBox.showAlert(context, message: "event_joined_successfully".translate);
     } catch (e) {
@@ -83,7 +84,7 @@ class HomeViewController {
         return;
       }
       await EventServices.leaveEvent(event);
-      await EventRepository.instance.getAllEvents(refresh: true);
+      eventsRefreshKey.currentState?.show();
       pr.hide();
       AlertDialogBox.showAlert(context, message: "event_left_successfully".translate);
     } catch (e) {
@@ -96,7 +97,7 @@ class HomeViewController {
     pr.show();
     try {
       await EventServices.createEvent(name, type, description, date);
-      await EventRepository.instance.getAllEvents(refresh: true);
+      eventsRefreshKey.currentState?.show();
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: "event_created_successfully".translate);
       return true;
@@ -118,7 +119,7 @@ class HomeViewController {
       if (id == null) return false;
       await pr.hide();
       await EventServices.editEvent(id, name, type, description, date);
-      await EventRepository.instance.getAllEvents(refresh: true);
+      eventsRefreshKey.currentState?.show();
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: "event_created_successfully".translate);
       return true;

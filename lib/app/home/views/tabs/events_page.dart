@@ -36,6 +36,7 @@ class _EventsTabState extends State<EventsTab> {
                 joinEventCallback: () => events.data![index].isJoined
                     ? widget.controller.leaveEvent(events.data![index]).then((value) => setState(() {}))
                     : widget.controller.joinEvent(events.data![index]).then((value) => setState(() {})),
+                editEventCallback: widget.controller.startEditingEvent,
               ),
             ).toList(),
           ),

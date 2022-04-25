@@ -7,6 +7,7 @@ import '../../../core/constants/phosphor_icons.dart';
 import '../../events/models/event.dart';
 import '../../events/services/event_services.dart';
 import '../../events/views/create_event_view.dart';
+import '../../events/views/edit_event_view.dart';
 
 class HomeViewController {
   final BuildContext context;
@@ -91,10 +92,32 @@ class HomeViewController {
     }
   }
 
-  Future<bool> createEvent(String name, EventType type, String description, DateTime date) async {
+  Future<bool> createEvent(String name, EventType type, String description, DateTime date, {int? id}) async {
     pr.show();
     try {
       await EventServices.createEvent(name, type, description, date);
+      await EventRepository.instance.getAllEvents(refresh: true);
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: "event_created_successfully".translate);
+      return true;
+    } catch (e) {
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: e.toString().translate);
+      return false;
+    }
+  }
+
+  Future<void> startEditingEvent(Event event) async {
+    await showCustomBottomSheet(context,
+        child: EditEventView(callback: editEvent, event: event), title: 'edit_event'.translate);
+  }
+
+  Future<bool> editEvent(String name, EventType type, String description, DateTime date, {int? id}) async {
+    pr.show();
+    try {
+      if (id == null) return false;
+      await pr.hide();
+      await EventServices.editEvent(id, name, type, description, date);
       await EventRepository.instance.getAllEvents(refresh: true);
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: "event_created_successfully".translate);

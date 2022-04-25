@@ -37,15 +37,23 @@ class EventServices {
     return Event.fromMap(await RequestManger.fetchObject(url: _eventsUrl, method: Method.POST, body: body));
   }
 
-  static Future<Event> editEvent(Event event) async {
+  static Future<Event> editEvent(
+    int id,
+    String name,
+    EventType type,
+    String description,
+    DateTime date, {
+    String? locationUrl,
+  }) async {
     Map<String, dynamic> body = {
-      "name": event.name,
-      "type": event.type.name,
-      "description": event.description,
-      "location_url": event.locationUrl,
-      "date": event.date.toIso8601String()
+      "name": name,
+      "type": type.name,
+      "description": description,
+      "location_url": locationUrl,
+      "date": date.toIso8601String()
     };
-    return Event.fromMap(await RequestManger.fetchObject(url: _eventsUrl, method: Method.POST, body: body));
+    return Event.fromMap(await RequestManger.fetchObject(
+        url: _eventUrl.replaceAll("<pk>", id.toString()), method: Method.PATCH, body: body));
   }
 
   static Future<void> joinEvent(Event event) async {

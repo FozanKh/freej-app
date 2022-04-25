@@ -16,6 +16,8 @@ class AnnouncementViewController {
   late ProgressDialog pr;
   List<Announcement> buildingAnnouncements = [];
   List<Announcement> campusAnnouncements = [];
+  GlobalKey<RefreshIndicatorState> buildingAnnouncementsRefreshKey = GlobalKey<RefreshIndicatorState>();
+  GlobalKey<RefreshIndicatorState> campusAnnouncementsRefreshKey = GlobalKey<RefreshIndicatorState>();
 
   AnnouncementViewController(this.context) {
     pr = ProgressDialog(context);
@@ -26,15 +28,15 @@ class AnnouncementViewController {
       return FloatingActionButton(
         child: const Icon(PhosphorIcons.plus_bold),
         onPressed: () => showCustomBottomSheet(context,
-            child: CreateAnnouncementView(callback: sendAnnouncement), title: 'send_announcement'.translate),
+            child: CreateAnnouncementView(callback: sendAnnouncement), title: 'send_building_announcement'.translate),
       );
     } else {
       return null;
     }
   }
 
-  Future<List<Announcement>> getAnnouncement() async {
-    List<Announcement> announcement = await AnnouncementRepository.instance.getAllAnnouncements();
+  Future<List<Announcement>> getAnnouncements({bool refresh = false}) async {
+    List<Announcement> announcement = await AnnouncementRepository.instance.getAllAnnouncements(refresh: refresh);
     campusAnnouncements = announcement.where((element) => element.type == AnnouncementType.campus).toList();
     buildingAnnouncements = announcement.where((element) => element.type == AnnouncementType.building).toList();
     return announcement;
@@ -48,9 +50,9 @@ class AnnouncementViewController {
     await pr.show();
     try {
       await AnnouncementServices.sendAnnouncement(title, description);
-      AnnouncementRepository.instance.getAllAnnouncements(refresh: true);
+      buildingAnnouncementsRefreshKey.currentState?.show();
       await pr.hide();
-      await AlertDialogBox.showAlert(context, message: 'announcement_created_successfully');
+      await AlertDialogBox.showAlert(context, message: 'announcement_created_successfully'.translate);
       return true;
     } catch (e) {
       await pr.hide();

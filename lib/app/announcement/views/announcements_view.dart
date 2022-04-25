@@ -49,43 +49,53 @@ class _AnnouncementViewState extends State<AnnouncementView> with SingleTickerPr
           ),
           Expanded(
             child: FutureBuilder<List<Announcement>>(
-                future: controller.getAnnouncement(),
+                future: controller.getAnnouncements(),
                 builder: (context, announcements) {
                   if (!announcements.hasData) return const Center(child: CircularProgressIndicator());
                   return TabBarView(
                     controller: tabController,
                     children: [
-                      SingleChildScrollView(
-                        padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints(
-                            minHeight: MediaQuery.of(context).size.height - kToolbarHeight,
-                            minWidth: MediaQuery.of(context).size.width,
-                          ),
-                          child: Column(
-                            children: List.generate(
-                              controller.buildingAnnouncements.length,
-                              (index) => AnnouncementCard(
-                                announcement: controller.buildingAnnouncements[index],
-                              ),
-                            ).toList(),
+                      RefreshIndicator(
+                        key: controller.buildingAnnouncementsRefreshKey,
+                        onRefresh: () => controller.getAnnouncements(refresh: true).then((value) => setState(() {})),
+                        child: SingleChildScrollView(
+                          padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
+                          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minHeight: MediaQuery.of(context).size.height - kToolbarHeight,
+                              minWidth: MediaQuery.of(context).size.width,
+                            ),
+                            child: Column(
+                              children: List.generate(
+                                controller.buildingAnnouncements.length,
+                                (index) => AnnouncementCard(
+                                  announcement: controller.buildingAnnouncements[index],
+                                ),
+                              ).toList(),
+                            ),
                           ),
                         ),
                       ),
-                      SingleChildScrollView(
-                        padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints(
-                            minHeight: MediaQuery.of(context).size.height - kToolbarHeight,
-                            minWidth: MediaQuery.of(context).size.width,
-                          ),
-                          child: Column(
-                            children: List.generate(
-                              controller.campusAnnouncements.length,
-                              (index) => AnnouncementCard(
-                                announcement: controller.campusAnnouncements[index],
-                              ),
-                            ).toList(),
+                      RefreshIndicator(
+                        key: controller.campusAnnouncementsRefreshKey,
+                        onRefresh: () => controller.getAnnouncements(refresh: true).then((value) => setState(() {})),
+                        child: SingleChildScrollView(
+                          padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
+                          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minHeight: MediaQuery.of(context).size.height - kToolbarHeight,
+                              minWidth: MediaQuery.of(context).size.width,
+                            ),
+                            child: Column(
+                              children: List.generate(
+                                controller.campusAnnouncements.length,
+                                (index) => AnnouncementCard(
+                                  announcement: controller.campusAnnouncements[index],
+                                ),
+                              ).toList(),
+                            ),
                           ),
                         ),
                       ),

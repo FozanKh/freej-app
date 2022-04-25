@@ -20,6 +20,16 @@ extension LocalizedInsets on EdgeInsets {
   }
 }
 
+extension LocalizedBorder on Border {
+  Border relative() {
+    if (Directionality.of(MyApp.appKey.currentContext!) == TextDirection.rtl) {
+      return Border(bottom: bottom, left: right, right: left, top: top);
+    } else {
+      return this;
+    }
+  }
+}
+
 extension LocalizedAlignment on Alignment {
   Alignment relative() {
     if (Directionality.of(MyApp.appKey.currentContext!) == TextDirection.rtl) {

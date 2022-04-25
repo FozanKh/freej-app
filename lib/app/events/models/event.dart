@@ -4,7 +4,7 @@ import 'package:freej/app/events/models/host.dart';
 import 'package:freej/core/controllers/enum_controller.dart';
 
 enum EventType { sport, study, helpSession, game, other }
-enum EventStatus { new_event, finished, cancelled }
+enum EventStatus { open, finished, cancelled }
 enum EventApplicationStatus { joined, cancelled }
 
 class Event {

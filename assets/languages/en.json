@@ -204,7 +204,35 @@
   "please_enter_proper_title": "Please enter proper title",
   "maintenance_issue_created_successfully": "Maintenance issue created successfully",
   "complete_your_profile": "Complete Your Profile",
+  "announcements": "Announcements",
   "send_announcement": "Send announcement",
+  "send_building_announcement": "Send Building Announcement",
   "title": "Title",
-  "announcement_created_successfully": "Announcement created successfully"
+  "announcement_created_successfully": "Announcement created successfully",
+
+  "event_created_successfully": "Event created successfully",
+
+  "type": "type",
+  "event_type": "Event type",
+  "create_event": "Create an event",
+  "create_announcement": "Create Announcement",
+
+  "EventType": {
+    "sport": "Sport",
+    "study": "Study",
+    "helpSession": "Help Session",
+    "game": "Game",
+    "other": "Other"
+  },
+
+  "EventStatus": {
+    "open": "Open",
+    "finished": "Finished",
+    "cancelled": "Cancelled"
+  },
+
+  "EventApplicationStatus": {
+    "joined": "Joined",
+    "cancelled": "Cancelled"
+  }
 }

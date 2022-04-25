@@ -205,7 +205,35 @@
   "please_enter_proper_title": "الرجاء إدخال عنوان المناسب",
   "maintenance_issue_created_successfully": "تم إنشاء طلب الصيانة بنجاح",
   "complete_your_profile": "أكمل ملفك الشخصي",
+  "announcements": "الأعلانات",
   "send_announcement": "إرسال إعلان",
+  "send_building_announcement": "إرسال إعلان للمبنى",
   "title": "العنوان",
-  "announcement_created_successfully": "تم إرسال الإعلان بنجاح"
+  "announcement_created_successfully": "تم إرسال الإعلان بنجاح",
+
+  "event_created_successfully": "تم إنشاء الفعالية بنجاح",
+
+  "type": "النوع",
+  "event_type": "نوع الفعالية",
+  "create_event": "أنشاء فعالية",
+  "create_announcement": "أنشاء إعلان",
+
+  "EventType": {
+    "sport": "رياضة",
+    "study": "دراسة",
+    "helpSession": "حصص مراجعة",
+    "game": "لعب",
+    "other": "أخرى"
+  },
+
+  "EventStatus": {
+    "open": "جديد",
+    "finished": "انتهى",
+    "cancelled": "ملغى"
+  },
+
+  "EventApplicationStatus": {
+    "joined": "انضم",
+    "cancelled": "ملغى"
+  }
 }

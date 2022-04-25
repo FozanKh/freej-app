@@ -36,6 +36,7 @@ class RoundedTextFormField extends StatefulWidget {
   final BorderRadius? borderRadius;
   final String? initialValue;
   final Function? validator;
+  final VoidCallback? onTap;
   final AutovalidateMode? autovalidateMode;
   const RoundedTextFormField({
     Key? key,
@@ -72,6 +73,7 @@ class RoundedTextFormField extends StatefulWidget {
     this.validator,
     this.autovalidateMode,
     this.borderColor,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -112,8 +114,9 @@ class _RoundedTextFormFieldState extends State<RoundedTextFormField> {
             autofocus: widget.autofocus,
             autovalidateMode: widget.autovalidateMode ?? AutovalidateMode.onUserInteraction,
             textAlignVertical: widget.expanded ? TextAlignVertical.top : null,
-            onTap: () => _textController!.selection =
-                TextSelection.fromPosition(TextPosition(offset: _textController!.text.length)),
+            onTap: widget.onTap ??
+                () => _textController!.selection =
+                    TextSelection.fromPosition(TextPosition(offset: _textController!.text.length)),
             validator: widget.validator != null
                 ? (value) {
                     var error = widget.validator!(value);

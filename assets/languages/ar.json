@@ -217,6 +217,9 @@
   "event_type": "نوع الفعالية",
   "create_event": "أنشاء فعالية",
   "create_announcement": "أنشاء إعلان",
+  "announcement_deleted_successfully": "تم حذف الإعلان بنجاح",
+  "you_dont_have_permission": "ليس لديك إذن بهذا الإجراء",
+  "delete_announcement": "حذف هذا الإعلان",
 
   "EventType": {
     "sport": "رياضة",

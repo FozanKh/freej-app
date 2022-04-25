@@ -71,6 +71,7 @@ class _AnnouncementViewState extends State<AnnouncementView> with SingleTickerPr
                                 controller.buildingAnnouncements.length,
                                 (index) => AnnouncementCard(
                                   announcement: controller.buildingAnnouncements[index],
+                                  deleteAnnouncementCallback: controller.deleteAnnouncement,
                                 ),
                               ).toList(),
                             ),
@@ -93,6 +94,7 @@ class _AnnouncementViewState extends State<AnnouncementView> with SingleTickerPr
                                 controller.campusAnnouncements.length,
                                 (index) => AnnouncementCard(
                                   announcement: controller.campusAnnouncements[index],
+                                  deleteAnnouncementCallback: () {},
                                 ),
                               ).toList(),
                             ),

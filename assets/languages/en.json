@@ -216,6 +216,9 @@
   "event_type": "Event type",
   "create_event": "Create an event",
   "create_announcement": "Create Announcement",
+  "announcement_deleted_successfully": "Announcement deleted successfully",
+  "you_dont_have_permission": "You do not have permission for this action",
+  "delete_announcement": "Delete this announcement",
 
   "EventType": {
     "sport": "Sport",

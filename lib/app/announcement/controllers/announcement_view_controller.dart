@@ -60,4 +60,27 @@ class AnnouncementViewController {
       return false;
     }
   }
+
+  Future<void> deleteAnnouncement(Announcement announcement) async {
+    if (!(context.read<User>().isSupervisor ?? false)) {
+      await AlertDialogBox.showAlert(context, message: 'you_dont_have_permission'.translate);
+      return;
+    }
+
+    if (!(await AlertDialogBox.showAssertionDialog(context,
+            message: translateText("assurance_alert", arguments: ['delete_announcement'])) ??
+        false)) {
+      return;
+    }
+    await pr.show();
+    try {
+      await AnnouncementServices.deleteAnnouncement(announcement);
+      buildingAnnouncementsRefreshKey.currentState?.show();
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: 'announcement_deleted_successfully'.translate);
+    } catch (e) {
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: e.toString());
+    }
+  }
 }

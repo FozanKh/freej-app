@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:freej/core/exports/core.dart';
 
@@ -24,8 +23,8 @@ class _CreateMaintenanceIssueViewState extends State<CreateMaintenanceIssueView>
           title: 'maintenance_issue_type'.translate,
           child: ExpandablePicker(
             title: 'type'.translate,
-            options: MaintenanceIssueType.values.map((e) => e.name.translate).toList(),
-            value: type?.name.translate,
+            options: MaintenanceIssueType.values.map((e) => e.toString().translate).toList(),
+            value: type?.toString().translate,
             callback: (index) {
               type = MaintenanceIssueType.values[index];
               setState(() {});

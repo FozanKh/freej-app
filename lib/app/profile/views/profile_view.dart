@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:freej/app/profile/views/building_view.dart';
 import 'package:freej/core/constants/phosphor_icons.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/exports/core.dart';
@@ -43,7 +43,6 @@ class _ProfileViewState extends State<ProfileView> {
                 Container(
                   clipBehavior: Clip.hardEdge,
                   alignment: Alignment.center,
-                  // height: MediaQuery.of(context).size.width / 3,
                   width: MediaQuery.of(context).size.width / 3,
                   decoration: const BoxDecoration(
                     color: kWhite,
@@ -53,11 +52,12 @@ class _ProfileViewState extends State<ProfileView> {
                     shape: BoxShape.circle,
                     border: Border.all(color: kPrimaryColor, width: 2),
                   ),
-                  child: const CachedImage(
-                    url:
-                        'https://firebasestorage.googleapis.com/v0/b/fozan-kh.appspot.com/o/IMG_2873-min.png?alt=media&token=d06c92b2-9028-44d1-821e-826104145b7b',
-                    fit: BoxFit.fill,
+                  child: CachedImage(
+                    url: user.photo,
+                    fit: BoxFit.cover,
                     shape: BoxShape.circle,
+                    errorWidget: const Icon(PhosphorIcons.user, size: 100, color: kPrimaryColor),
+                    size: Size(MediaQuery.of(context).size.width / 3, MediaQuery.of(context).size.width / 3),
                   ),
                 ),
                 const SizedBox(height: 15),
@@ -106,6 +106,13 @@ class _ProfileViewState extends State<ProfileView> {
                   title: 'logout'.translate,
                   color: kRed2,
                 ),
+                // ProfileOptionCard(
+                //   icon: PhosphorIcons.intersect,
+                //   onTap: () async {
+                //     await FirebaseFirestore.instance.collection('test').doc("test1").set({"data": "test"});
+                //   },
+                //   title: 'test',
+                // ),
               ],
             ),
           )

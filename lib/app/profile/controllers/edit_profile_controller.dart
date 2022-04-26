@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:freej/app/auth/models/user.dart';
 import 'package:freej/app/campus/models/room.dart';
@@ -6,6 +8,7 @@ import 'package:freej/app/profile/services/profile_services.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/exports/core.dart';
+import '../../../core/services/firebase/storage_services.dart';
 import '../../campus/models/building.dart';
 
 class EditProfileController {
@@ -16,6 +19,7 @@ class EditProfileController {
   String mobile = '';
   Room? selectedRoom;
   Building? selectedBuilding;
+  String? photoUrl;
   Future<List<Building>>? availableBuildings = BuildingRepository.instance.getAllBuildings();
 
   EditProfileController(this.context, {this.firstName = '', this.lastName = '', this.mobile = ''}) {
@@ -38,14 +42,27 @@ class EditProfileController {
     return !validateMobile(mobile) ? translateText('invalid_error', arguments: ['phone_number']) : null;
   }
 
+  Future<void> updateAvatar() async {
+    await pr.show();
+    try {
+      photoUrl = await StorageServices.uploadAvatar(context.read<User>().id!);
+      log("url:$photoUrl");
+      context.read<User>();
+      await pr.hide();
+    } catch (e) {
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: e.toString());
+    }
+    return;
+  }
+
   Future<void> saveChanges() async {
     if (!formKey.currentState!.validate()) {
       return;
     }
     pr.show();
-
     try {
-      User newUser = await ProfileServices.updateProfile(firstName, lastName, mobile);
+      User newUser = await ProfileServices.updateProfile(firstName, lastName, mobile, photoUrl);
       context.read<User>().updateFromUser(newUser);
       pr.hide();
       Nav.popPage(context);

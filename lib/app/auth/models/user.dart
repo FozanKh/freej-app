@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import '../../campus/models/building.dart';
 import '../../campus/models/campus.dart';
 import '../../campus/models/user_building.dart';
 import 'account.dart';
@@ -16,6 +15,7 @@ class User extends ChangeNotifier {
     this.isSupervisor,
     this.room,
     this.account,
+    this.photo,
   });
 
   int? id;
@@ -25,6 +25,7 @@ class User extends ChangeNotifier {
   bool? isSupervisor;
   int? room;
   Account? account;
+  String? photo;
 
   String get name {
     String name = account?.firstName ?? '';
@@ -45,6 +46,7 @@ class User extends ChangeNotifier {
     bool? isSupervisor,
     int? room,
     Account? account,
+    String? photo,
   }) =>
       User(
         id: id ?? this.id,
@@ -54,6 +56,7 @@ class User extends ChangeNotifier {
         isSupervisor: isSupervisor ?? this.isSupervisor,
         room: room ?? this.room,
         account: account ?? this.account,
+        photo: photo ?? this.photo,
       );
 
   factory User.fromJson(String str) => User.fromMap(json.decode(str));
@@ -68,6 +71,7 @@ class User extends ChangeNotifier {
         isSupervisor: json["is_supervisor"],
         room: json["room"],
         account: Account.fromMap(json["account"]),
+        photo: json["photo"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -78,6 +82,7 @@ class User extends ChangeNotifier {
         "is_supervisor": isSupervisor,
         "room": room,
         "account": account?.toMap(),
+        "photo": photo,
       };
 
   void updateFromUser(User user, {notify = true, switchTab = true}) {
@@ -88,6 +93,7 @@ class User extends ChangeNotifier {
     isSupervisor = user.isSupervisor;
     room = user.room;
     account = user.account;
+    photo = user.photo;
     if (notify) notifyListeners();
   }
 

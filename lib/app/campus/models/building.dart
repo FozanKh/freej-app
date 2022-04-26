@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:freej/core/util/extension.dart';
 
-import '../../auth/models/user.dart';
+// import '../../auth/models/user.dart';
 import 'room.dart';
 
 class Building {
@@ -14,7 +14,7 @@ class Building {
     required this.name,
     required this.whatsAppLink,
     required this.campus,
-    required this.supervisor,
+    // required this.supervisor,
   });
 
   final int id;
@@ -24,7 +24,7 @@ class Building {
   final String name;
   final String? whatsAppLink;
   final int campus;
-  final User? supervisor;
+  // final User? supervisor;
 
   Building copyWith({
     int? id,
@@ -34,7 +34,7 @@ class Building {
     String? name,
     String? whatsAppLink,
     int? campus,
-    User? supervisor,
+    // User? supervisor,
   }) =>
       Building(
         id: id ?? this.id,
@@ -44,7 +44,7 @@ class Building {
         name: name ?? this.name,
         whatsAppLink: whatsAppLink ?? this.whatsAppLink,
         campus: campus ?? this.campus,
-        supervisor: supervisor ?? this.supervisor,
+        // // // supervisor: supervisor ?? this.supervisor,
       );
 
   factory Building.fromJson(String str) => Building.fromMap(json.decode(str));
@@ -59,7 +59,7 @@ class Building {
         name: json["name"],
         whatsAppLink: json["whatsApp_link"],
         campus: json["campus"],
-        supervisor: json["supervisor"] != null ? User.fromMap(json["supervisor"]) : null,
+        // // // supervisor: json["supervisor"] != null ? User.fromMap(json["supervisor"]) : null,
       );
 
   Map<String, dynamic> toMap() => {
@@ -70,7 +70,7 @@ class Building {
         "name": name,
         "whatsApp_link": whatsAppLink,
         "campus": campus,
-        "supervisor": supervisor,
+        // // "supervisor": supervisor,
       };
 
   @override

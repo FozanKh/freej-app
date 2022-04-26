@@ -34,7 +34,7 @@ class CachedImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      imageUrl: url ?? "https://www.google.com.sa/",
+      imageUrl: url ?? "",
       imageBuilder: (context, imageProvider) => Container(
         height: size?.height,
         width: size?.width,

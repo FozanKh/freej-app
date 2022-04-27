@@ -1,78 +1,117 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:freej/core/exports/core.dart';
+import 'package:freej/app/posts/models/post.dart';
+import 'package:freej/core/constants/phosphor_icons.dart';
+import 'package:provider/provider.dart';
+import '../../../core/exports/core.dart';
+import '../../auth/models/user.dart';
 
-class PostCard extends StatelessWidget {
-  const PostCard({Key? key}) : super(key: key);
-  // final Post post;
+class PostCard extends StatefulWidget {
+  final Post post;
+  final Function orderCallback;
 
-  // const PostCard({Key? key, required this.post}) : super(key: key);
+  const PostCard({Key? key, required this.post, required this.orderCallback}) : super(key: key);
+
+  @override
+  State<PostCard> createState() => _PostCardState();
+}
+
+class _PostCardState extends State<PostCard> {
+  bool showDeleteButton = false;
+  Color get postColor => widget.post.type == PostType.offer ? kBlue : kPrimaryColor;
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
       style: const TextStyle(color: kWhite),
-      child: Container(
-        decoration: BoxDecoration(
-            color: kPrimaryColor, borderRadius: BorderRadius.circular(16)),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      child: GestureDetector(
+        onTap: () async {
+          if (showDeleteButton) {
+            showDeleteButton = false;
+          } else {
+            await widget.orderCallback();
+          }
+          setState(() {});
+        },
+        child: Container(
+          height: Sizes.xxlCardHeight,
+          decoration: BoxDecoration(
+            color: postColor,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Stack(
             children: [
-              Row(
-                children: const [
-                  Text(
-                    "Printer",
-                    style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18),
-                  ),
-                  SizedBox(width: 6),
-                  Text("4.6"),
-                ],
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Image.asset(Assets.kWavesAsset, height: Sizes.xxlCardHeight),
               ),
-              const SizedBox(height: 6),
-              const Text(
-                "Black and White",
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
-              ),
-              const SizedBox(height: 16),
-              const Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                style: TextStyle(fontSize: 12),
-              ),
-              const SizedBox(height: 16),
-              Row(
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: const Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 0, horizontal: 16),
-                      child: const Text("Order",
-                          style: TextStyle(color: kPrimaryColor)),
+              Padding(
+                padding: const EdgeInsets.all(Insets.l),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      widget.post.title,
+                      style: TextStyles.h2.withWeight(FontWeight.bold),
                     ),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.white),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      )),
+                    const SizedBox(height: 6),
+                    Text(
+                      widget.post.owner.firstName,
+                      style: TextStyles.body3,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(widget.post.description),
+                    const SizedBox(height: 16),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        RoundedButton(
+                          onTap: () {},
+                          title: widget.post.applicationStatus != null ? "order".translate : "ordered".translate,
+                          textStyle: TextStyles.body2
+                              .withColor(widget.post.applicationStatus != null ? postColor : kWhite.withOpacity(0.4))
+                              .withWeight(FontWeight.w600),
+                          shrink: true,
+                          buttonColor: widget.post.applicationStatus != null ? kWhite : kGrey.withOpacity(0.9),
+                          margin: EdgeInsets.zero,
+                          padding: const EdgeInsets.symmetric(horizontal: Insets.xxl, vertical: Insets.s),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        const SizedBox(width: Insets.xl),
+                        Text(
+                          "${widget.post.createdAt.dMMM}, ${widget.post.createdAt.eeee}",
+                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              if (context.read<User>().id == widget.post.owner.id)
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Align(
+                    alignment: Alignment.topRight.relative(),
+                    child: AnimatedCrossFade(
+                      crossFadeState: showDeleteButton ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                      firstChild: Bounce(
+                        onTap: () => setState(() => showDeleteButton = true),
+                        child: const Icon(PhosphorIcons.dots_three_vertical_bold, color: kWhite),
+                      ),
+                      secondChild: ActionButton(
+                        title: 'edit',
+                        color: kWhite,
+                        titleColor: kBlue,
+                        onTap: () async {
+                          showDeleteButton = false;
+                          if (mounted) setState(() => {});
+                        },
+                      ),
+                      duration: const Duration(milliseconds: 200),
                     ),
                   ),
-                  SizedBox(width: 24),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Availability",
-                        style: TextStyle(fontSize: 10),
-                      ),
-                      Text(
-                        "From 15:00 to 18:00",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 12),
-                      ),
-                    ],
-                  ),
-                ],
-              )
+                ),
             ],
           ),
         ),

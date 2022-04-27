@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:freej/app/home/components/home_app_bar.dart';
-import 'package:freej/app/home/components/post_card.dart';
+import 'package:freej/app/home/views/tabs/offers_tab.dart';
+import 'package:freej/app/home/views/tabs/requests_tab.dart';
 
 import '../../../core/exports/core.dart';
 import '../controllers/home_view_controller.dart';
-import 'tabs/events_page.dart';
+import 'tabs/events_tab.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -45,8 +46,8 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
               unselectedLabelColor: kDark3,
               indicatorColor: kPrimaryColor,
               tabs: [
-                Tab(child: Text('services'.translate, textAlign: TextAlign.center)),
-                Tab(child: Text('items'.translate, textAlign: TextAlign.center)),
+                Tab(child: Text('requests'.translate, textAlign: TextAlign.center)),
+                Tab(child: Text('offers'.translate, textAlign: TextAlign.center)),
                 Tab(child: Text('events'.translate, textAlign: TextAlign.center)),
               ],
             ),
@@ -55,20 +56,8 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
             child: TabBarView(
               controller: controller.tabController,
               children: [
-                SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
-                  child: SeparatedColumn(
-                    separator: const Divider(color: kTransparent),
-                    children: List.generate(10, (index) => const PostCard()).toList(),
-                  ),
-                ),
-                SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
-                  child: SeparatedColumn(
-                    separator: const Divider(color: kTransparent),
-                    children: List.generate(10, (index) => const PostCard()).toList(),
-                  ),
-                ),
+                RequestsTab(controller: controller),
+                OffersTab(controller: controller),
                 EventsTab(controller: controller),
               ],
             ),

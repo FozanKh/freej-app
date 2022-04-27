@@ -242,5 +242,12 @@
   "EventApplicationStatus": {
     "joined": "Joined",
     "cancelled": "Cancelled"
-  }
+  },
+
+  "requests": "Requests",
+  "offers": "Offers",
+
+  "no_requests_available": "No Requests Available",
+  "no_offers_available": "No Offers Available",
+  "no_events_available": "No Events Available"
 }

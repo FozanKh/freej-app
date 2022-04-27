@@ -7,12 +7,16 @@ import '../../events/models/event.dart';
 import '../../events/services/event_services.dart';
 import '../../events/views/create_event_view.dart';
 import '../../events/views/edit_event_view.dart';
+import '../../posts/models/post.dart';
+import '../../posts/post_repository.dart';
 
 class HomeViewController {
   final BuildContext context;
   late ProgressDialog pr;
   late final TabController tabController;
   GlobalKey<RefreshIndicatorState> eventsRefreshKey = GlobalKey<RefreshIndicatorState>();
+  GlobalKey<RefreshIndicatorState> offersRefreshKey = GlobalKey<RefreshIndicatorState>();
+  GlobalKey<RefreshIndicatorState> requestsRefreshKey = GlobalKey<RefreshIndicatorState>();
 
   HomeViewController(this.context, state) {
     pr = ProgressDialog(context);
@@ -52,6 +56,24 @@ class HomeViewController {
   Future<List<Event>> getAllEvents({refresh = false}) async {
     try {
       return EventRepository.instance.getAllEvents(refresh: refresh);
+    } catch (e) {
+      AlertDialogBox.showAlert(context, message: e.toString().translate);
+    }
+    return [];
+  }
+
+  Future<List<Post>> getAllOffers({refresh = false}) async {
+    try {
+      return PostRepository.instance.getOffers(refresh: refresh);
+    } catch (e) {
+      AlertDialogBox.showAlert(context, message: e.toString().translate);
+    }
+    return [];
+  }
+
+  Future<List<Post>> getAllRequests({refresh = false}) async {
+    try {
+      return PostRepository.instance.getRequests(refresh: refresh);
     } catch (e) {
       AlertDialogBox.showAlert(context, message: e.toString().translate);
     }

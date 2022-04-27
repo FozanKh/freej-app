@@ -243,5 +243,12 @@
   "EventApplicationStatus": {
     "joined": "انضم",
     "cancelled": "ملغى"
-  }
+  },
+
+  "requests": "الطلبات",
+  "offers": "العروض",
+
+  "no_requests_available": "لا توجد طلبات متاحة",
+  "no_offers_available": "لا توجد عروض متاحة",
+  "no_events_available": "لا توجد فعاليات متاحة"
 }

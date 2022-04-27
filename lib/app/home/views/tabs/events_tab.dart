@@ -22,8 +22,10 @@ class _EventsTabState extends State<EventsTab> {
     return FutureBuilder<List<Event>>(
       future: widget.controller.getAllEvents(),
       builder: (context, events) {
-        if (!events.hasData || (events.data?.isEmpty ?? true)) {
+        if (!events.hasData || events.connectionState != ConnectionState.done) {
           return const Center(child: CircularProgressIndicator());
+        } else if (!events.hasData || (events.data?.isEmpty ?? true)) {
+          return Center(child: FullScreenBanner("no_events_available".translate));
         }
         return RefreshIndicator(
           key: widget.controller.eventsRefreshKey,

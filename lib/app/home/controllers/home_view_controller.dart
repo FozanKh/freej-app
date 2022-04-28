@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:freej/app/events/repositories/event_repository.dart';
 import 'package:freej/app/posts/services/post_services.dart';
+import 'package:freej/app/profile/views/edit_profile_view.dart';
 import 'package:freej/core/exports/core.dart';
 import 'package:freej/core/services/firebase/storage_services.dart';
 import 'package:provider/provider.dart';
@@ -39,30 +40,31 @@ class HomeViewController {
           kGreen,
         ][tabController.index],
         child: const Icon(PhosphorIcons.plus_bold, size: 30),
-        onPressed: fabAction,
+        onPressed: () async => fabAction,
       );
 
-  VoidCallback get fabAction {
+  Future<VoidCallback> get fabAction async {
+    if (!context.read<User>().completedProfile) {
+      if (await AlertDialogBox.showAssertionDialog(context, message: 'complete_profile_first') ?? false) {
+        await Nav.openPage(context: context, page: const EditProfileView());
+      }
+      if (!context.read<User>().completedProfile) {
+        return () {};
+      }
+    }
+
     switch (tabController.index) {
       case 0:
-        return () async {
-          await showCustomBottomSheet(context,
-              child: CreatePostView(callback: createPost, type: PostType.request), title: 'create_request'.translate);
-        };
+        return await showCustomBottomSheet(context,
+            child: CreatePostView(callback: createPost, type: PostType.request), title: 'create_request'.translate);
       case 1:
-        return () async {
-          await showCustomBottomSheet(context,
-              child: CreatePostView(callback: createPost, type: PostType.offer), title: 'create_offer'.translate);
-        };
+        return await showCustomBottomSheet(context,
+            child: CreatePostView(callback: createPost, type: PostType.offer), title: 'create_offer'.translate);
       case 2:
-        return () async {
-          await showCustomBottomSheet(context,
-              child: CreateEventView(callback: createEvent), title: 'create_event'.translate);
-        };
+        return await showCustomBottomSheet(context,
+            child: CreateEventView(callback: createEvent), title: 'create_event'.translate);
       default:
-        return () {
-          print('none');
-        };
+        return () {};
     }
   }
 

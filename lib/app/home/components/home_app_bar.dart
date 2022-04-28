@@ -6,8 +6,8 @@ import '../../auth/models/user.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
-  final User? user;
-  const HomeAppBar({Key? key, required this.height, this.user}) : super(key: key);
+  final User user;
+  const HomeAppBar({Key? key, required this.height, required this.user}) : super(key: key);
 
   @override
   Size get preferredSize => Size.fromHeight(height);
@@ -23,9 +23,8 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Add user.fullName
               Text(
-                'Fozan Alkhalawi',
+                user.name,
                 style: TextStyles.t1,
               ),
               // Add user.building.number

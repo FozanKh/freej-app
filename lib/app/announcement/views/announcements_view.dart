@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:freej/app/announcement/componenets/announcement_card.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/exports/core.dart';
+import '../../auth/models/user.dart';
 import '../../home/components/home_app_bar.dart';
 import '../../home/components/post_card.dart';
 import '../controllers/announcement_view_controller.dart';
@@ -17,6 +19,7 @@ class AnnouncementView extends StatefulWidget {
 class _AnnouncementViewState extends State<AnnouncementView> with SingleTickerProviderStateMixin {
   late final AnnouncementViewController controller;
   late final TabController tabController;
+  late User user;
 
   @override
   void initState() {
@@ -26,9 +29,15 @@ class _AnnouncementViewState extends State<AnnouncementView> with SingleTickerPr
   }
 
   @override
+  didChangeDependencies() {
+    user = context.read<User>();
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const HomeAppBar(height: kToolbarHeight * 1.3, user: null),
+      appBar: HomeAppBar(height: kToolbarHeight * 1.3, user: user),
       floatingActionButton: controller.fab,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

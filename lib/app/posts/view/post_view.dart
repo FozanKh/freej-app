@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freej/app/posts/controllers/post_view_controller.dart';
 
+import '../../../core/constants/phosphor_icons.dart';
 import '../../../core/exports/core.dart';
 import '../models/post.dart';
 
@@ -90,7 +91,7 @@ class _PostViewState extends State<PostView> {
                     // ),
                     // const SizedBox(height: Insets.m),
                     Text(widget.post.description, style: TextStyles.body1),
-                    const Divider(height: Insets.l * 2),
+                    if (widget.post.images?.isNotEmpty ?? false) const Divider(height: Insets.l * 2),
                     // const SizedBox(height: 40),
                     if (widget.post.reviews?.isNotEmpty ?? false)
                       Column(
@@ -151,16 +152,18 @@ class _PostViewState extends State<PostView> {
                     color: kWhite,
                     borderRadius: Borders.mBorderRadius,
                   ),
-                  child: CachedImage(
-                    url: widget.post.images?.first,
-                    fit: showFullImage ? BoxFit.contain : BoxFit.fitWidth,
-                    borderRadius: Borders.mBorderRadius,
-                    border: Border.all(color: kWhite, width: 3),
-                    errorWidget: Image.asset(
-                      Assets.kKfupmCampusAsset,
-                      fit: BoxFit.fitHeight,
-                    ),
-                  ),
+                  child: (widget.post.images?.isNotEmpty ?? false)
+                      ? CachedImage(
+                          url: widget.post.images?.first ?? '',
+                          fit: showFullImage ? BoxFit.contain : BoxFit.fitWidth,
+                          borderRadius: Borders.mBorderRadius,
+                          border: Border.all(color: kWhite, width: 3),
+                          errorWidget: Image.asset(
+                            Assets.kKfupmCampusAsset,
+                            fit: BoxFit.fitHeight,
+                          ),
+                        )
+                      : const Icon(PhosphorIcons.image, size: 100),
                 ),
               ),
             ],

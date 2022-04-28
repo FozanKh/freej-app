@@ -38,10 +38,6 @@ class _OffersTabState extends State<OffersTab> {
         } else if (!posts.hasData || (posts.data?.isEmpty ?? true)) {
           return Center(child: FullScreenBanner("no_offers_available".translate));
         }
-        List<Post> refinedPosts = posts.data!.where(((e) => e.owner.id != user.id)).toList();
-        if (refinedPosts.isEmpty) {
-          return Center(child: FullScreenBanner("no_offers_available".translate));
-        }
         return RefreshIndicator(
           key: widget.controller.offersRefreshKey,
           onRefresh: () => widget.controller.getAllOffers(refresh: true).then((value) => setState(() {})),
@@ -51,11 +47,11 @@ class _OffersTabState extends State<OffersTab> {
             child: SeparatedColumn(
               separator: const Divider(color: kTransparent),
               children: List.generate(
-                refinedPosts.length,
+                posts.data!.length,
                 (index) => PostCard(
-                  post: refinedPosts[index],
+                  post: posts.data![index],
                   orderCallback: () {},
-                  onTap: () async => await Nav.openPage(context: context, page: PostView(post: refinedPosts[index])),
+                  onTap: () async => await Nav.openPage(context: context, page: PostView(post: posts.data![index])),
                 ),
               ).toList(),
             ),

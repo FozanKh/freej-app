@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:freej/app/posts/models/post.dart';
 
 import '../../../../core/exports/core.dart';
+import '../../../posts/view/post_view.dart';
 import '../../components/post_card.dart';
 import '../../controllers/home_view_controller.dart';
 
@@ -39,11 +40,8 @@ class _RequestsTabState extends State<RequestsTab> {
                 posts.data!.length,
                 (index) => PostCard(
                   post: (posts.data![index]),
-                  orderCallback: () {}, onTap: () {},
-                  // joinEventCallback: () => events.data![index].isJoined
-                  //     ? widget.controller.leaveEvent(events.data![index]).then((value) => setState(() {}))
-                  //     : widget.controller.joinEvent(events.data![index]).then((value) => setState(() {})),
-                  // editEventCallback: widget.controller.startEditingEvent,
+                  orderCallback: () {},
+                  onTap: () async => await Nav.openPage(context: context, page: PostView(post: posts.data![index])),
                 ),
               ).toList(),
             ),

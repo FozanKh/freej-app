@@ -15,7 +15,11 @@ class LoginController {
   bool registerMode = true;
   late final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  LoginController(this.context, {this.email = '', this.password = '', this.registerMode = true});
+  late final ProgressDialog pr;
+
+  LoginController(this.context, {this.email = '', this.password = '', this.registerMode = true}) {
+    pr = ProgressDialog(context);
+  }
 
   String? emailValidator(String value) {
     email = value.validateNumbers;
@@ -32,14 +36,13 @@ class LoginController {
       return;
     }
 
-    // ProgressDialog pr = ProgressDialog(context);
-    // await pr.show();
+    await pr.show();
     try {
       final newToken = await AuthServices.login(username: email.toString(), password: password);
       context.read<AuthToken>().updateFromToken(newToken, notify: false);
       await SharedPreference.instance.saveToken(newToken, notify: false);
     } catch (e) {
-      // await pr.hide();
+      await pr.hide();
       context.read<AuthToken>().remove();
       AlertDialogBox.showAlert(context, message: e.toString());
       return;
@@ -48,9 +51,9 @@ class LoginController {
     try {
       final newUser = await AuthServices.getUserProfile();
       context.read<User>().updateFromUser(newUser, notify: false);
-      // await pr.hide();
+      await pr.hide();
     } catch (e) {
-      // await pr.hide();
+      await pr.hide();
       await AuthServices.logout(context);
       AlertDialogBox.showAlert(context, message: e.toString());
     }

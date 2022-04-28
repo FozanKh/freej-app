@@ -8,6 +8,7 @@ import '../../../core/services/local/shared_pref.dart';
 import '../../auth/models/user.dart';
 import '../../auth/services/auth_services.dart';
 import 'edit_profile_view.dart';
+import 'personal_posts_view.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({Key? key}) : super(key: key);
@@ -63,7 +64,10 @@ class _ProfileViewState extends State<ProfileView> {
                 const SizedBox(height: 15),
                 Text(user.name, style: TextStyles.h1.withColor(kPrimaryColor).withWeight(FontWeight.w500)),
                 const SizedBox(height: 5),
-                Text("${'room'.translate} ${user.room}",
+                Text("${'building'.translate} ${user.campusDetails?.building.name}",
+                    style: TextStyles.body3.withColor(kHintFontsColor).withWeight(FontWeight.bold)),
+                const SizedBox(height: 5),
+                Text("${'room'.translate} ${user.campusDetails?.building.room.name}",
                     style: TextStyles.body3.withColor(kHintFontsColor).withWeight(FontWeight.bold)),
               ],
             ),
@@ -81,12 +85,15 @@ class _ProfileViewState extends State<ProfileView> {
                   title: 'personal_information'.translate,
                 ),
                 ProfileOptionCard(
+                  icon: PhosphorIcons.nut_fill,
+                  onTap: () => Nav.openPage(context: context, page: const MyPostsView()),
+                  title: translateText('my_posts', context: context),
+                ),
+                ProfileOptionCard(
                   icon: PhosphorIcons.buildings_fill,
                   onTap: () => Nav.openPage(context: context, page: const BuildingView()),
                   title: 'building_information'.translate,
                 ),
-                ProfileOptionCard(
-                    icon: PhosphorIcons.nut_fill, onTap: () {}, title: translateText('own_items', context: context)),
                 ProfileOptionCard(icon: PhosphorIcons.bell_fill, onTap: () {}, title: 'notifications'.translate),
                 ProfileOptionCard(icon: PhosphorIcons.moon_fill, onTap: () {}, title: 'display_mode'.translate),
                 const Divider(),

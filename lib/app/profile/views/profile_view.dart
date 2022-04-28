@@ -8,7 +8,7 @@ import '../../../core/services/local/shared_pref.dart';
 import '../../auth/models/user.dart';
 import '../../auth/services/auth_services.dart';
 import 'edit_profile_view.dart';
-import 'personal_posts_view.dart';
+import 'my_posts_view.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({Key? key}) : super(key: key);

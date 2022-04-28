@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:freej/app/posts/models/post.dart';
 
 import '../../../../core/exports/core.dart';
-import '../../components/post_card.dart';
-import '../../controllers/home_view_controller.dart';
+import '../../../home/components/post_card.dart';
+import '../../controllers/personal_posts_view_controller.dart';
 
-class RequestsTab extends StatefulWidget {
-  final HomeViewController controller;
-  const RequestsTab({
+class MyRequestsTab extends StatefulWidget {
+  final MyPostsViewController controller;
+  const MyRequestsTab({
     Key? key,
     required this.controller,
   }) : super(key: key);
 
   @override
-  State<RequestsTab> createState() => _RequestsTabState();
+  State<MyRequestsTab> createState() => _MyRequestsTabState();
 }
 
-class _RequestsTabState extends State<RequestsTab> {
+class _MyRequestsTabState extends State<MyRequestsTab> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Post>>(
@@ -40,10 +40,6 @@ class _RequestsTabState extends State<RequestsTab> {
                 (index) => PostCard(
                   post: (posts.data![index]),
                   orderCallback: () {},
-                  // joinEventCallback: () => events.data![index].isJoined
-                  //     ? widget.controller.leaveEvent(events.data![index]).then((value) => setState(() {}))
-                  //     : widget.controller.joinEvent(events.data![index]).then((value) => setState(() {})),
-                  // editEventCallback: widget.controller.startEditingEvent,
                 ),
               ).toList(),
             ),

@@ -8,9 +8,9 @@ import '../../auth/models/user.dart';
 
 class PostCard extends StatefulWidget {
   final Post post;
-  final Function orderCallback;
+  final Function? orderCallback;
 
-  const PostCard({Key? key, required this.post, required this.orderCallback}) : super(key: key);
+  const PostCard({Key? key, required this.post, this.orderCallback}) : super(key: key);
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -65,25 +65,26 @@ class _PostCardState extends State<PostCard> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        RoundedButton(
-                          onTap: () {},
-                          title: widget.post.applicationStatus == PostApplicationStatus.unknown
-                              ? "order".translate
-                              : "ordered".translate,
-                          textStyle: TextStyles.body2
-                              .withColor(widget.post.applicationStatus == PostApplicationStatus.unknown
-                                  ? postColor
-                                  : kWhite.withOpacity(0.4))
-                              .withWeight(FontWeight.w600),
-                          shrink: true,
-                          buttonColor: widget.post.applicationStatus == PostApplicationStatus.unknown
-                              ? kWhite
-                              : kGrey.withOpacity(0.9),
-                          margin: EdgeInsets.zero,
-                          padding: const EdgeInsets.symmetric(horizontal: Insets.xxl, vertical: Insets.s),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        const SizedBox(width: Insets.xl),
+                        if (widget.orderCallback != null)
+                          RoundedButton(
+                            onTap: () async => await widget.orderCallback!(),
+                            title: widget.post.applicationStatus == PostApplicationStatus.unknown
+                                ? "order".translate
+                                : "ordered".translate,
+                            textStyle: TextStyles.body2
+                                .withColor(widget.post.applicationStatus == PostApplicationStatus.unknown
+                                    ? postColor
+                                    : kWhite.withOpacity(0.4))
+                                .withWeight(FontWeight.w600),
+                            shrink: true,
+                            buttonColor: widget.post.applicationStatus == PostApplicationStatus.unknown
+                                ? kWhite
+                                : kGrey.withOpacity(0.9),
+                            margin: EdgeInsets.zero,
+                            padding: const EdgeInsets.symmetric(horizontal: Insets.xxl, vertical: Insets.s),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        if (widget.orderCallback != null) const SizedBox(width: Insets.xl),
                         Text(
                           "${widget.post.createdAt.dMMM}, ${widget.post.createdAt.eeee}",
                           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),

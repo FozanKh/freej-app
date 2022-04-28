@@ -7,8 +7,8 @@ import '../models/post.dart';
 
 class PostViewController {
   final BuildContext context;
-  late final ProgressDialog pr;
   final Post post;
+  late final ProgressDialog pr;
 
   PostViewController(this.context, this.post) {
     pr = ProgressDialog(context);

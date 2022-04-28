@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:freej/core/controllers/enum_controller.dart';
 
 enum PostType { offer, request, post }
+enum PostApplicationStatus { pending, accepted, rejected, cancelled, completed, unknown }
 
 class Post {
   Post({
@@ -23,10 +25,10 @@ class Post {
 
   final int id;
   final _PostPerson owner;
-  final String? applicationStatus;
+  final PostApplicationStatus? applicationStatus;
   final List<_PostReview>? reviews;
-  final List<_PostImage>? images;
-  final List<_PostApplication>? applications;
+  final List<String>? images;
+  final List<PostApplication>? applications;
   final DateTime createdAt;
   final DateTime modifiedAt;
   final PostType type;
@@ -38,10 +40,10 @@ class Post {
   Post copyWith({
     int? id,
     _PostPerson? owner,
-    String? applicationStatus,
+    PostApplicationStatus? applicationStatus,
     List<_PostReview>? reviews,
-    List<_PostImage>? images,
-    List<_PostApplication>? applications,
+    List<String>? images,
+    List<PostApplication>? applications,
     DateTime? createdAt,
     DateTime? modifiedAt,
     PostType? type,
@@ -73,10 +75,11 @@ class Post {
   factory Post.fromMap(Map<String, dynamic> json) => Post(
         id: json["id"],
         owner: _PostPerson.fromMap(json["owner"]),
-        applicationStatus: json["application_status"],
+        applicationStatus:
+            Enums.fromString(PostApplicationStatus.values, json["application_status"]) ?? PostApplicationStatus.unknown,
         reviews: List<_PostReview>.from(json["reviews"].map((x) => _PostReview.fromMap(x))),
-        images: List<_PostImage>.from(json["images"].map((x) => _PostImage.fromMap(x))),
-        applications: List<_PostApplication>.from(json["applications"].map((x) => _PostApplication.fromMap(x))),
+        images: List<String>.from(json["images"]),
+        applications: List<PostApplication>.from(json["applications"].map((x) => PostApplication.fromMap(x))),
         createdAt: DateTime.parse(json["created_at"]),
         modifiedAt: DateTime.parse(json["modified_at"]),
         type: Enums.fromString(PostType.values, json["type"]) ?? PostType.post,
@@ -91,7 +94,7 @@ class Post {
         "owner": owner.toMap(),
         "application_status": applicationStatus,
         "reviews": reviews != null ? List<dynamic>.from(reviews!.map((x) => x.toMap())) : null,
-        "images": images != null ? List<dynamic>.from(images!.map((x) => x.toMap())) : null,
+        "images": images,
         "applications": applications != null ? List<dynamic>.from(applications!.map((x) => x.toMap())) : null,
         "created_at": createdAt.toIso8601String(),
         "modified_at": modifiedAt.toIso8601String(),
@@ -103,8 +106,8 @@ class Post {
       };
 }
 
-class _PostApplication {
-  _PostApplication({
+class PostApplication {
+  PostApplication({
     required this.id,
     required this.beneficiary,
     required this.createdAt,
@@ -124,7 +127,7 @@ class _PostApplication {
   final String description;
   final int post;
 
-  _PostApplication copyWith({
+  PostApplication copyWith({
     int? id,
     _PostPerson? beneficiary,
     DateTime? createdAt,
@@ -134,7 +137,7 @@ class _PostApplication {
     String? description,
     int? post,
   }) =>
-      _PostApplication(
+      PostApplication(
         id: id ?? this.id,
         beneficiary: beneficiary ?? this.beneficiary,
         createdAt: createdAt ?? this.createdAt,
@@ -145,11 +148,11 @@ class _PostApplication {
         post: post ?? this.post,
       );
 
-  factory _PostApplication.fromJson(String str) => _PostApplication.fromMap(json.decode(str));
+  factory PostApplication.fromJson(String str) => PostApplication.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory _PostApplication.fromMap(Map<String, dynamic> json) => _PostApplication(
+  factory PostApplication.fromMap(Map<String, dynamic> json) => PostApplication(
         id: json["id"],
         beneficiary: _PostPerson.fromMap(json["beneficiary"]),
         createdAt: DateTime.parse(json["created_at"]),
@@ -206,41 +209,14 @@ class _PostPerson {
         firstName: json["first_name"],
         lastName: json["last_name"],
         mobileNumber: json["mobile_number"],
-        id: json["id"] == null ? null : json["id"],
+        id: json["id"],
       );
 
   Map<String, dynamic> toMap() => {
         "first_name": firstName,
         "last_name": lastName,
         "mobile_number": mobileNumber,
-        "id": id == null ? null : id,
-      };
-}
-
-class _PostImage {
-  _PostImage({
-    required this.image,
-  });
-
-  final String image;
-
-  _PostImage copyWith({
-    String? image,
-  }) =>
-      _PostImage(
-        image: image ?? this.image,
-      );
-
-  factory _PostImage.fromJson(String str) => _PostImage.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory _PostImage.fromMap(Map<String, dynamic> json) => _PostImage(
-        image: json["image"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "image": image,
+        "id": id,
       };
 }
 
@@ -262,6 +238,14 @@ class _PostReview {
   final String comment;
   final int post;
   final int reviewer;
+
+  String get stars {
+    int fullStarts = rating.toInt();
+    int emptyStarts = max(0, 5 - fullStarts);
+    String starts = ('★' * fullStarts.toInt());
+    starts += ('☆' * emptyStarts.toInt());
+    return starts.substring(0, 5);
+  }
 
   _PostReview copyWith({
     int? id,

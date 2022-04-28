@@ -250,5 +250,26 @@
 
   "no_requests_available": "لا توجد طلبات متاحة",
   "no_offers_available": "لا توجد عروض متاحة",
-  "no_events_available": "لا توجد فعاليات متاحة"
+  "no_events_available": "لا توجد فعاليات متاحة",
+
+  "review": "تقيم",
+  "reviews": "التقيمات",
+  "add_review": "أضف تقيمك +",
+  "order": "طلب",
+
+  "accepted": "مقبول",
+  "cancelled": "ملغي",
+
+  "PostApplicationStatus": {
+    "pending": "قيد الانتظار",
+    "accepted": "مقبول",
+    "rejected": "مرفوض",
+    "cancelled": "ملغي",
+    "completed": "مكتمل"
+  },
+
+  "cancellation_done_successfully": "تم الإلغاء بنجاح",
+  "Accept_done_successfully": "تم القبول بنجاح",
+  "rejection_done_successfully": "تم الرفض بنجاح",
+  "complete_done_successfully": "تم الإكمال بنجاح"
 }

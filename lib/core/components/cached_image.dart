@@ -69,11 +69,11 @@ class CachedImage extends StatelessWidget {
       errorWidget: (context, url, error) => Container(
         margin: margin,
         padding: padding,
-        alignment: Alignment.center,
         width: size?.width ?? 100,
         height: size?.height ?? 100,
         child: errorWidget ??
             Container(
+              alignment: Alignment.center,
               width: size?.width ?? 100,
               height: size?.height ?? 100,
               child: const Icon(Icons.error, color: kFontsColor, size: 30),

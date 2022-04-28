@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:freej/app/posts/models/post.dart';
+import 'package:freej/app/posts/view/post_view.dart';
 import 'package:freej/core/constants/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import '../../../core/exports/core.dart';
@@ -29,7 +30,7 @@ class _PostCardState extends State<PostCard> {
           if (showDeleteButton) {
             showDeleteButton = false;
           } else {
-            await widget.orderCallback();
+            await Nav.openPage(context: context, page: PostView(post: widget.post));
           }
           setState(() {});
         },
@@ -68,12 +69,18 @@ class _PostCardState extends State<PostCard> {
                       children: [
                         RoundedButton(
                           onTap: () {},
-                          title: widget.post.applicationStatus != null ? "order".translate : "ordered".translate,
+                          title: widget.post.applicationStatus == PostApplicationStatus.unknown
+                              ? "order".translate
+                              : "ordered".translate,
                           textStyle: TextStyles.body2
-                              .withColor(widget.post.applicationStatus != null ? postColor : kWhite.withOpacity(0.4))
+                              .withColor(widget.post.applicationStatus == PostApplicationStatus.unknown
+                                  ? postColor
+                                  : kWhite.withOpacity(0.4))
                               .withWeight(FontWeight.w600),
                           shrink: true,
-                          buttonColor: widget.post.applicationStatus != null ? kWhite : kGrey.withOpacity(0.9),
+                          buttonColor: widget.post.applicationStatus == PostApplicationStatus.unknown
+                              ? kWhite
+                              : kGrey.withOpacity(0.9),
                           margin: EdgeInsets.zero,
                           padding: const EdgeInsets.symmetric(horizontal: Insets.xxl, vertical: Insets.s),
                           borderRadius: BorderRadius.circular(20),

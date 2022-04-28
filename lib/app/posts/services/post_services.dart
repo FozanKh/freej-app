@@ -6,6 +6,11 @@ class PostServices {
   static final _offerUrl = "${RequestManger.baseUrl}/posts/offers/<pk>/";
   static final _requestsUrl = "${RequestManger.baseUrl}/posts/requests/";
   static final _requestUrl = "${RequestManger.baseUrl}/posts/requests/<pk>/";
+  static final _applyUrl = "${RequestManger.baseUrl}/posts/<pk>/applications/";
+  static final _cancelApplicationUrl = "${RequestManger.baseUrl}/posts/<pk>/applications/?action=cancel";
+  static final _rejectApplicationUrl = "${RequestManger.baseUrl}/posts/<pk>/applications/?action=reject";
+  static final _acceptApplicationUrl = "${RequestManger.baseUrl}/posts/<pk>/applications/?action=accept";
+  static final _completeApplicationUrl = "${RequestManger.baseUrl}/posts/<pk>/applications/?action=complete";
 
   static Future<List<Post>> getAllOffers() async {
     return (await RequestManger.fetchList(
@@ -23,5 +28,39 @@ class PostServices {
     ))
         .map((e) => Post.fromMap(e))
         .toList();
+  }
+
+  static Future<PostApplication> applyForPost(Post post) async {
+    return PostApplication.fromMap(
+      await RequestManger.fetchObject(url: _applyUrl.replaceAll("<pk>", post.id.toString()), method: Method.POST),
+    );
+  }
+
+  static Future<PostApplication> cancelPostApplication(Post post) async {
+    return PostApplication.fromMap(
+      await RequestManger.fetchObject(
+          url: _cancelApplicationUrl.replaceAll("<pk>", post.id.toString()), method: Method.PATCH),
+    );
+  }
+
+  static Future<PostApplication> rejectPostApplication(Post post) async {
+    return PostApplication.fromMap(
+      await RequestManger.fetchObject(
+          url: _rejectApplicationUrl.replaceAll("<pk>", post.id.toString()), method: Method.PATCH),
+    );
+  }
+
+  static Future<PostApplication> acceptPostApplication(Post post) async {
+    return PostApplication.fromMap(
+      await RequestManger.fetchObject(
+          url: _acceptApplicationUrl.replaceAll("<pk>", post.id.toString()), method: Method.PATCH),
+    );
+  }
+
+  static Future<PostApplication> completePostApplication(Post post) async {
+    return PostApplication.fromMap(
+      await RequestManger.fetchObject(
+          url: _completeApplicationUrl.replaceAll("<pk>", post.id.toString()), method: Method.PATCH),
+    );
   }
 }

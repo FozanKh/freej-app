@@ -2,9 +2,9 @@ import 'package:collection/collection.dart';
 
 class Enums {
   Enums._();
-  static T? fromString<T>(Iterable<T> values, String value) {
+  static T? fromString<T>(Iterable<T> values, String? value) {
     return values.firstWhereOrNull(
-      (type) => type.toString().split(".").last == value.replaceAll(' ', '_'),
+      (type) => type.toString().split(".").last == value?.replaceAll(' ', '_'),
     );
   }
 

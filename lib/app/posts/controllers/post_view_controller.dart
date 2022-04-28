@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:freej/app/posts/post_repository.dart';
 import 'package:freej/app/posts/services/post_services.dart';
 
+import '../../../core/components/bottom_sheet.dart';
 import '../../../core/exports/core.dart';
 import '../models/post.dart';
+import '../view/add_review_view.dart';
 
 class PostViewController {
   final BuildContext context;
@@ -26,8 +28,6 @@ class PostViewController {
     switch (post.applicationStatus) {
       case PostApplicationStatus.unknown:
         return true; // can order
-      // case PostApplicationStatus.pending:
-      //   return true; //can cancel only
       default:
         return false;
     }
@@ -125,5 +125,24 @@ class PostViewController {
     }
   }
 
-  Future<void> addReview() async {}
+  Future<void> startAddingReview() async {
+    await showCustomBottomSheet(context, child: AddReviewView(callback: addReview), title: 'create_request'.translate);
+  }
+
+  Future<bool> addReview(int rating, String comment) async {
+    try {
+      await pr.show();
+      await PostServices.addReview(post, rating, comment);
+      post.type == PostType.offer
+          ? await PostRepository.instance.getOffers(refresh: true)
+          : await PostRepository.instance.getRequests(refresh: true);
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: "completion_done_successfully".translate);
+      return true;
+    } catch (e) {
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: e.toString());
+      return false;
+    }
+  }
 }

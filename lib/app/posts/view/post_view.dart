@@ -102,7 +102,7 @@ class _PostViewState extends State<PostView> {
                             children: [
                               Text('reviews'.translate, style: TextStyles.h1),
                               Bounce(
-                                onTap: controller.addReview,
+                                onTap: controller.startAddingReview,
                                 child: Text(
                                   "add_review".translate,
                                   style: TextStyles.callOutFocus.copyWith(

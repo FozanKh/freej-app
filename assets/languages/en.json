@@ -4,6 +4,7 @@
   "ok": "Ok",
   "send": "Send",
   "done": "Done",
+  "no": "No",
   "confirm": "Confirm",
   "cancel": "Cancel",
   "next": "Next",
@@ -203,6 +204,8 @@
   "please_choose_issue_type": "Please choose an issue type",
   "please_enter_proper_description": "Please enter proper description",
   "please_enter_proper_title": "Please enter proper title",
+  "please_enter_proper_input": "Please enter proper input",
+  "please_enter_proper_comment": "Please enter proper comment",
   "maintenance_issue_created_successfully": "Maintenance issue created successfully",
   "complete_your_profile": "Complete Your Profile",
   "announcements": "Announcements",
@@ -289,5 +292,9 @@
   "completion_done_successfully": "Completion done successfully",
   "no_application_found": "No application found",
   "delete_post": "Delete Post",
-  "edit_post": "Edit Post"
+  "edit_post": "Edit Post",
+  "no_input_alert": "Are you sure you want to continue with no input",
+  "report": "Report",
+  "report_created_successfully": "Report created successfully",
+  "add_report_comment_alert": "Do yo want to add a comment to this report"
 }

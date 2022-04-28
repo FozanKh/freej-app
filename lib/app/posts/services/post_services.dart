@@ -11,6 +11,7 @@ class PostServices {
   static final _rejectApplicationUrl = "${RequestManger.baseUrl}/posts/<pk>/applications/<pk2>/?action=reject";
   static final _acceptApplicationUrl = "${RequestManger.baseUrl}/posts/<pk>/applications/<pk2>/?action=accept";
   static final _completeApplicationUrl = "${RequestManger.baseUrl}/posts/<pk>/applications/<pk2>/?action=complete";
+  static final _reviewUrl = "${RequestManger.baseUrl}/posts/<pk>/reviews/";
 
   static Future<List<Post>> getAllOffers() async {
     return (await RequestManger.fetchList(
@@ -61,7 +62,7 @@ class PostServices {
     }
   }
 
-  static Future<Post> deActivatePost(Post post, bool isActive) async {
+  static Future<Post> deactivatePost(Post post, bool isActive) async {
     Map<String, dynamic> body = {
       "title": post.title,
       "description": post.description,
@@ -131,6 +132,18 @@ class PostServices {
             .replaceAll("<pk2>", application.id.toString()),
         method: Method.PATCH,
       ),
+    );
+  }
+
+  static Future<Map<String, dynamic>> addReview(Post post, int rating, String comment) async {
+    Map<String, dynamic> body = {
+      "rating": rating,
+      "comment": comment,
+    };
+    return await RequestManger.fetchObject(
+      url: _reviewUrl.replaceAll("<pk>", post.id.toString()),
+      method: Method.POST,
+      body: body,
     );
   }
 }

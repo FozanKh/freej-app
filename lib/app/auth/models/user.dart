@@ -38,6 +38,8 @@ class User extends ChangeNotifier {
 
   UserBuilding get building => campusDetails!.building;
 
+  bool get completedProfile => account?.mobileNumber != null && account?.firstName != null;
+
   User copyWith({
     int? id,
     Campus? campusDetails,

@@ -34,17 +34,14 @@ class _PostCardState extends State<PostCard> {
           setState(() {});
         },
         child: Container(
-          height: Sizes.xxlCardHeight,
+          // height: Sizes.xxlCardHeight * 1.2,
           decoration: BoxDecoration(
             color: postColor,
             borderRadius: BorderRadius.circular(16),
+            image: const DecorationImage(image: AssetImage(Assets.kWavesAsset), fit: BoxFit.fitWidth),
           ),
           child: Stack(
             children: [
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Image.asset(Assets.kWavesAsset, height: Sizes.xxlCardHeight),
-              ),
               Padding(
                 padding: const EdgeInsets.all(Insets.l),
                 child: Column(
@@ -60,37 +57,43 @@ class _PostCardState extends State<PostCard> {
                       widget.post.owner.firstName ?? '',
                       style: TextStyles.body3,
                     ),
+                    const SizedBox(height: 5),
+                    Text(
+                      widget.post.description,
+                      maxLines: 2,
+                    ),
                     const SizedBox(height: 16),
-                    Text(widget.post.description),
-                    const SizedBox(height: 16),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        if (widget.orderCallback != null)
-                          RoundedButton(
-                            onTap: () async => await widget.orderCallback!(),
-                            title: widget.post.applicationStatus == PostApplicationStatus.unknown
-                                ? "order".translate
-                                : "ordered".translate,
-                            textStyle: TextStyles.body2
-                                .withColor(widget.post.applicationStatus == PostApplicationStatus.unknown
-                                    ? postColor
-                                    : kWhite.withOpacity(0.4))
-                                .withWeight(FontWeight.w600),
-                            shrink: true,
-                            buttonColor: widget.post.applicationStatus == PostApplicationStatus.unknown
-                                ? kWhite
-                                : kGrey.withOpacity(0.9),
-                            margin: EdgeInsets.zero,
-                            padding: const EdgeInsets.symmetric(horizontal: Insets.xxl, vertical: Insets.s),
-                            borderRadius: BorderRadius.circular(20),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          if (widget.orderCallback != null)
+                            RoundedButton(
+                              onTap: () async => await widget.orderCallback!(),
+                              title: widget.post.applicationStatus == PostApplicationStatus.unknown
+                                  ? "order".translate
+                                  : "ordered".translate,
+                              textStyle: TextStyles.body2
+                                  .withColor(widget.post.applicationStatus == PostApplicationStatus.unknown
+                                      ? postColor
+                                      : kWhite.withOpacity(0.4))
+                                  .withWeight(FontWeight.w600),
+                              shrink: true,
+                              buttonColor: widget.post.applicationStatus == PostApplicationStatus.unknown
+                                  ? kWhite
+                                  : kGrey.withOpacity(0.9),
+                              margin: EdgeInsets.zero,
+                              padding: const EdgeInsets.symmetric(horizontal: Insets.xxl, vertical: Insets.s),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          if (widget.orderCallback != null) const SizedBox(width: Insets.xl),
+                          Text(
+                            "${widget.post.createdAt.dMMM}, ${widget.post.createdAt.eeee}",
+                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                           ),
-                        if (widget.orderCallback != null) const SizedBox(width: Insets.xl),
-                        Text(
-                          "${widget.post.createdAt.dMMM}, ${widget.post.createdAt.eeee}",
-                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
-                        ),
-                      ],
+                        ],
+                      ),
                     )
                   ],
                 ),

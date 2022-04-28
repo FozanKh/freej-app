@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:freej/app/home/components/home_app_bar.dart';
 import 'package:freej/app/home/views/tabs/offers_tab.dart';
 import 'package:freej/app/home/views/tabs/requests_tab.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/exports/core.dart';
+import '../../auth/models/user.dart';
 import '../controllers/home_view_controller.dart';
 import 'tabs/events_tab.dart';
 
@@ -15,12 +17,19 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin {
+  late User user;
   late final HomeViewController controller;
 
   @override
   void initState() {
     controller = HomeViewController(context, this);
     super.initState();
+  }
+
+  @override
+  didChangeDependencies() {
+    user = context.read<User>();
+    super.didChangeDependencies();
   }
 
   @override
@@ -32,7 +41,7 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const HomeAppBar(height: kToolbarHeight * 1.3, user: null),
+      appBar: HomeAppBar(height: kToolbarHeight * 1.3, user: user),
       floatingActionButton: controller.homeFloatingActionButton,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

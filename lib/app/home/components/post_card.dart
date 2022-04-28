@@ -8,9 +8,11 @@ import '../../auth/models/user.dart';
 class PostCard extends StatefulWidget {
   final Post post;
   final Function? orderCallback;
+  final Function? editCallback;
   final Function onTap;
 
-  const PostCard({Key? key, required this.post, this.orderCallback, required this.onTap}) : super(key: key);
+  const PostCard({Key? key, required this.post, this.orderCallback, required this.onTap, this.editCallback})
+      : super(key: key);
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -29,12 +31,10 @@ class _PostCardState extends State<PostCard> {
             showDeleteButton = false;
           } else {
             await widget.onTap();
-            // await Nav.openPage(context: context, page: PostView(post: widget.post));
           }
           setState(() {});
         },
         child: Container(
-          // height: Sizes.xxlCardHeight * 1.2,
           decoration: BoxDecoration(
             color: postColor,
             borderRadius: BorderRadius.circular(16),
@@ -98,7 +98,7 @@ class _PostCardState extends State<PostCard> {
                   ],
                 ),
               ),
-              if (context.read<User>().id == widget.post.owner.id)
+              if (context.read<User>().id == widget.post.owner.id && widget.editCallback != null)
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Align(
@@ -114,6 +114,7 @@ class _PostCardState extends State<PostCard> {
                         color: kWhite,
                         titleColor: kBlue,
                         onTap: () async {
+                          await widget.editCallback!(widget.post);
                           showDeleteButton = false;
                           if (mounted) setState(() => {});
                         },

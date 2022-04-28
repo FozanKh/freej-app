@@ -1,14 +1,19 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:freej/app/events/repositories/event_repository.dart';
 import 'package:freej/core/exports/core.dart';
 import 'package:provider/provider.dart';
 import '../../../core/components/bottom_sheet.dart';
+import '../../../core/services/firebase/storage_services.dart';
 import '../../auth/models/user.dart';
 import '../../events/models/event.dart';
 import '../../events/services/event_services.dart';
 import '../../events/views/edit_event_view.dart';
 import '../../posts/models/post.dart';
 import '../../posts/post_repository.dart';
+import '../../posts/services/post_services.dart';
+import '../../posts/view/edit_post_view.dart';
 
 class MyPostsViewController {
   final BuildContext context;
@@ -48,7 +53,7 @@ class MyPostsViewController {
     return [];
   }
 
-  Future<List<Post>> getAllRequests({refresh = false}) async {
+  Future<List<Post>> getMyRequests({refresh = false}) async {
     try {
       List<Post> posts = await PostRepository.instance.getRequests(refresh: refresh);
       List<Post> refinedPosts = posts.where(((e) => e.owner.id == context.read<User>().id)).toList();
@@ -94,6 +99,74 @@ class MyPostsViewController {
       eventsRefreshKey.currentState?.show();
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: "event_deleted_successfully".translate);
+      return true;
+    } catch (e) {
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: e.toString().translate);
+      return false;
+    }
+  }
+
+  Future<void> startEditingPost(Post post) async {
+    await showCustomBottomSheet(
+      context,
+      child: EditPostView(
+        callback: editPost,
+        deleteCallback: deletePost,
+        post: post,
+        type: post.type,
+      ),
+      title: 'edit_post'.translate,
+    );
+  }
+
+  Future<bool> editPost(String title, String description, List<File> images, PostType type) async {
+    pr.show();
+    try {
+      List<String> imagesUrls = [];
+      int counter = 1;
+      for (var image in images) {
+        String? url = await StorageServices.uploadFile(
+          file: image,
+          ref:
+              'users/${context.read<User>().id}/posts/${type.name}/images/$title-$counter-${DateTime.now().millisecondsSinceEpoch}.'
+                  .toLowerCase(),
+        );
+        counter++;
+        if (url != null) {
+          imagesUrls.add(url);
+        }
+      }
+      await PostServices.createPost(title, description, imagesUrls, type);
+
+      if (type == PostType.offer) {
+        offersRefreshKey.currentState?.show();
+      } else {
+        requestsRefreshKey.currentState?.show();
+      }
+
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: "post_edit_successfully".translate);
+      return true;
+    } catch (e) {
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: e.toString().translate);
+      return false;
+    }
+  }
+
+  // TODO: Translate this
+  Future<bool> deletePost(Post post) async {
+    if (!(await AlertDialogBox.showAssertionDialog(context,
+            message: translateText("assurance_alert", arguments: ['delete_post'])) ??
+        false)) {
+      return false;
+    }
+    pr.show();
+    try {
+      await PostServices.deletePost(post);
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: "post_deleted_successfully".translate);
       return true;
     } catch (e) {
       await pr.hide();

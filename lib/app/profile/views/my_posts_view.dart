@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/exports/core.dart';
-import '../controllers/personal_posts_view_controller.dart';
+import '../controllers/my_posts_view_controller.dart';
 import 'tabs/my_events_tab.dart';
 import 'tabs/my_offers_tab.dart';
 import 'tabs/my_requests_tab.dart';

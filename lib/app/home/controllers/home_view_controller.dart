@@ -150,13 +150,14 @@ class HomeViewController {
           imagesUrls.add(url);
         }
       }
+      await PostServices.createPost(title, description, imagesUrls, type);
+
       if (type == PostType.offer) {
-        await PostServices.createOffer(title, description, imagesUrls);
         offersRefreshKey.currentState?.show();
       } else {
-        await PostServices.createRequest(title, description, imagesUrls);
         requestsRefreshKey.currentState?.show();
       }
+
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: "offer_created_successfully".translate);
       return true;

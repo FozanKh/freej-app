@@ -5,7 +5,7 @@ import '../../../../core/exports/core.dart';
 import '../../../auth/models/user.dart';
 import '../../../home/components/post_card.dart';
 import '../../../posts/models/post.dart';
-import '../../controllers/personal_posts_view_controller.dart';
+import '../../controllers/my_posts_view_controller.dart';
 
 class MyOffersTab extends StatefulWidget {
   final MyPostsViewController controller;

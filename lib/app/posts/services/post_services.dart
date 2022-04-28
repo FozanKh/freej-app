@@ -30,24 +30,61 @@ class PostServices {
         .toList();
   }
 
-  static Future<Post> createOffer(String title, String description, List<String> imagesUrls) async {
+  static Future<Post> createPost(String title, String description, List<String> imagesUrls, PostType type) async {
     Map<String, dynamic> body = {
       "title": title,
       "description": description,
       "images": imagesUrls,
     };
 
-    return Post.fromMap(await RequestManger.fetchObject(url: _offersUrl, method: Method.POST, body: body));
+    if (type == PostType.offer) {
+      return Post.fromMap(await RequestManger.fetchObject(url: _offersUrl, method: Method.POST, body: body));
+    } else {
+      return Post.fromMap(await RequestManger.fetchObject(url: _requestsUrl, method: Method.POST, body: body));
+    }
   }
 
-  static Future<Post> createRequest(String title, String description, List<String> imagesUrls) async {
+  static Future<Post> editPost(Post post, String title, String description, List<String> imagesUrls) async {
     Map<String, dynamic> body = {
       "title": title,
       "description": description,
       "images": imagesUrls,
-    }; 
+      "is_active": true,
+    };
 
-    return Post.fromMap(await RequestManger.fetchObject(url: _requestsUrl, method: Method.POST, body: body));
+    if (post.type == PostType.offer) {
+      return Post.fromMap(await RequestManger.fetchObject(
+          url: _offerUrl.replaceAll("<pk>", post.id.toString()), method: Method.PATCH, body: body));
+    } else {
+      return Post.fromMap(await RequestManger.fetchObject(
+          url: _requestUrl.replaceAll("<pk>", post.id.toString()), method: Method.PATCH, body: body));
+    }
+  }
+
+  static Future<Post> deActivatePost(Post post, bool isActive) async {
+    Map<String, dynamic> body = {
+      "title": post.title,
+      "description": post.description,
+      "images": post.images,
+      "is_active": isActive,
+    };
+    if (post.type == PostType.offer) {
+      return Post.fromMap(await RequestManger.fetchObject(
+          url: _offerUrl.replaceAll("<pk>", post.id.toString()), method: Method.PATCH, body: body));
+    } else {
+      return Post.fromMap(await RequestManger.fetchObject(
+          url: _requestUrl.replaceAll("<pk>", post.id.toString()), method: Method.PATCH, body: body));
+    }
+  }
+
+  static Future<Post> deletePost(Post post) async {
+    if (post.type == PostType.offer) {
+      return Post.fromMap(await RequestManger.fetchObject(
+          url: _offerUrl.replaceAll("<pk>", post.id.toString()), method: Method.DELETE));
+    } else {
+      return Post.fromMap(await RequestManger.fetchObject(
+          url: _requestUrl.replaceAll("<pk>", post.id.toString()), method: Method.DELETE));
+    }
   }
 
   static Future<PostApplication> applyForPost(Post post) async {

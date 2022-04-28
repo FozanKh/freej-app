@@ -3,7 +3,7 @@ import 'package:freej/app/home/components/event_card.dart';
 
 import '../../../../core/exports/core.dart';
 import '../../../events/models/event.dart';
-import '../../controllers/personal_posts_view_controller.dart';
+import '../../controllers/my_posts_view_controller.dart';
 
 class MyEventsTab extends StatefulWidget {
   final MyPostsViewController controller;
@@ -39,7 +39,7 @@ class _MyEventsTabState extends State<MyEventsTab> {
                 events.data!.length,
                 (index) => EventCard(
                   event: (events.data![index]),
-                  editEventCallback: widget.controller.startEditingEvent,
+                  editEventCallback: widget.controller.startEditingPost,
                   onTap: () {},
                 ),
               ).toList(),

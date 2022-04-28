@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../core/exports/core.dart';
 import '../../auth/models/user.dart';
 import '../../events/models/event.dart';
+import '../../report/services/report_services.dart';
 
 class EventCard extends StatefulWidget {
   final Event event;
@@ -93,30 +94,40 @@ class _EventCardState extends State<EventCard> {
                   ],
                 ),
               ),
-              if (context.read<User>().id == widget.event.host.id)
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Align(
-                    alignment: Alignment.topRight.relative(),
-                    child: AnimatedCrossFade(
-                      crossFadeState: showDeleteButton ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-                      firstChild: Bounce(
-                        onTap: () => setState(() => showDeleteButton = true),
-                        child: const Icon(PhosphorIcons.dots_three_vertical_bold, color: kWhite),
-                      ),
-                      secondChild: ActionButton(
-                        title: 'edit'.translate,
-                        color: kSecondaryColor.withOpacity(0.5),
-                        onTap: () async {
-                          await widget.editEventCallback(widget.event);
-                          showDeleteButton = false;
-                          if (mounted) setState(() => {});
-                        },
-                      ),
-                      duration: const Duration(milliseconds: 200),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.topRight.relative(),
+                  child: AnimatedCrossFade(
+                    crossFadeState: showDeleteButton ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                    firstChild: Bounce(
+                      onTap: () => setState(() => showDeleteButton = true),
+                      child: const Icon(PhosphorIcons.dots_three_vertical_bold, color: kWhite),
                     ),
+                    secondChild: context.read<User>().id == widget.event.host.id
+                        ? ActionButton(
+                            title: 'edit'.translate,
+                            color: kSecondaryColor.withOpacity(0.5),
+                            onTap: () async {
+                              await widget.editEventCallback(widget.event);
+                              showDeleteButton = false;
+                              if (mounted) setState(() => {});
+                            },
+                          )
+                        : ActionButton(
+                            title: 'report'.translate,
+                            color: kRed2,
+                            titleColor: kWhite,
+                            onTap: () async {
+                              await ReportServices.createReport(widget.event.id, "event", context);
+                              showDeleteButton = false;
+                              if (mounted) setState(() => {});
+                            },
+                          ),
+                    duration: const Duration(milliseconds: 200),
                   ),
                 ),
+              ),
             ],
           ),
         ),

@@ -41,7 +41,7 @@ class _CustomInputSheetState extends State<_CustomInputSheet> {
             if (value != null) {
               Nav.popPage(context, args: value);
             } else {
-              AlertDialogBox.showAlert(context, message: 'custom_input_hint'.translate);
+              AlertDialogBox.showAlert(context, message: 'please_enter_proper_input'.translate);
             }
           },
         ),

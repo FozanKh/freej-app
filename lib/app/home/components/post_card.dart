@@ -4,6 +4,7 @@ import 'package:freej/core/constants/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import '../../../core/exports/core.dart';
 import '../../auth/models/user.dart';
+import '../../report/services/report_services.dart';
 
 class PostCard extends StatefulWidget {
   final Post post;
@@ -98,31 +99,41 @@ class _PostCardState extends State<PostCard> {
                   ],
                 ),
               ),
-              if (context.read<User>().id == widget.post.owner.id && widget.editCallback != null)
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Align(
-                    alignment: Alignment.topRight.relative(),
-                    child: AnimatedCrossFade(
-                      crossFadeState: showDeleteButton ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-                      firstChild: Bounce(
-                        onTap: () => setState(() => showDeleteButton = true),
-                        child: const Icon(PhosphorIcons.dots_three_vertical_bold, color: kWhite),
-                      ),
-                      secondChild: ActionButton(
-                        title: 'edit'.translate,
-                        color: kWhite,
-                        titleColor: kBlue,
-                        onTap: () async {
-                          await widget.editCallback!(widget.post);
-                          showDeleteButton = false;
-                          if (mounted) setState(() => {});
-                        },
-                      ),
-                      duration: const Duration(milliseconds: 200),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.topRight.relative(),
+                  child: AnimatedCrossFade(
+                    crossFadeState: showDeleteButton ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                    firstChild: Bounce(
+                      onTap: () => setState(() => showDeleteButton = true),
+                      child: const Icon(PhosphorIcons.dots_three_vertical_bold, color: kWhite),
                     ),
+                    secondChild: context.read<User>().id == widget.post.owner.id && widget.editCallback != null
+                        ? ActionButton(
+                            title: 'edit'.translate,
+                            color: kWhite,
+                            titleColor: kBlue,
+                            onTap: () async {
+                              await widget.editCallback!(widget.post);
+                              showDeleteButton = false;
+                              if (mounted) setState(() => {});
+                            },
+                          )
+                        : ActionButton(
+                            title: 'report'.translate,
+                            color: kRed2,
+                            titleColor: kWhite,
+                            onTap: () async {
+                              await ReportServices.createReport(widget.post.id, "post", context);
+                              showDeleteButton = false;
+                              if (mounted) setState(() => {});
+                            },
+                          ),
+                    duration: const Duration(milliseconds: 200),
                   ),
                 ),
+              ),
             ],
           ),
         ),

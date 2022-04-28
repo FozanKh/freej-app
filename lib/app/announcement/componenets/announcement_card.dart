@@ -5,6 +5,7 @@ import 'package:freej/core/exports/core.dart';
 
 import '../../../core/constants/phosphor_icons.dart';
 import '../../auth/models/user.dart';
+import '../../report/services/report_services.dart';
 import '../models/announcement.dart';
 
 class AnnouncementCard extends StatefulWidget {
@@ -79,27 +80,37 @@ class _AnnouncementCardState extends State<AnnouncementCard> {
                       ],
                     ),
                   ),
-                  if ((context.read<User>().isSupervisor ?? false) &&
-                      widget.announcement.type == AnnouncementType.building)
-                    Align(
-                      alignment: Alignment.topRight.relative(),
-                      child: AnimatedCrossFade(
-                        crossFadeState: showDeleteButton ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-                        firstChild: Bounce(
-                          onTap: () => setState(() => showDeleteButton = true),
-                          child: const Icon(PhosphorIcons.dots_three_vertical_bold, color: kPrimaryColor),
-                        ),
-                        secondChild: Bounce(
-                          onTap: () async {
-                            await widget.deleteAnnouncementCallback(widget.announcement);
-                            showDeleteButton = false;
-                            if (mounted) setState(() => {});
-                          },
-                          child: const Icon(Icons.clear_rounded, color: kRed2),
-                        ),
-                        duration: const Duration(milliseconds: 200),
+                  Align(
+                    alignment: Alignment.topRight.relative(),
+                    child: AnimatedCrossFade(
+                      crossFadeState: showDeleteButton ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                      firstChild: Bounce(
+                        onTap: () => setState(() => showDeleteButton = true),
+                        child: const Icon(PhosphorIcons.dots_three_vertical_bold, color: kPrimaryColor),
                       ),
+                      secondChild: (context.read<User>().isSupervisor ?? false) &&
+                              widget.announcement.type == AnnouncementType.building
+                          ? Bounce(
+                              onTap: () async {
+                                await widget.deleteAnnouncementCallback(widget.announcement);
+                                showDeleteButton = false;
+                                if (mounted) setState(() => {});
+                              },
+                              child: const Icon(Icons.clear_rounded, color: kRed2),
+                            )
+                          : ActionButton(
+                              title: 'report'.translate,
+                              color: kRed2,
+                              titleColor: kWhite,
+                              onTap: () async {
+                                await ReportServices.createReport(widget.announcement.id, "announcement", context);
+                                showDeleteButton = false;
+                                if (mounted) setState(() => {});
+                              },
+                            ),
+                      duration: const Duration(milliseconds: 200),
                     ),
+                  ),
                 ],
               ),
             ),

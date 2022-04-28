@@ -105,7 +105,7 @@ class _EventCardState extends State<EventCard> {
                         child: const Icon(PhosphorIcons.dots_three_vertical_bold, color: kWhite),
                       ),
                       secondChild: ActionButton(
-                        title: 'edit',
+                        title: 'edit'.translate,
                         color: kSecondaryColor.withOpacity(0.5),
                         onTap: () async {
                           await widget.editEventCallback(widget.event);

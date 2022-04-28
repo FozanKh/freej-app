@@ -219,6 +219,11 @@
   "request_created_successfully": "Request created successfully",
   "create_request": "Create a Request",
 
+  "post_created_successfully": "Post created successfully",
+  "create_post": "Create a Post",
+
+  "post_deleted_successfully": "Post deleted successfully",
+
   "type": "type",
   "event_type": "Event type",
   "create_event": "Create an event",
@@ -282,5 +287,7 @@
   "acceptance_done_successfully": "Acceptance done successfully",
   "rejection_done_successfully": "Rejection done successfully",
   "completion_done_successfully": "Completion done successfully",
-  "no_application_found": "No application found"
+  "no_application_found": "No application found",
+  "delete_post": "Delete Post",
+  "edit_post": "Edit Post"
 }

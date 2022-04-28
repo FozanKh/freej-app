@@ -50,6 +50,7 @@ class _MyOffersTabState extends State<MyOffersTab> {
                 (index) => PostCard(
                   post: posts.data![index],
                   onTap: () {},
+                  editCallback: widget.controller.startEditingPost,
                 ),
               ).toList(),
             ),

@@ -110,7 +110,7 @@ class _PostCardState extends State<PostCard> {
                         child: const Icon(PhosphorIcons.dots_three_vertical_bold, color: kWhite),
                       ),
                       secondChild: ActionButton(
-                        title: 'edit',
+                        title: 'edit'.translate,
                         color: kWhite,
                         titleColor: kBlue,
                         onTap: () async {

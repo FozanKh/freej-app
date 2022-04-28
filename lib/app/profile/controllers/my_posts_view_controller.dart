@@ -120,7 +120,7 @@ class MyPostsViewController {
     );
   }
 
-  Future<bool> editPost(String title, String description, List<File> images, PostType type) async {
+  Future<bool> editPost(Post post, String title, String description, List<File> images) async {
     pr.show();
     try {
       List<String> imagesUrls = [];
@@ -129,7 +129,7 @@ class MyPostsViewController {
         String? url = await StorageServices.uploadFile(
           file: image,
           ref:
-              'users/${context.read<User>().id}/posts/${type.name}/images/$title-$counter-${DateTime.now().millisecondsSinceEpoch}.'
+              'users/${context.read<User>().id}/posts/${post.type.name}/images/$title-$counter-${DateTime.now().millisecondsSinceEpoch}.'
                   .toLowerCase(),
         );
         counter++;
@@ -137,9 +137,10 @@ class MyPostsViewController {
           imagesUrls.add(url);
         }
       }
-      await PostServices.createPost(title, description, imagesUrls, type);
+      // TODO: implement edit images func
+      await PostServices.editPost(post, title, description, post.images ?? []);
 
-      if (type == PostType.offer) {
+      if (post.type == PostType.offer) {
         offersRefreshKey.currentState?.show();
       } else {
         requestsRefreshKey.currentState?.show();
@@ -166,6 +167,11 @@ class MyPostsViewController {
     try {
       await PostServices.deletePost(post);
       await pr.hide();
+      if (post.type == PostType.offer) {
+        offersRefreshKey.currentState?.show();
+      } else {
+        requestsRefreshKey.currentState?.show();
+      }
       await AlertDialogBox.showAlert(context, message: "post_deleted_successfully".translate);
       return true;
     } catch (e) {

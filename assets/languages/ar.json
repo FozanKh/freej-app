@@ -215,15 +215,20 @@
   "event_created_successfully": "تم إنشاء الفعالية بنجاح",
 
   "offer_created_successfully": "تم إنشاء العرض بنجاح",
-  "create_offer": "أنشاء عرض",
+  "create_offer": "أنشئ عرض",
 
   "request_created_successfully": "تم إنشاء الطلب بنجاح",
-  "create_request": "أنشاء طلب",
+  "create_request": "أنشئ طلب",
+
+  "post_created_successfully": "تم إنشاء الخدمة بنجاح",
+  "create_post": "أنشئ خدمة",
+
+  "post_deleted_successfully": "تم حذف الخدمة بنجاح",
 
   "type": "النوع",
   "event_type": "نوع الفعالية",
-  "create_event": "أنشاء فعالية",
-  "create_announcement": "أنشاء إعلان",
+  "create_event": "أنشئ فعالية",
+  "create_announcement": "أنشئ إعلان",
   "announcement_deleted_successfully": "تم حذف الإعلان بنجاح",
   "you_dont_have_permission": "ليس لديك إذن بهذا الإجراء",
   "delete_announcement": "حذف هذا الإعلان",
@@ -283,5 +288,7 @@
   "Accept_done_successfully": "تم القبول بنجاح",
   "rejection_done_successfully": "تم الرفض بنجاح",
   "complete_done_successfully": "تم الإكمال بنجاح",
-  "no_application_found": "لم يتم العثور على الطلب"
+  "no_application_found": "لم يتم العثور على الطلب",
+  "delete_post": "حذف هذه الملف الخدمة",
+  "edit_post": "تعديل الخدمة"
 }

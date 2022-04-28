@@ -50,87 +50,87 @@ class _EditPostViewState extends State<EditPostView> {
           onChanged: (value) => description = value,
           maxLines: 4,
         ),
-        const SizedBox(height: 30),
-        Titled(
-          title: 'images'.translate,
-          child: Container(
-            height: Sizes.xxlCardHeight,
-            decoration: BoxDecoration(
-              border: Border.all(color: kGrey),
-              borderRadius: Borders.mBorderRadius,
-            ),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    ...[
-                      GestureDetector(
-                        onTap: () async {
-                          String? path = await StorageServices.openImagePicker();
-                          if (path != null) newImages.add(File(path));
-                          setState(() {});
-                        },
-                        child: Container(
-                          height: Sizes.xxlCardHeight,
-                          width: Sizes.xxlCardHeight / 2 + 10,
-                          margin: const EdgeInsets.all(10),
-                          padding: const EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            borderRadius: Borders.mBorderRadius,
-                            border: Border.all(color: kGrey),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Icon(PhosphorIcons.file_plus, size: 35),
-                              Text("add_image".translate),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                    ...List.generate(
-                      newImages.length,
-                      (index) => Container(
-                        height: Sizes.xxlCardHeight,
-                        width: Sizes.xxlCardHeight + 10,
-                        margin: const EdgeInsets.all(10),
-                        padding: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          borderRadius: Borders.mBorderRadius,
-                          border: Border.all(color: kGrey),
-                          image: DecorationImage(
-                            image: FileImage(newImages[index]),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                    ),
-                    ...List.generate(
-                      newImages.length,
-                      (index) => Container(
-                        height: Sizes.xxlCardHeight,
-                        width: Sizes.xxlCardHeight + 10,
-                        margin: const EdgeInsets.all(10),
-                        padding: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          borderRadius: Borders.mBorderRadius,
-                          border: Border.all(color: kGrey),
-                          image: DecorationImage(
-                            image: NetworkImage(images[index]),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
+        // const SizedBox(height: 30),
+        // Titled(
+        //   title: 'images'.translate,
+        //   child: Container(
+        //     height: Sizes.xxlCardHeight,
+        //     decoration: BoxDecoration(
+        //       border: Border.all(color: kGrey),
+        //       borderRadius: Borders.mBorderRadius,
+        //     ),
+        //     child: SizedBox(
+        //       width: MediaQuery.of(context).size.width,
+        //       child: SingleChildScrollView(
+        //         scrollDirection: Axis.horizontal,
+        //         child: Row(
+        //           children: [
+        //             ...[
+        //               GestureDetector(
+        //                 onTap: () async {
+        //                   String? path = await StorageServices.openImagePicker();
+        //                   if (path != null) newImages.add(File(path));
+        //                   setState(() {});
+        //                 },
+        //                 child: Container(
+        //                   height: Sizes.xxlCardHeight,
+        //                   width: Sizes.xxlCardHeight / 2 + 10,
+        //                   margin: const EdgeInsets.all(10),
+        //                   padding: const EdgeInsets.all(5),
+        //                   decoration: BoxDecoration(
+        //                     borderRadius: Borders.mBorderRadius,
+        //                     border: Border.all(color: kGrey),
+        //                   ),
+        //                   child: Column(
+        //                     mainAxisAlignment: MainAxisAlignment.center,
+        //                     children: [
+        //                       const Icon(PhosphorIcons.file_plus, size: 35),
+        //                       Text("add_image".translate),
+        //                     ],
+        //                   ),
+        //                 ),
+        //               )
+        //             ],
+        //             ...List.generate(
+        //               newImages.length,
+        //               (index) => Container(
+        //                 height: Sizes.xxlCardHeight,
+        //                 width: Sizes.xxlCardHeight + 10,
+        //                 margin: const EdgeInsets.all(10),
+        //                 padding: const EdgeInsets.all(5),
+        //                 decoration: BoxDecoration(
+        //                   borderRadius: Borders.mBorderRadius,
+        //                   border: Border.all(color: kGrey),
+        //                   image: DecorationImage(
+        //                     image: FileImage(newImages[index]),
+        //                     fit: BoxFit.fill,
+        //                   ),
+        //                 ),
+        //               ),
+        //             ),
+        //             ...List.generate(
+        //               newImages.length,
+        //               (index) => Container(
+        //                 height: Sizes.xxlCardHeight,
+        //                 width: Sizes.xxlCardHeight + 10,
+        //                 margin: const EdgeInsets.all(10),
+        //                 padding: const EdgeInsets.all(5),
+        //                 decoration: BoxDecoration(
+        //                   borderRadius: Borders.mBorderRadius,
+        //                   border: Border.all(color: kGrey),
+        //                   image: DecorationImage(
+        //                     image: NetworkImage(images[index]),
+        //                     fit: BoxFit.fill,
+        //                   ),
+        //                 ),
+        //               ),
+        //             ),
+        //           ],
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
         const SizedBox(height: 30),
         RoundedButton(
           title: "submit".translate,
@@ -140,7 +140,7 @@ class _EditPostViewState extends State<EditPostView> {
             } else if (description.length < 5) {
               AlertDialogBox.showAlert(context, message: 'please_enter_proper_description'.translate);
             } else if (await widget.callback(
-              widget.type,
+              widget.post,
               title,
               description,
               newImages,

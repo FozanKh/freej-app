@@ -255,7 +255,9 @@
   "review": "تقيم",
   "reviews": "التقيمات",
   "add_review": "أضف تقيمك +",
+
   "order": "طلب",
+  "answer": "أجب",
 
   "accepted": "مقبول",
   "cancelled": "ملغي",
@@ -265,11 +267,14 @@
     "accepted": "مقبول",
     "rejected": "مرفوض",
     "cancelled": "ملغي",
-    "completed": "مكتمل"
+    "completed": "مكتمل",
+    "unknown": "طلب"
   },
 
+  "application_done_successfully": "تم تقديم الطلب بنجاح",
   "cancellation_done_successfully": "تم الإلغاء بنجاح",
   "Accept_done_successfully": "تم القبول بنجاح",
   "rejection_done_successfully": "تم الرفض بنجاح",
-  "complete_done_successfully": "تم الإكمال بنجاح"
+  "complete_done_successfully": "تم الإكمال بنجاح",
+  "no_application_found": "لم يتم العثور على الطلب"
 }

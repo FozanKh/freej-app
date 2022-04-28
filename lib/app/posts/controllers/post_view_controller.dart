@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freej/app/posts/post_repository.dart';
 import 'package:freej/app/posts/services/post_services.dart';
 
 import '../../../core/exports/core.dart';
@@ -49,6 +50,9 @@ class PostViewController {
     try {
       await pr.show();
       await PostServices.applyForPost(post);
+      post.type == PostType.offer
+          ? await PostRepository.instance.getOffers(refresh: true)
+          : await PostRepository.instance.getRequests(refresh: true);
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: "application_done_successfully".translate);
     } catch (e) {
@@ -58,9 +62,16 @@ class PostViewController {
   }
 
   Future<void> cancelApplication() async {
+    if (post.myApplication(context) == null) {
+      await AlertDialogBox.showAlert(context, message: "no_application_found".translate);
+      return;
+    }
     try {
       await pr.show();
-      await PostServices.cancelPostApplication(post);
+      await PostServices.cancelPostApplication(post, post.myApplication(context)!);
+      post.type == PostType.offer
+          ? await PostRepository.instance.getOffers(refresh: true)
+          : await PostRepository.instance.getRequests(refresh: true);
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: "cancellation_done_successfully".translate);
     } catch (e) {
@@ -69,10 +80,13 @@ class PostViewController {
     }
   }
 
-  Future<void> acceptApplication() async {
+  Future<void> acceptApplication(PostApplication application) async {
     try {
       await pr.show();
-      await PostServices.acceptPostApplication(post);
+      await PostServices.acceptPostApplication(post, application);
+      post.type == PostType.offer
+          ? await PostRepository.instance.getOffers(refresh: true)
+          : await PostRepository.instance.getRequests(refresh: true);
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: "acceptance_done_successfully".translate);
     } catch (e) {
@@ -81,10 +95,13 @@ class PostViewController {
     }
   }
 
-  Future<void> rejectApplication() async {
+  Future<void> rejectApplication(PostApplication application) async {
     try {
       await pr.show();
-      await PostServices.cancelPostApplication(post);
+      await PostServices.cancelPostApplication(post, application);
+      post.type == PostType.offer
+          ? await PostRepository.instance.getOffers(refresh: true)
+          : await PostRepository.instance.getRequests(refresh: true);
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: "rejection_done_successfully".translate);
     } catch (e) {
@@ -93,10 +110,13 @@ class PostViewController {
     }
   }
 
-  Future<void> completeApplication() async {
+  Future<void> completeApplication(PostApplication application) async {
     try {
       await pr.show();
-      await PostServices.cancelPostApplication(post);
+      await PostServices.cancelPostApplication(post, application);
+      post.type == PostType.offer
+          ? await PostRepository.instance.getOffers(refresh: true)
+          : await PostRepository.instance.getRequests(refresh: true);
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: "completion_done_successfully".translate);
     } catch (e) {

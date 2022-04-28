@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:freej/app/posts/models/post.dart';
 import 'package:freej/app/posts/view/post_view.dart';
@@ -58,7 +56,7 @@ class _PostCardState extends State<PostCard> {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      widget.post.owner.firstName,
+                      widget.post.owner.firstName ?? '',
                       style: TextStyles.body3,
                     ),
                     const SizedBox(height: 16),

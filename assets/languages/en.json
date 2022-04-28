@@ -250,11 +250,13 @@
   "no_requests_available": "No Requests Available",
   "no_offers_available": "No Offers Available",
   "no_events_available": "No Events Available",
+
   "review": "Review",
   "reviews": "Reviews",
   "add_review": "Add Review +",
 
   "order": "Order",
+  "answer": "Answer",
 
   "accepted": "Accepted",
   "cancelled": "Cancelled",
@@ -264,11 +266,14 @@
     "accepted": "Accepted",
     "rejected": "Rejected",
     "cancelled": "Cancelled",
-    "completed": "Completed"
+    "completed": "Completed",
+    "unknown": "Order"
   },
 
+  "application_done_successfully": "Application done successfully",
   "cancellation_done_successfully": "Cancellation done successfully",
   "acceptance_done_successfully": "Acceptance done successfully",
   "rejection_done_successfully": "Rejection done successfully",
-  "completion_done_successfully": "Completion done successfully"
+  "completion_done_successfully": "Completion done successfully",
+  "no_application_found": "No application found"
 }

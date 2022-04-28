@@ -32,21 +32,38 @@ class _PostViewState extends State<PostView> {
           color: kWhite,
           boxShadow: Styles.boxShadowTop,
         ),
-        child: RoundedButton(
-          margin: EdgeInsets.zero,
-          enabled: controller.isButtonEnabled,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text('order'.translate, style: TextStyles.callOut.withColor(kWhite).withWeight(FontWeight.bold)),
-            ],
-          ),
-          onTap: controller.actionButtonOnTap,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            RoundedButton(
+              margin: EdgeInsets.zero,
+              enabled: controller.isButtonEnabled,
+              title: controller.actionButtonTitle,
+              textStyle: TextStyles.callOut.withColor(kWhite).withWeight(FontWeight.bold),
+              // child: Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //   children: [
+              //     Text('order'.translate, style: TextStyles.callOut.withColor(kWhite).withWeight(FontWeight.bold)),
+              //   ],
+              // ),
+              onTap: controller.actionButtonOnTap,
+            ),
+            const SizedBox(height: 10),
+            if (widget.post.applicationStatus == PostApplicationStatus.pending)
+              RoundedButton(
+                margin: EdgeInsets.zero,
+                enabled: widget.post.applicationStatus == PostApplicationStatus.pending,
+                title: "cancel".translate,
+                textStyle: TextStyles.callOut.withColor(kWhite).withWeight(FontWeight.bold),
+                buttonColor: kRed2,
+                onTap: controller.cancelApplication,
+              ),
+          ],
         ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.only(bottom: 100, right: Insets.m, top: Insets.m, left: Insets.m),
+          padding: const EdgeInsets.only(bottom: Sizes.lCardHeight * 3, right: Insets.m, top: Insets.m, left: Insets.m),
           child: Stack(
             alignment: Alignment.topCenter,
             children: <Widget>[

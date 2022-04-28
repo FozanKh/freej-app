@@ -1,7 +1,12 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
 import 'package:freej/core/controllers/enum_controller.dart';
+import 'package:provider/provider.dart';
+
+import '../../auth/models/user.dart';
 
 enum PostType { offer, request, post }
 enum PostApplicationStatus { pending, accepted, rejected, cancelled, completed, unknown }
@@ -36,6 +41,10 @@ class Post {
   final String description;
   final bool isActive;
   final int campus;
+
+  PostApplication? myApplication(BuildContext context) {
+    return applications?.firstWhereOrNull((application) => application.beneficiary.id == context.read<User>().id);
+  }
 
   Post copyWith({
     int? id,
@@ -183,9 +192,9 @@ class _PostPerson {
     required this.id,
   });
 
-  final String firstName;
-  final String lastName;
-  final String mobileNumber;
+  final String? firstName;
+  final String? lastName;
+  final String? mobileNumber;
   final int id;
 
   _PostPerson copyWith({

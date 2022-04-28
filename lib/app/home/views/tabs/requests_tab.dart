@@ -39,7 +39,7 @@ class _RequestsTabState extends State<RequestsTab> {
                 posts.data!.length,
                 (index) => PostCard(
                   post: (posts.data![index]),
-                  orderCallback: () {},
+                  orderCallback: () {}, onTap: () {},
                   // joinEventCallback: () => events.data![index].isJoined
                   //     ? widget.controller.leaveEvent(events.data![index]).then((value) => setState(() {}))
                   //     : widget.controller.joinEvent(events.data![index]).then((value) => setState(() {})),

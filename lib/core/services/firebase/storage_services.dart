@@ -9,11 +9,10 @@ class StorageServices {
   static Future<String?> uploadAvatar(int uid) async {
     String ref = 'users/$uid/profile/avatar'.toLowerCase();
     print("ref: $ref");
-    String? path = await openImagePicker(ref);
+    String? path = await openImagePicker();
     if (path != null) {
       String? url = await uploadFile(
-        data: await File(path).readAsBytes(),
-        extension: path.split(".").last,
+        file: File(path),
         ref: ref,
       );
       return url;
@@ -21,7 +20,7 @@ class StorageServices {
     return null;
   }
 
-  static Future<String?> openImagePicker(String ref) async {
+  static Future<String?> openImagePicker() async {
     try {
       final ImagePicker _picker = ImagePicker();
       // Pick an image
@@ -37,7 +36,10 @@ class StorageServices {
   }
 
   ///FUNCTION UPLOAD the file to the storage
-  static Future<String?> uploadFile({required Uint8List data, required String extension, required String ref}) async {
+  static Future<String?> uploadFile({required File file, required String ref}) async {
+    Uint8List data = await file.readAsBytes();
+    String extension = file.path.split(".").last;
+
     ///Start uploading
     firebase_storage.Reference reference = firebase_storage.FirebaseStorage.instance.ref("$ref.$extension");
     print("reference: $reference");

@@ -30,6 +30,26 @@ class PostServices {
         .toList();
   }
 
+  static Future<Post> createOffer(String title, String description, List<String> imagesUrls) async {
+    Map<String, dynamic> body = {
+      "title": title,
+      "description": description,
+      "images": imagesUrls,
+    };
+
+    return Post.fromMap(await RequestManger.fetchObject(url: _offersUrl, method: Method.POST, body: body));
+  }
+
+  static Future<Post> createRequest(String title, String description, List<String> imagesUrls) async {
+    Map<String, dynamic> body = {
+      "title": title,
+      "description": description,
+      "images": imagesUrls,
+    }; 
+
+    return Post.fromMap(await RequestManger.fetchObject(url: _requestsUrl, method: Method.POST, body: body));
+  }
+
   static Future<PostApplication> applyForPost(Post post) async {
     return PostApplication.fromMap(
       await RequestManger.fetchObject(url: _applyUrl.replaceAll("<pk>", post.id.toString()), method: Method.POST),

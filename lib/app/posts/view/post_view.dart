@@ -92,49 +92,50 @@ class _PostViewState extends State<PostView> {
                     Text(widget.post.description, style: TextStyles.body1),
                     const Divider(height: Insets.l * 2),
                     // const SizedBox(height: 40),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text('reviews'.translate, style: TextStyles.h1),
-                            Bounce(
-                              onTap: controller.addReview,
-                              child: Text(
-                                "add_review".translate,
-                                style: TextStyles.callOutFocus.copyWith(
-                                  decoration: TextDecoration.underline,
-                                  color: kFontsColor,
-                                  fontSize: 14,
+                    if (widget.post.reviews?.isNotEmpty ?? false)
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text('reviews'.translate, style: TextStyles.h1),
+                              Bounce(
+                                onTap: controller.addReview,
+                                child: Text(
+                                  "add_review".translate,
+                                  style: TextStyles.callOutFocus.copyWith(
+                                    decoration: TextDecoration.underline,
+                                    color: kFontsColor,
+                                    fontSize: 14,
+                                  ),
                                 ),
-                              ),
-                            )
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        const SizedBox(height: 10),
-                        SeparatedColumn(
-                          separator: const Divider(height: 30),
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: List.generate(
-                            widget.post.reviews?.length ?? 0,
-                            (index) {
-                              final review = widget.post.reviews![index];
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("(${review.rating}) ${review.stars}", style: TextStyles.body1),
-                                  const SizedBox(height: 10),
-                                  Text(review.comment, style: TextStyles.body1),
-                                ],
-                              );
-                            },
+                              )
+                            ],
                           ),
-                        )
-                      ],
-                    )
+                          const Divider(thickness: 2),
+                          const SizedBox(height: 10),
+                          SeparatedColumn(
+                            separator: const Divider(height: 30),
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: List.generate(
+                              widget.post.reviews?.length ?? 0,
+                              (index) {
+                                final review = widget.post.reviews![index];
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("(${review.rating}) ${review.stars}", style: TextStyles.body1),
+                                    const SizedBox(height: 10),
+                                    Text(review.comment, style: TextStyles.body1),
+                                  ],
+                                );
+                              },
+                            ),
+                          )
+                        ],
+                      )
                   ],
                 ),
               ),

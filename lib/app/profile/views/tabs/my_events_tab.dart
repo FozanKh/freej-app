@@ -39,10 +39,8 @@ class _MyEventsTabState extends State<MyEventsTab> {
                 events.data!.length,
                 (index) => EventCard(
                   event: (events.data![index]),
-                  // joinEventCallback: () => events.data![index].isJoined
-                  //     ? widget.controller.leaveEvent(events.data![index]).then((value) => setState(() {}))
-                  //     : widget.controller.joinEvent(events.data![index]).then((value) => setState(() {})),
                   editEventCallback: widget.controller.startEditingEvent,
+                  onTap: () {},
                 ),
               ).toList(),
             ),

@@ -213,6 +213,12 @@
 
   "event_created_successfully": "Event created successfully",
 
+  "offer_created_successfully": "Offer created successfully",
+  "create_offer": "Create an Offer",
+
+  "request_created_successfully": "Request created successfully",
+  "create_request": "Create a Request",
+
   "type": "type",
   "event_type": "Event type",
   "create_event": "Create an event",

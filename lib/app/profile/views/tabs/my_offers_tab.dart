@@ -48,7 +48,8 @@ class _MyOffersTabState extends State<MyOffersTab> {
               children: List.generate(
                 posts.data!.length,
                 (index) => PostCard(
-                  post: (posts.data![index]),
+                  post: posts.data![index],
+                  onTap: () {},
                 ),
               ).toList(),
             ),

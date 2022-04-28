@@ -39,7 +39,7 @@ class _MyRequestsTabState extends State<MyRequestsTab> {
                 posts.data!.length,
                 (index) => PostCard(
                   post: (posts.data![index]),
-                  orderCallback: () {},
+                  onTap: () {},
                 ),
               ).toList(),
             ),

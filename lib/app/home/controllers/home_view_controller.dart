@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:freej/app/events/repositories/event_repository.dart';
+import 'package:freej/app/posts/services/post_services.dart';
 import 'package:freej/core/exports/core.dart';
+import 'package:freej/core/services/firebase/storage_services.dart';
 import 'package:provider/provider.dart';
 import '../../../core/components/bottom_sheet.dart';
 import '../../../core/constants/phosphor_icons.dart';
@@ -11,6 +15,7 @@ import '../../events/views/create_event_view.dart';
 import '../../events/views/edit_event_view.dart';
 import '../../posts/models/post.dart';
 import '../../posts/post_repository.dart';
+import '../../posts/view/create_post_view.dart';
 
 class HomeViewController {
   final BuildContext context;
@@ -28,7 +33,11 @@ class HomeViewController {
     });
   }
   FloatingActionButton get homeFloatingActionButton => FloatingActionButton(
-        backgroundColor: tabController.index == 2 ? kGreen : kPrimaryColor,
+        backgroundColor: [
+          kPrimaryColor,
+          kBlue,
+          kGreen,
+        ][tabController.index],
         child: const Icon(PhosphorIcons.plus_bold, size: 30),
         onPressed: fabAction,
       );
@@ -36,12 +45,14 @@ class HomeViewController {
   VoidCallback get fabAction {
     switch (tabController.index) {
       case 0:
-        return () {
-          print('0');
+        return () async {
+          await showCustomBottomSheet(context,
+              child: CreatePostView(callback: createPost, type: PostType.request), title: 'create_request'.translate);
         };
       case 1:
-        return () {
-          print('1');
+        return () async {
+          await showCustomBottomSheet(context,
+              child: CreatePostView(callback: createPost, type: PostType.offer), title: 'create_offer'.translate);
         };
       case 2:
         return () async {
@@ -117,6 +128,40 @@ class HomeViewController {
     } catch (e) {
       pr.hide();
       AlertDialogBox.showAlert(context, message: e.toString().translate);
+    }
+  }
+
+  Future<bool> createPost(PostType type, String title, String description, List<File> images) async {
+    pr.show();
+    try {
+      List<String> imagesUrls = [];
+      int counter = 1;
+      for (var image in images) {
+        String? url = await StorageServices.uploadFile(
+          file: image,
+          ref:
+              'users/${context.read<User>().id}/posts/${type.name}/images/$title-$counter-${DateTime.now().millisecondsSinceEpoch}.'
+                  .toLowerCase(),
+        );
+        counter++;
+        if (url != null) {
+          imagesUrls.add(url);
+        }
+      }
+      if (type == PostType.offer) {
+        await PostServices.createOffer(title, description, imagesUrls);
+        offersRefreshKey.currentState?.show();
+      } else {
+        await PostServices.createRequest(title, description, imagesUrls);
+        requestsRefreshKey.currentState?.show();
+      }
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: "offer_created_successfully".translate);
+      return true;
+    } catch (e) {
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: e.toString().translate);
+      return false;
     }
   }
 

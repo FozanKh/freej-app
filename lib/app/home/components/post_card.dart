@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:freej/app/posts/models/post.dart';
-import 'package:freej/app/posts/view/post_view.dart';
 import 'package:freej/core/constants/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import '../../../core/exports/core.dart';
@@ -9,8 +8,9 @@ import '../../auth/models/user.dart';
 class PostCard extends StatefulWidget {
   final Post post;
   final Function? orderCallback;
+  final Function onTap;
 
-  const PostCard({Key? key, required this.post, this.orderCallback}) : super(key: key);
+  const PostCard({Key? key, required this.post, this.orderCallback, required this.onTap}) : super(key: key);
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -28,7 +28,8 @@ class _PostCardState extends State<PostCard> {
           if (showDeleteButton) {
             showDeleteButton = false;
           } else {
-            await Nav.openPage(context: context, page: PostView(post: widget.post));
+            await widget.onTap();
+            // await Nav.openPage(context: context, page: PostView(post: widget.post));
           }
           setState(() {});
         },

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/exports/core.dart';
 import '../../../auth/models/user.dart';
 import '../../../posts/models/post.dart';
+import '../../../posts/view/post_view.dart';
 import '../../components/post_card.dart';
 import '../../controllers/home_view_controller.dart';
 
@@ -52,8 +53,9 @@ class _OffersTabState extends State<OffersTab> {
               children: List.generate(
                 refinedPosts.length,
                 (index) => PostCard(
-                  post: (refinedPosts[index]),
+                  post: refinedPosts[index],
                   orderCallback: () {},
+                  onTap: () async => await Nav.openPage(context: context, page: PostView(post: refinedPosts[index])),
                 ),
               ).toList(),
             ),

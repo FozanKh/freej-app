@@ -296,5 +296,19 @@
   "no_input_alert": "Are you sure you want to continue with no input",
   "report": "Report",
   "report_created_successfully": "Report created successfully",
-  "add_report_comment_alert": "Do yo want to add a comment to this report"
+  "add_report_comment_alert": "Do yo want to add a comment to this report",
+
+  "application": "Application",
+  "applications": "Applications",
+  "accept": "Accept",
+  "reject": "Reject",
+  "complete": "Complete",
+  "accept_application": "accept this application",
+  "reject_application": "reject this application",
+  "complete_application": "complete this application",
+  "cancel_application": "cancel this application",
+  "application_accepted_successfully": "Application accepted successfully",
+  "application_rejected_successfully": "Application rejected successfully",
+  "application_completed_successfully": "Application completed successfully",
+  "application_canceled_successfully": "Application canceled successfully"
 }

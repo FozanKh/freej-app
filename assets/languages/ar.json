@@ -297,5 +297,19 @@
   "no_input_alert": "هل أنت متأكد أنك تريد المتابعة بدون إدخال",
   "report": "تبليغ",
   "report_created_successfully": "تم إنشاء التقرير بنجاح",
-  "add_report_comment_alert": "هل تريد إضافة تعليق على هذا البلاغ"
+  "add_report_comment_alert": "هل تريد إضافة تعليق على هذا البلاغ",
+
+  "application": "التطبيق",
+  "applications": "التطبيقات",
+  "accept": "قبول",
+  "reject": "رفض",
+  "complete": "مكتمل",
+  "accept_application": "قبول هذا التطبيق",
+  "reject_application": "رفض هذا التطبيق",
+  "complete_application": "أكمل هذا التطبيق",
+  "cancel_application": "إلغاء هذا التطبيق",
+  "application_accepted_successfully": "تم قبول التطبيق بنجاح",
+  "application_rejected_successfully": "تم رفض التطبيق بنجاح",
+  "application_completed_successfully": "اكتمل التطبيق بنجاح",
+  "application_canceled_successfully": "تم إلغاء التطبيق بنجاح"
 }

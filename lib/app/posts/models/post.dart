@@ -3,13 +3,16 @@ import 'dart:math';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:freej/core/constants/colors.dart';
 import 'package:freej/core/controllers/enum_controller.dart';
 import 'package:provider/provider.dart';
 
 import '../../auth/models/user.dart';
 
 enum PostType { offer, request, post }
-enum PostApplicationStatus { pending, accepted, rejected, cancelled, completed, unknown }
+//! DON'T TOUCH THIS! vv
+enum PostApplicationStatus { pending, accepted, completed, rejected, cancelled, unknown }
+//! DON'T TOUCH THIS! ^^
 
 class Post {
   Post({
@@ -101,8 +104,8 @@ class Post {
   Map<String, dynamic> toMap() => {
         "id": id,
         "owner": owner.toMap(),
-        "application_status": applicationStatus,
         "reviews": reviews != null ? List<dynamic>.from(reviews!.map((x) => x.toMap())) : null,
+        "application_status": Enums.valueString(applicationStatus),
         "images": images,
         "applications": applications != null ? List<dynamic>.from(applications!.map((x) => x.toMap())) : null,
         "created_at": createdAt.toIso8601String(),
@@ -131,17 +134,19 @@ class PostApplication {
   final _PostPerson beneficiary;
   final DateTime createdAt;
   final DateTime modifiedAt;
-  final String status;
+  final PostApplicationStatus status;
   final DateTime statusUpdatedAt;
   final String description;
   final int post;
+
+  Color get statusColor => [kGrey, kGreen, kBlue, kRed2, kRed2, kGrey][status.index];
 
   PostApplication copyWith({
     int? id,
     _PostPerson? beneficiary,
     DateTime? createdAt,
     DateTime? modifiedAt,
-    String? status,
+    PostApplicationStatus? status,
     DateTime? statusUpdatedAt,
     String? description,
     int? post,
@@ -166,7 +171,7 @@ class PostApplication {
         beneficiary: _PostPerson.fromMap(json["beneficiary"]),
         createdAt: DateTime.parse(json["created_at"]),
         modifiedAt: DateTime.parse(json["modified_at"]),
-        status: json["status"],
+        status: Enums.fromString(PostApplicationStatus.values, json["status"]) ?? PostApplicationStatus.unknown,
         statusUpdatedAt: DateTime.parse(json["status_updated_at"]),
         description: json["description"],
         post: json["post"],
@@ -177,7 +182,7 @@ class PostApplication {
         "beneficiary": beneficiary.toMap(),
         "created_at": createdAt.toIso8601String(),
         "modified_at": modifiedAt.toIso8601String(),
-        "status": status,
+        "status": Enums.valueString(status),
         "status_updated_at": statusUpdatedAt.toIso8601String(),
         "description": description,
         "post": post,

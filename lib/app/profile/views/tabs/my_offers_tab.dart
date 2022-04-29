@@ -6,6 +6,7 @@ import '../../../auth/models/user.dart';
 import '../../../home/components/post_card.dart';
 import '../../../posts/models/post.dart';
 import '../../controllers/my_posts_view_controller.dart';
+import '../my_post_view.dart';
 
 class MyOffersTab extends StatefulWidget {
   final MyPostsViewController controller;
@@ -50,7 +51,8 @@ class _MyOffersTabState extends State<MyOffersTab> {
                   posts.data!.length,
                   (index) => PostCard(
                     post: posts.data![index],
-                    onTap: () {},
+                    onTap: () async => Nav.openPage(context: context, page: MyPostView(post: posts.data![index]))
+                        .then((value) => setState(() {})),
                     editCallback: widget.controller.startEditingPost,
                   ),
                 ).toList(),

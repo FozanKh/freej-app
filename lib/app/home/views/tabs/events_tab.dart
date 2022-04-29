@@ -27,25 +27,27 @@ class _EventsTabState extends State<EventsTab> {
         } else if (!events.hasData || (events.data?.isEmpty ?? true)) {
           return Center(child: FullScreenBanner("no_events_available".translate));
         }
-        return SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
-          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-          child: RefreshIndicator(
-            key: widget.controller.eventsRefreshKey,
-            onRefresh: () => widget.controller.getAllEvents(refresh: true).then((value) => setState(() {})),
-            child: SeparatedColumn(
-              separator: const Divider(color: kTransparent),
-              children: List.generate(
-                events.data!.length,
-                (index) => EventCard(
-                  event: (events.data![index]),
-                  onTap: () {},
-                  joinEventCallback: () => events.data![index].isJoined
-                      ? widget.controller.leaveEvent(events.data![index]).then((value) => setState(() {}))
-                      : widget.controller.joinEvent(events.data![index]).then((value) => setState(() {})),
-                  editEventCallback: widget.controller.startEditingEvent,
-                ),
-              ).toList(),
+        return RefreshIndicator(
+          key: widget.controller.eventsRefreshKey,
+          onRefresh: () => widget.controller.getAllEvents(refresh: true).then((value) => setState(() {})),
+          child: SizedBox.expand(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
+              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              child: SeparatedColumn(
+                separator: const Divider(color: kTransparent),
+                children: List.generate(
+                  events.data!.length,
+                  (index) => EventCard(
+                    event: (events.data![index]),
+                    onTap: () {},
+                    joinEventCallback: () => events.data![index].isJoined
+                        ? widget.controller.leaveEvent(events.data![index]).then((value) => setState(() {}))
+                        : widget.controller.joinEvent(events.data![index]).then((value) => setState(() {})),
+                    editEventCallback: widget.controller.startEditingEvent,
+                  ),
+                ).toList(),
+              ),
             ),
           ),
         );

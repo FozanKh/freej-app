@@ -37,22 +37,24 @@ class _MyOffersTabState extends State<MyOffersTab> {
         } else if (!posts.hasData || (posts.data?.isEmpty ?? true)) {
           return Center(child: FullScreenBanner("no_offers_available".translate));
         }
-        return SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
-          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-          child: RefreshIndicator(
-            key: widget.controller.offersRefreshKey,
-            onRefresh: () => widget.controller.getMyOffers(refresh: true).then((value) => setState(() {})),
-            child: SeparatedColumn(
-              separator: const Divider(color: kTransparent),
-              children: List.generate(
-                posts.data!.length,
-                (index) => PostCard(
-                  post: posts.data![index],
-                  onTap: () {},
-                  editCallback: widget.controller.startEditingPost,
-                ),
-              ).toList(),
+        return RefreshIndicator(
+          key: widget.controller.offersRefreshKey,
+          onRefresh: () => widget.controller.getMyOffers(refresh: true).then((value) => setState(() {})),
+          child: SizedBox.expand(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
+              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              child: SeparatedColumn(
+                separator: const Divider(color: kTransparent),
+                children: List.generate(
+                  posts.data!.length,
+                  (index) => PostCard(
+                    post: posts.data![index],
+                    onTap: () {},
+                    editCallback: widget.controller.startEditingPost,
+                  ),
+                ).toList(),
+              ),
             ),
           ),
         );

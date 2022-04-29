@@ -28,23 +28,25 @@ class _RequestsTabState extends State<RequestsTab> {
         } else if (!posts.hasData || (posts.data?.isEmpty ?? true)) {
           return Center(child: FullScreenBanner("no_requests_available".translate));
         }
-        return SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
-          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-          child: RefreshIndicator(
-            key: widget.controller.requestsRefreshKey,
-            onRefresh: () => widget.controller.getAllRequests(refresh: true).then((value) => setState(() {})),
-            child: SeparatedColumn(
-              separator: const Divider(color: kTransparent),
-              children: List.generate(
-                posts.data!.length,
-                (index) => PostCard(
-                  post: (posts.data![index]),
-                  orderCallback: () {},
-                  onTap: () async => Nav.openPage(context: context, page: PostView(post: posts.data![index]))
-                      .then((value) => setState(() {})),
-                ),
-              ).toList(),
+        return RefreshIndicator(
+          key: widget.controller.requestsRefreshKey,
+          onRefresh: () => widget.controller.getAllRequests(refresh: true).then((value) => setState(() {})),
+          child: SizedBox.expand(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
+              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              child: SeparatedColumn(
+                separator: const Divider(color: kTransparent),
+                children: List.generate(
+                  posts.data!.length,
+                  (index) => PostCard(
+                    post: (posts.data![index]),
+                    orderCallback: () {},
+                    onTap: () async => Nav.openPage(context: context, page: PostView(post: posts.data![index]))
+                        .then((value) => setState(() {})),
+                  ),
+                ).toList(),
+              ),
             ),
           ),
         );

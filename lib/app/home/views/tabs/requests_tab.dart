@@ -28,12 +28,12 @@ class _RequestsTabState extends State<RequestsTab> {
         } else if (!posts.hasData || (posts.data?.isEmpty ?? true)) {
           return Center(child: FullScreenBanner("no_requests_available".translate));
         }
-        return RefreshIndicator(
-          key: widget.controller.requestsRefreshKey,
-          onRefresh: () => widget.controller.getAllRequests(refresh: true).then((value) => setState(() {})),
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
-            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        return SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
+          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+          child: RefreshIndicator(
+            key: widget.controller.requestsRefreshKey,
+            onRefresh: () => widget.controller.getAllRequests(refresh: true).then((value) => setState(() {})),
             child: SeparatedColumn(
               separator: const Divider(color: kTransparent),
               children: List.generate(
@@ -41,7 +41,8 @@ class _RequestsTabState extends State<RequestsTab> {
                 (index) => PostCard(
                   post: (posts.data![index]),
                   orderCallback: () {},
-                  onTap: () async => await Nav.openPage(context: context, page: PostView(post: posts.data![index])),
+                  onTap: () async => Nav.openPage(context: context, page: PostView(post: posts.data![index]))
+                      .then((value) => setState(() {})),
                 ),
               ).toList(),
             ),

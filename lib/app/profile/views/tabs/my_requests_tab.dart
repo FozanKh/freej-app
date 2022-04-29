@@ -27,12 +27,12 @@ class _MyRequestsTabState extends State<MyRequestsTab> {
         } else if (!posts.hasData || (posts.data?.isEmpty ?? true)) {
           return Center(child: FullScreenBanner("no_requests_available".translate));
         }
-        return RefreshIndicator(
-          key: widget.controller.requestsRefreshKey,
-          onRefresh: () => widget.controller.getMyRequests(refresh: true).then((value) => setState(() {})),
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
-            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        return SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
+          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+          child: RefreshIndicator(
+            key: widget.controller.requestsRefreshKey,
+            onRefresh: () => widget.controller.getMyRequests(refresh: true).then((value) => setState(() {})),
             child: SeparatedColumn(
               separator: const Divider(color: kTransparent),
               children: List.generate(

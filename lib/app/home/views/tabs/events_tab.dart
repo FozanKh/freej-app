@@ -27,12 +27,12 @@ class _EventsTabState extends State<EventsTab> {
         } else if (!events.hasData || (events.data?.isEmpty ?? true)) {
           return Center(child: FullScreenBanner("no_events_available".translate));
         }
-        return RefreshIndicator(
-          key: widget.controller.eventsRefreshKey,
-          onRefresh: () => widget.controller.getAllEvents(refresh: true).then((value) => setState(() {})),
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
-            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        return SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
+          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+          child: RefreshIndicator(
+            key: widget.controller.eventsRefreshKey,
+            onRefresh: () => widget.controller.getAllEvents(refresh: true).then((value) => setState(() {})),
             child: SeparatedColumn(
               separator: const Divider(color: kTransparent),
               children: List.generate(

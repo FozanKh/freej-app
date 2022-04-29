@@ -22,9 +22,9 @@ class HomeViewController {
   final BuildContext context;
   late ProgressDialog pr;
   late final TabController tabController;
-  GlobalKey<RefreshIndicatorState> eventsRefreshKey = GlobalKey<RefreshIndicatorState>();
-  GlobalKey<RefreshIndicatorState> offersRefreshKey = GlobalKey<RefreshIndicatorState>();
-  GlobalKey<RefreshIndicatorState> requestsRefreshKey = GlobalKey<RefreshIndicatorState>();
+  late final GlobalKey<RefreshIndicatorState> eventsRefreshKey;
+  late final GlobalKey<RefreshIndicatorState> offersRefreshKey;
+  late final GlobalKey<RefreshIndicatorState> requestsRefreshKey;
 
   HomeViewController(this.context, state) {
     pr = ProgressDialog(context);
@@ -32,7 +32,11 @@ class HomeViewController {
     tabController.addListener(() {
       state.setState(() {});
     });
+    eventsRefreshKey = GlobalKey<RefreshIndicatorState>();
+    offersRefreshKey = GlobalKey<RefreshIndicatorState>();
+    requestsRefreshKey = GlobalKey<RefreshIndicatorState>();
   }
+
   FloatingActionButton get homeFloatingActionButton => FloatingActionButton(
         backgroundColor: [
           kPrimaryColor,
@@ -107,9 +111,9 @@ class HomeViewController {
         return;
       }
       await EventServices.joinEvent(event);
-      eventsRefreshKey.currentState?.show();
-      pr.hide();
-      AlertDialogBox.showAlert(context, message: "event_joined_successfully".translate);
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: "event_joined_successfully".translate);
+      await eventsRefreshKey.currentState?.show();
     } catch (e) {
       pr.hide();
       AlertDialogBox.showAlert(context, message: e.toString().translate);
@@ -124,10 +128,11 @@ class HomeViewController {
         return;
       }
       await EventServices.leaveEvent(event);
-      eventsRefreshKey.currentState?.show();
-      pr.hide();
-      AlertDialogBox.showAlert(context, message: "event_left_successfully".translate);
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: "event_left_successfully".translate);
+      await eventsRefreshKey.currentState?.show();
     } catch (e) {
+      eventsRefreshKey.currentState?.show();
       pr.hide();
       AlertDialogBox.showAlert(context, message: e.toString().translate);
     }
@@ -153,9 +158,11 @@ class HomeViewController {
       await PostServices.createPost(title, description, imagesUrls, type);
 
       if (type == PostType.offer) {
-        offersRefreshKey.currentState?.show();
+        await getAllOffers(refresh: true);
+        await offersRefreshKey.currentState?.show();
       } else {
-        requestsRefreshKey.currentState?.show();
+        await getAllEvents(refresh: true);
+        await requestsRefreshKey.currentState?.show();
       }
 
       await pr.hide();
@@ -172,7 +179,7 @@ class HomeViewController {
     pr.show();
     try {
       await EventServices.createEvent(name, type, description, date);
-      eventsRefreshKey.currentState?.show();
+      await eventsRefreshKey.currentState?.show();
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: "event_created_successfully".translate);
       return true;
@@ -195,7 +202,7 @@ class HomeViewController {
       if (id == null) return false;
       await pr.hide();
       await EventServices.editEvent(id, name, type, description, date);
-      eventsRefreshKey.currentState?.show();
+      await eventsRefreshKey.currentState?.show();
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: "event_created_successfully".translate);
       return true;

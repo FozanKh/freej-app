@@ -29,7 +29,7 @@ class _EventsTabState extends State<EventsTab> {
         }
         return RefreshIndicator(
           key: widget.controller.eventsRefreshKey,
-          onRefresh: () => widget.controller.getAllEvents(refresh: true).then((value) => setState(() {})),
+          onRefresh: () async => widget.controller.getAllEvents(refresh: true).then((value) => setState(() {})),
           child: SizedBox.expand(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),

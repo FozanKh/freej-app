@@ -30,7 +30,7 @@ class _RequestsTabState extends State<RequestsTab> {
         }
         return RefreshIndicator(
           key: widget.controller.requestsRefreshKey,
-          onRefresh: () => widget.controller.getAllRequests(refresh: true).then((value) => setState(() {})),
+          onRefresh: () async => widget.controller.getAllRequests(refresh: true).then((value) => setState(() {})),
           child: SizedBox.expand(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),

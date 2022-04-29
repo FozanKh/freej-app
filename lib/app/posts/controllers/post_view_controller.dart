@@ -55,6 +55,7 @@ class PostViewController {
           : await PostRepository.instance.getRequests(refresh: true);
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: "application_done_successfully".translate);
+      Nav.popPage(context);
     } catch (e) {
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: e.toString());

@@ -40,7 +40,7 @@ class _OffersTabState extends State<OffersTab> {
         }
         return RefreshIndicator(
           key: widget.controller.offersRefreshKey,
-          onRefresh: () => widget.controller.getAllOffers(refresh: true).then((value) => setState(() {})),
+          onRefresh: () async => widget.controller.getAllOffers(refresh: true).then((value) => setState(() {})),
           child: SizedBox.expand(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),

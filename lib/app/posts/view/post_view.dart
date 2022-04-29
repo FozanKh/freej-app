@@ -102,17 +102,18 @@ class _PostViewState extends State<PostView> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text('reviews'.translate, style: TextStyles.h1),
-                              Bounce(
-                                onTap: controller.startAddingReview,
-                                child: Text(
-                                  "add_review".translate,
-                                  style: TextStyles.callOutFocus.copyWith(
-                                    decoration: TextDecoration.underline,
-                                    color: kFontsColor,
-                                    fontSize: 14,
+                              if (widget.post.applicationStatus == PostApplicationStatus.completed)
+                                Bounce(
+                                  onTap: controller.startAddingReview,
+                                  child: Text(
+                                    "add_review".translate,
+                                    style: TextStyles.callOutFocus.copyWith(
+                                      decoration: TextDecoration.underline,
+                                      color: kFontsColor,
+                                      fontSize: 14,
+                                    ),
                                   ),
                                 ),
-                              )
                             ],
                           ),
                           const Divider(thickness: 2),
@@ -137,6 +138,18 @@ class _PostViewState extends State<PostView> {
                           )
                         ],
                       )
+                    else if (widget.post.applicationStatus == PostApplicationStatus.completed)
+                      Bounce(
+                        onTap: controller.startAddingReview,
+                        child: Text(
+                          "add_review".translate,
+                          style: TextStyles.callOutFocus.copyWith(
+                            decoration: TextDecoration.underline,
+                            color: kFontsColor,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ),

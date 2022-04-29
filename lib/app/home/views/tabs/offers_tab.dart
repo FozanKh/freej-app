@@ -51,7 +51,8 @@ class _OffersTabState extends State<OffersTab> {
                   posts.data!.length,
                   (index) => PostCard(
                     post: posts.data![index],
-                    orderCallback: () {},
+                    orderCallback: () async => Nav.openPage(context: context, page: PostView(post: posts.data![index]))
+                        .then((value) => setState(() {})),
                     onTap: () async => Nav.openPage(context: context, page: PostView(post: posts.data![index]))
                         .then((value) => setState(() {})),
                   ),

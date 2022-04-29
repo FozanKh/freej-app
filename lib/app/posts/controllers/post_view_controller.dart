@@ -146,4 +146,24 @@ class PostViewController {
       return false;
     }
   }
+
+  Future<void> switchPostActivation() async {
+    try {
+      await pr.show();
+      await PostServices.deactivatePost(post, !post.isActive);
+      post.type == PostType.offer
+          ? await PostRepository.instance.getOffers(refresh: true)
+          : await PostRepository.instance.getRequests(refresh: true);
+      await pr.hide();
+      if (post.isActive) {
+        await AlertDialogBox.showAlert(context, message: "deactivation_done_successfully".translate);
+      } else {
+        await AlertDialogBox.showAlert(context, message: "activation_done_successfully".translate);
+      }
+      Nav.popPage(context, args: true);
+    } catch (e) {
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: e.toString());
+    }
+  }
 }

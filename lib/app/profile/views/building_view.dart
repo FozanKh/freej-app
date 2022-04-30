@@ -117,26 +117,27 @@ class _BuildingViewState extends State<BuildingView> {
                 child: RefreshIndicator(
                   key: controller.maintenanceIssuesRefreshKey,
                   onRefresh: () => controller.getAllMaintenanceIssues(refresh: true).then((value) => setState(() {})),
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
-                    physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                    child: Column(
-                      children: List.generate(
-                        controller.maintenanceIssues.length,
-                        (index) => MaintenanceIssueCard(
-                          maintenanceIssue: controller.maintenanceIssues[index],
-                          onTap: () => controller
-                              .fixMaintenanceIssue(controller.maintenanceIssues[index])
-                              .then((value) => controller.maintenanceIssuesRefreshKey.currentState?.show()),
-                        ),
-                      ).toList(),
+                  child: SizedBox.expand(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
+                      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                      child: Column(
+                        children: List.generate(
+                          controller.maintenanceIssues.length,
+                          (index) => MaintenanceIssueCard(
+                            maintenanceIssue: controller.maintenanceIssues[index],
+                            onTap: () => controller
+                                .fixMaintenanceIssue(controller.maintenanceIssues[index])
+                                .then((value) => controller.maintenanceIssuesRefreshKey.currentState?.show()),
+                          ),
+                        ).toList(),
+                      ),
                     ),
                   ),
                 ),
               );
             },
           ),
-          const SizedBox(height: 20),
         ],
       ),
     );

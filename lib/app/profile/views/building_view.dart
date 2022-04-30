@@ -39,9 +39,11 @@ class _BuildingViewState extends State<BuildingView> {
       appBar: AppBar(),
       floatingActionButton: FloatingActionButton(
         child: const Icon(PhosphorIcons.wrench),
-        onPressed: () => showCustomBottomSheet(context,
-            child: CreateMaintenanceIssueView(callback: controller.createMaintenanceIssue),
-            title: 'create_issue'.translate),
+        onPressed: () => showCustomBottomSheet(
+          context,
+          child: CreateMaintenanceIssueView(callback: controller.createMaintenanceIssue),
+          title: 'create_issue'.translate,
+        ),
       ),
       body: Column(
         children: [
@@ -80,7 +82,8 @@ class _BuildingViewState extends State<BuildingView> {
                 const SizedBox(height: 5),
                 const Spacer(),
                 Bounce(
-                  onTap: () => controller.openWhatsappGroup(),
+                  onTap: () =>
+                      (user.isSupervisor ?? false) ? controller.editWhatsappGroup() : controller.openWhatsappGroup(),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -89,7 +92,16 @@ class _BuildingViewState extends State<BuildingView> {
                         color: kPrimaryColor,
                       ),
                       const Text(" - ", style: TextStyle(color: kPrimaryColor)),
-                      Text("join_building_whatsapp_group".translate, style: const TextStyle(color: kPrimaryColor)),
+                      if (user.isSupervisor ?? false)
+                        Text(
+                          "manage_building_whatsapp_group".translate,
+                          style: const TextStyle(color: kPrimaryColor),
+                        )
+                      else
+                        Text(
+                          "join_building_whatsapp_group".translate,
+                          style: const TextStyle(color: kPrimaryColor),
+                        ),
                     ],
                   ),
                 ),

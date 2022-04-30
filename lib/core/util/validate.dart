@@ -19,6 +19,12 @@ bool validateMobile(String value) {
   return regExp.hasMatch(value);
 }
 
+bool validateWhatsappGroupLink(String value) {
+  String pattern = r'^(https?:\/\/)?chat\.whatsapp\.com\/(?:invite\/)?([a-zA-Z0-9_-]{22})$';
+  RegExp regExp = RegExp(pattern);
+  return regExp.hasMatch(value);
+}
+
 bool validateName(String value) {
   if (value.isEmpty || value.length < 2 || value.length > 50) {
     return false;

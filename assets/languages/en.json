@@ -190,6 +190,7 @@
   "join_event_assertion": "Are you sure you want to join this event?",
   "edit_your_profile": "Edit your profile",
   "join_building_whatsapp_group": "Join building Whatsapp group",
+  "manage_building_whatsapp_group": "Manage building Whatsapp group",
 
   "is_the_problem_solved": "Is the problem solved?",
 
@@ -313,5 +314,8 @@
   "application_accepted_successfully": "Application accepted successfully",
   "application_rejected_successfully": "Application rejected successfully",
   "application_completed_successfully": "Application completed successfully",
-  "application_canceled_successfully": "Application canceled successfully"
+  "application_canceled_successfully": "Application canceled successfully",
+
+  "could_not_update_whatsapp_link": "Sorry, could not update WhatsApp group Link",
+  "whatsapp_group_url": "WhatsApp Group URL"
 }

@@ -4,7 +4,7 @@ import 'package:freej/core/components/bottom_sheet.dart';
 import '../exports/core.dart';
 
 class CustomInput {
-  static Future<String> showCustomInputSheet(context,
+  static Future<String?> showCustomInputSheet(context,
       {required String title, String? initialValue, String? hint}) async {
     return await showCustomBottomSheet(context,
         child: _CustomInputSheet(title: title, initialValue: initialValue, hint: hint), title: title);

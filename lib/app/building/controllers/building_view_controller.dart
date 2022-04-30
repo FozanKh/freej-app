@@ -72,4 +72,25 @@ class BuildingViewController {
       await AlertDialogBox.showAlert(context, message: e.toString());
     }
   }
+
+  Future<void> editWhatsappGroup() async {
+    try {
+      String? newUrl = await CustomInput.showCustomInputSheet(
+        context,
+        title: 'whatsapp_group_url'.translate,
+        hint: 'https://chat.whatsapp.com/xxx-xxx-xxx-xxx',
+        initialValue: context.read<User>().building.whatsAppLink,
+      );
+      if (newUrl == null) return;
+      if (validateWhatsappGroupLink(newUrl)) await pr.show();
+      await Nav.openUrl(context, url: context.read<User>().building.whatsAppLink!);
+      await pr.hide();
+    } on String catch (e) {
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: e.toString());
+    } catch (e) {
+      await pr.hide();
+      await AlertDialogBox.showAlert(context, message: 'could_not_update_whatsapp_link');
+    }
+  }
 }

@@ -190,6 +190,7 @@
   "join_event_assertion": "هل أنت متأكد أنك تريد الانضمام إلى هذه الفعالية؟",
   "edit_your_profile": "عدل معلوماتك",
   "join_building_whatsapp_group": "لمبناك انضم إلى مجموعة الـ Whatsapp",
+  "manage_building_whatsapp_group": "لمبناك تعديل إلى مجموعة الـ Whatsapp",
 
   "is_the_problem_solved": "هل تم حل المشكلة؟",
 
@@ -314,5 +315,8 @@
   "application_accepted_successfully": "تم قبول التطبيق بنجاح",
   "application_rejected_successfully": "تم رفض التطبيق بنجاح",
   "application_completed_successfully": "اكتمل التطبيق بنجاح",
-  "application_canceled_successfully": "تم إلغاء التطبيق بنجاح"
+  "application_canceled_successfully": "تم إلغاء التطبيق بنجاح",
+
+  "could_not_update_whatsapp_link": "عذرًا ، تعذر تحديث رابط مجموعة WhatsApp",
+  "whatsapp_group_url": "رابط مجموعة WhatsApp"
 }

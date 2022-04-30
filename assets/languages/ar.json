@@ -50,6 +50,9 @@
   "please_approve_camera_permission": "يرجى الموافقة على إذن الكاميرا ، للمتابعة إلى صفحة التسجيل",
   "registration_done_successfully": "تم التسجيل بنجاح",
   "incorrect_username_or_password": "اسم المستخدم أو كلمة المرور غير صحيحة",
+  "your_name": "اسمك",
+  "building_number": "رقم المبنى",
+  "room_number": "رقم الغرفة",
 
   "fix_errors_try_again": "أصلح الأخطاء وحاول مرة أخرى",
 

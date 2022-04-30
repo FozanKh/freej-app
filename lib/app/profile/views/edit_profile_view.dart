@@ -21,8 +21,8 @@ class _EditProfileViewState extends State<EditProfileView> {
     user = context.read<User>();
     controller = EditProfileController(
       context,
-      firstName: user.account?.firstName ?? '',
-      lastName: user.account?.lastName ?? '',
+      name: user.account?.name ?? '',
+      // lastName: user.account?.lastName ?? '',
       mobile: user.account?.mobileNumber ?? '',
     );
     super.initState();
@@ -91,19 +91,19 @@ class _EditProfileViewState extends State<EditProfileView> {
                 ),
               ),
               RoundedTextFormField(
-                title: 'first_name'.translate,
+                title: 'name'.translate,
                 borderColor: kPrimaryColor,
-                validator: controller.firstNameValidator,
-                hint: user.account?.firstName ?? 'first_name'.translate,
+                validator: controller.nameValidator,
+                hint: user.account?.name ?? 'first_name'.translate,
               ),
               const SizedBox(height: 20),
-              RoundedTextFormField(
-                title: 'last_name'.translate,
-                borderColor: kPrimaryColor,
-                validator: controller.lastNameValidator,
-                hint: user.account?.lastName ?? 'last_name'.translate,
-              ),
-              const SizedBox(height: 20),
+              // RoundedTextFormField(
+              //   title: 'last_name'.translate,
+              //   borderColor: kPrimaryColor,
+              //   validator: controller.lastNameValidator,
+              //   hint: user.account?.lastName ?? 'last_name'.translate,
+              // ),
+              // const SizedBox(height: 20),
               RoundedTextFormField(
                 title: 'phone_number'.translate,
                 borderColor: kPrimaryColor,

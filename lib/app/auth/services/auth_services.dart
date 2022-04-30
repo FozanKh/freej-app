@@ -1,13 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:freej/app/auth/services/samples.dart';
-import 'package:freej/app/campus/services/samples.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/services/api/request_manager.dart';
 import '../../../core/services/local/shared_pref.dart';
-import '../../campus/models/building.dart';
 import '../models/auth_token.dart';
 import '../models/user.dart';
 import 'package:http/http.dart' as http;
@@ -30,12 +27,16 @@ class AuthServices {
   }
 
   static Future<void> getOtp({
+    required String name,
     required String email,
     required String password,
+    required String mobile,
     required int room,
   }) async {
     Map<String, dynamic> body = {
+      "name": name,
       "email": email,
+      "mobile_number": mobile,
       "password": password,
       "room_id": room,
     };
@@ -44,14 +45,18 @@ class AuthServices {
   }
 
   static Future<void> conformRegistration({
+    required String name,
     required String email,
+    required String mobile,
     required String password,
     required int room,
     required String otp,
   }) async {
     Map<String, dynamic> body = {
+      "name": name,
       "email": email,
       "password": password,
+      "mobile_number": mobile,
       "room_id": room,
       "otp": otp,
     };

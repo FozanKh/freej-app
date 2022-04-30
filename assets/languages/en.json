@@ -50,6 +50,9 @@
   "please_approve_camera_permission": "Please approve camera permission, in order to proceed to registrations page",
   "registration_done_successfully": "Registration done successfully",
   "incorrect_username_or_password": "Incorrect username or password",
+  "your_name": "Your name",
+  "building_number": "Building Number",
+  "room_number": "Room Number",
 
   "fix_errors_try_again": "Fix the errors and try again",
 

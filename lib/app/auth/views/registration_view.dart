@@ -42,7 +42,18 @@ class _RegistrationViewState extends State<RegistrationView> {
                 initialValue: controller.email,
                 enabled: false,
                 clearButton: false,
-                // validator: controller.emailValidator,
+              ),
+              const SizedBox(height: 20),
+              RoundedTextFormField(
+                title: 'name'.translate,
+                hint: 'your_name'.translate,
+                validator: controller.nameValidator,
+              ),
+              const SizedBox(height: 20),
+              RoundedTextFormField(
+                title: 'phone_number'.translate,
+                hint: '05XXXXXXXX'.translate,
+                validator: controller.mobileValidator,
               ),
               const SizedBox(height: 20),
               RoundedTextFormField(

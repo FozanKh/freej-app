@@ -28,8 +28,7 @@ class User extends ChangeNotifier {
   String? photo;
 
   String get name {
-    String name = account?.firstName ?? '';
-    name += (account?.lastName?.isNotEmpty ?? false) ? ' ${account?.lastName}' : '';
+    String name = account?.name ?? '';
     return name.trim().isEmpty ? 'Guest' : name;
   }
 
@@ -38,7 +37,7 @@ class User extends ChangeNotifier {
 
   UserBuilding get building => campusDetails!.building;
 
-  bool get completedProfile => account?.mobileNumber != null && account?.firstName != null;
+  bool get completedProfile => account?.mobileNumber != null && account?.name != null;
 
   User copyWith({
     int? id,

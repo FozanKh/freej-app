@@ -14,7 +14,7 @@ import '../../campus/models/building.dart';
 class EditProfileController {
   final BuildContext context;
   late ProgressDialog pr;
-  String firstName = '';
+  String name = '';
   String lastName = '';
   String mobile = '';
   Room? selectedRoom;
@@ -22,20 +22,20 @@ class EditProfileController {
   String? photoUrl;
   Future<List<Building>>? availableBuildings = BuildingRepository.instance.getAllBuildings();
 
-  EditProfileController(this.context, {this.firstName = '', this.lastName = '', this.mobile = ''}) {
+  EditProfileController(this.context, {this.name = '', this.lastName = '', this.mobile = ''}) {
     pr = ProgressDialog(context);
   }
   late final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  String? firstNameValidator(String value) {
-    if (value.isNotEmpty) firstName = value;
-    return !validateName(firstName) ? translateText('invalid_error', arguments: ['first_name']) : null;
+  String? nameValidator(String value) {
+    if (value.isNotEmpty) name = value;
+    return !validateName(name) ? translateText('invalid_error', arguments: ['name']) : null;
   }
 
-  String? lastNameValidator(String value) {
-    if (value.isNotEmpty) lastName = value;
-    return !validateName(lastName) ? translateText('invalid_error', arguments: ['last_name']) : null;
-  }
+  // String? lastNameValidator(String value) {
+  //   if (value.isNotEmpty) lastName = value;
+  //   return !validateName(lastName) ? translateText('invalid_error', arguments: ['last_name']) : null;
+  // }
 
   String? mobileValidator(String value) {
     if (value.isNotEmpty) mobile = value;
@@ -62,7 +62,7 @@ class EditProfileController {
     }
     pr.show();
     try {
-      User newUser = await ProfileServices.updateProfile(firstName, lastName, mobile, photoUrl);
+      User newUser = await ProfileServices.updateProfile(name, lastName, mobile, photoUrl);
       context.read<User>().updateFromUser(newUser);
       pr.hide();
       Nav.popPage(context);

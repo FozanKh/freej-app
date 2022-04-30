@@ -7,7 +7,7 @@ class ProfileServices {
   static Future<User> updateProfile(String firstName, String lastName, String mobile, String? photo) async {
     Map<String, dynamic> body = {
       "first_name": firstName,
-      "last_name": lastName,
+      "last_name": "-",
       "mobile_number": mobile,
     };
     if (photo != null) {

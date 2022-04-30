@@ -18,13 +18,27 @@ class RegistrationController {
   final String email;
   String password = '';
   String name = '';
+  String mobile = '';
+  late ProgressDialog pr;
   late final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  RegistrationController(this.context, this.email);
+  RegistrationController(this.context, this.email) {
+    pr = ProgressDialog(context);
+  }
+
+  String? nameValidator(String value) {
+    name = value;
+    return !validateName(name) ? translateText('invalid_error', arguments: ['name']) : null;
+  }
 
   String? passwordValidator(String value) {
     password = value;
     return !validatePassword(password) ? translateText('invalid_error', arguments: ['password']) : null;
+  }
+
+  String? mobileValidator(String value) {
+    if (value.isNotEmpty) mobile = value;
+    return !validateMobile(mobile) ? translateText('invalid_error', arguments: ['phone_number']) : null;
   }
 
   Future<void> getOtp() async {
@@ -37,15 +51,20 @@ class RegistrationController {
     }
 
     try {
+      await pr.show();
       await AuthServices.getOtp(
+        name: name,
         email: email,
         password: password,
+        mobile: mobile,
         room: selectedRoom!.id,
       );
+      await pr.hide();
       if (await Nav.openPage(context: context, page: OtpSubmissionView(controller: this)) ?? false) {
         Nav.popPage(context, args: true);
       }
     } catch (e) {
+      await pr.hide();
       AlertDialogBox.showAlert(context, message: e.toString());
       log(e.toString());
     }
@@ -53,16 +72,21 @@ class RegistrationController {
 
   Future<void> conformRegistration(String otp) async {
     try {
+      await pr.show();
       await AuthServices.conformRegistration(
+        name: name,
         otp: otp,
         email: email,
+        mobile: mobile,
         password: password,
         room: selectedRoom!.id,
       );
+      await pr.hide();
       await signIn();
       log('Registration done successfully', name: "conformRegistration/RegistrationController");
       Nav.popPage(context, args: true);
     } catch (e) {
+      await pr.hide();
       AlertDialogBox.showAlert(context, message: e.toString());
       log(e.toString());
     }

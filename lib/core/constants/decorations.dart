@@ -122,6 +122,13 @@ class TextStyles {
 
   /// letterSpacing: 0.3
   static TextStyle get caption => footnote.copyWith(letterSpacing: 0.3);
+
+  /// fontSize: 14
+  static TextStyle get clickable => varelaRound.copyWith(
+        fontSize: 12,
+        decoration: TextDecoration.underline,
+        color: kBlue,
+      );
 }
 
 class Borders {

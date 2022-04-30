@@ -46,7 +46,7 @@
   "create_new_account": "إنشاء حساب جديد",
   "mobile": "الجوال",
   "reset_password": "أعد تعيين كلمة المرور",
-  "reset_password_sent": "في حالة وجود حساب freej، فسنرسل بريدًا إلكترونيًا به رابط لإعادة تعيين كلمة مرورك.",
+  "reset_password_sent": "في حالة وجود حساب فريج فسنرسل بريدًا إلكترونيًا به رابط لإعادة تعيين كلمة مرورك.",
   "please_approve_camera_permission": "يرجى الموافقة على إذن الكاميرا ، للمتابعة إلى صفحة التسجيل",
   "registration_done_successfully": "تم التسجيل بنجاح",
   "incorrect_username_or_password": "اسم المستخدم أو كلمة المرور غير صحيحة",
@@ -318,5 +318,7 @@
   "application_canceled_successfully": "تم إلغاء التطبيق بنجاح",
 
   "could_not_update_whatsapp_link": "عذرًا ، تعذر تحديث رابط مجموعة WhatsApp",
-  "whatsapp_group_url": "رابط مجموعة WhatsApp"
+  "whatsapp_group_url": "رابط مجموعة WhatsApp",
+  "share_freej": "مشاركة فريج",
+  "share_freej_message": "لا تفوت فرصة زيارة فريج!"
 }

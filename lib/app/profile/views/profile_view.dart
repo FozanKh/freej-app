@@ -2,6 +2,7 @@ import 'package:freej/app/profile/views/building_view.dart';
 import 'package:freej/core/constants/phosphor_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../core/exports/core.dart';
 import '../../../core/services/local/shared_pref.dart';
@@ -97,7 +98,11 @@ class _ProfileViewState extends State<ProfileView> {
                 ProfileOptionCard(icon: PhosphorIcons.bell_fill, onTap: () {}, title: 'notifications'.translate),
                 ProfileOptionCard(icon: PhosphorIcons.moon_fill, onTap: () {}, title: 'display_mode'.translate),
                 const Divider(),
-                ProfileOptionCard(icon: PhosphorIcons.share_network_fill, onTap: () {}, title: 'share'.translate),
+                ProfileOptionCard(
+                  icon: PhosphorIcons.share_network_fill,
+                  onTap: () => Share.share("share_freej_message".translate),
+                  title: 'share_freej'.translate,
+                ),
                 ProfileOptionCard(icon: PhosphorIcons.info_fill, onTap: () {}, title: 'contact_us'.translate),
                 ProfileOptionCard(
                   icon: PhosphorIcons.translate,

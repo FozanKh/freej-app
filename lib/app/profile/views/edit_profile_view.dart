@@ -3,8 +3,10 @@ import 'package:freej/app/profile/controllers/edit_profile_controller.dart';
 import 'package:freej/core/constants/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/components/expandable_picker.dart';
 import '../../../core/exports/core.dart';
 import '../../auth/models/user.dart';
+import '../../campus/models/building.dart';
 
 class EditProfileView extends StatefulWidget {
   const EditProfileView({Key? key}) : super(key: key);
@@ -22,7 +24,6 @@ class _EditProfileViewState extends State<EditProfileView> {
     controller = EditProfileController(
       context,
       name: user.account?.name ?? '',
-      // lastName: user.account?.lastName ?? '',
       mobile: user.account?.mobileNumber ?? '',
     );
     super.initState();
@@ -110,7 +111,50 @@ class _EditProfileViewState extends State<EditProfileView> {
                 validator: controller.mobileValidator,
                 hint: user.account?.mobileNumber ?? '05XXXXXXXX',
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
+              FutureBuilder<List<Building>>(
+                future: controller.availableBuildings,
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) return const CircularProgressIndicator();
+                  controller.selectedBuilding ??= snapshot.data!.firstWhere((e) => e.id == user.building.id);
+                  controller.selectedRoom ??=
+                      controller.selectedBuilding!.rooms.firstWhere((e) => e.id == user.building.room.id);
+                  return Column(
+                    children: [
+                      Titled(
+                        title: 'building'.translate,
+                        child: ExpandablePicker(
+                          title: "building_number".translate,
+                          options: snapshot.data!.map((e) => e.name).toList(),
+                          value: controller.selectedBuilding?.name,
+                          callback: (index) => setState(
+                            () {
+                              controller.selectedBuilding = snapshot.data![index];
+                              controller.selectedRoom = snapshot.data![index].rooms.first;
+                            },
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      if (controller.selectedBuilding != null)
+                        Titled(
+                          title: 'room'.translate,
+                          child: ShowUp(
+                            child: ExpandablePicker(
+                              title: "room_number".translate,
+                              options: controller.selectedBuilding!.rooms.map((e) => e.name).toList(),
+                              value: controller.selectedRoom?.name,
+                              callback: (index) => setState(
+                                () => controller.selectedRoom = controller.selectedBuilding!.rooms[index],
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  );
+                },
+              ),
+              const SizedBox(height: 20),
               RoundedButton(
                 title: 'save'.translate,
                 onTap: controller.saveChanges,

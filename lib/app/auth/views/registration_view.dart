@@ -72,7 +72,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                       Titled(
                         title: 'building'.translate,
                         child: ExpandablePicker(
-                          title: "building_number",
+                          title: "building_number".translate,
                           options: snapshot.data!.map((e) => e.name).toList(),
                           value: controller.selectedBuilding?.name,
                           callback: (index) => setState(() => controller.selectedBuilding = snapshot.data![index]),
@@ -84,7 +84,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                           title: 'room'.translate,
                           child: ShowUp(
                             child: ExpandablePicker(
-                              title: "room_number",
+                              title: "room_number".translate,
                               options: controller.selectedBuilding!.rooms.map((e) => e.name).toList(),
                               value: controller.selectedRoom?.name,
                               callback: (index) =>

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:freej/app/auth/services/auth_services.dart';
 import 'package:freej/app/auth/views/login_view.dart';
 import 'package:provider/provider.dart';
 import 'package:freej/app/scaffold/views/main_scaffold.dart';
 
 import '../../app/auth/models/auth_token.dart';
+import '../services/firebase/fcm_services.dart';
 import '../services/local/shared_pref.dart';
-import '../services/package/package_services.dart';
 
 class Wrapper extends StatefulWidget {
   const Wrapper({Key? key}) : super(key: key);
@@ -22,6 +21,7 @@ class _WrapperState extends State<Wrapper> {
   void initState() {
     // PackageService.checkUpdates(context);
     SharedPreference.instance.init(context);
+    if (context.read<AuthToken>().access?.isActive ?? false) FCM.init();
     super.initState();
   }
 

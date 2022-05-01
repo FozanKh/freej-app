@@ -38,6 +38,7 @@ dependencies:
   image_picker: ^0.8.5
   share_plus: ^4.0.4
   timeago: ^3.2.2
+  firebase_messaging: ^11.2.15
 
 dev_dependencies:
   flutter_test:

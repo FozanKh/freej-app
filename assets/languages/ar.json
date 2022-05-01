@@ -320,5 +320,9 @@
   "could_not_update_whatsapp_link": "عذرًا ، تعذر تحديث رابط مجموعة WhatsApp",
   "whatsapp_group_url": "رابط مجموعة WhatsApp",
   "share_freej": "مشاركة فريج",
-  "share_freej_message": "لا تفوت فرصة زيارة فريج!"
+  "share_freej_message": "لا تفوت فرصة زيارة فريج!",
+
+  "no_notifications_yet_alert": "ليس لديك أي إشعارات حتى الآن",
+
+  "my_applications": "طلباتي"
 }

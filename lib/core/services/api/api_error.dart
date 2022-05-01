@@ -9,7 +9,7 @@ class ApiError {
 
   factory ApiError.fromMap(Map<String, dynamic> json) => ApiError(
         code: json["code"],
-        messages: List<String>.from(json["messages"].map((x) => x)),
+        messages: List<String>.from(json["messages"].map((x) => x.toString())),
       );
 
   @override

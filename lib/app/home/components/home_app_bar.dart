@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:freej/app/notification/models/notifications.dart';
+import 'package:freej/app/notification/views/notifications_view.dart';
 
 import '../../../core/constants/phosphor_icons.dart';
 import '../../../core/exports/core.dart';
@@ -29,22 +31,25 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
               // Add user.building.number
               Text(
-                '${'your_are_in_building'.translate} 822',
+                '${'your_are_in_building'.translate} ${user.building.name}',
                 style: TextStyles.caption.copyWith(color: Colors.grey),
               ),
             ],
           ),
           const Spacer(),
-          Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.all(Insets.m),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: kPrimaryColorLight,
-            ),
-            child: const Icon(
-              PhosphorIcons.bell_fill,
-              color: kPrimaryColor,
+          GestureDetector(
+            onTap: () => Nav.openPage(context: context, page: const NotificationsView()),
+            child: Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.all(Insets.m),
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: kPrimaryColorLight,
+              ),
+              child: const Icon(
+                PhosphorIcons.bell_fill,
+                color: kPrimaryColor,
+              ),
             ),
           )
         ],

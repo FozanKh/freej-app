@@ -37,6 +37,7 @@ dependencies:
   url_launcher: ^6.0.20
   image_picker: ^0.8.5
   share_plus: ^4.0.4
+  timeago: ^3.2.2
 
 dev_dependencies:
   flutter_test:

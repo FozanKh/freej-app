@@ -8,6 +8,7 @@ import '../../../core/exports/core.dart';
 import '../../../core/services/local/shared_pref.dart';
 import '../../auth/models/user.dart';
 import '../../auth/services/auth_services.dart';
+import '../../notification/views/notifications_view.dart';
 import 'edit_profile_view.dart';
 import 'my_posts_view.dart';
 
@@ -90,13 +91,22 @@ class _ProfileViewState extends State<ProfileView> {
                   onTap: () => Nav.openPage(context: context, page: const MyPostsView()),
                   title: translateText('my_posts', context: context),
                 ),
+                // ProfileOptionCard(
+                //   icon: PhosphorIcons.nut_fill,
+                //   onTap: () => Nav.openPage(context: context, page: const MyPostsView()),
+                //   title: translateText('my_applications', context: context),
+                // ),
                 ProfileOptionCard(
                   icon: PhosphorIcons.buildings_fill,
                   onTap: () => Nav.openPage(context: context, page: const BuildingView()),
                   title: 'building_information'.translate,
                 ),
-                ProfileOptionCard(icon: PhosphorIcons.bell_fill, onTap: () {}, title: 'notifications'.translate),
-                ProfileOptionCard(icon: PhosphorIcons.moon_fill, onTap: () {}, title: 'display_mode'.translate),
+                ProfileOptionCard(
+                  icon: PhosphorIcons.bell_fill,
+                  onTap: () => Nav.openPage(context: context, page: const NotificationsView()),
+                  title: 'notifications'.translate,
+                ),
+                // ProfileOptionCard(icon: PhosphorIcons.moon_fill, onTap: () {}, title: 'display_mode'.translate),
                 const Divider(),
                 ProfileOptionCard(
                   icon: PhosphorIcons.share_network_fill,

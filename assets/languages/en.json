@@ -319,5 +319,9 @@
   "could_not_update_whatsapp_link": "Sorry, could not update WhatsApp group Link",
   "whatsapp_group_url": "WhatsApp Group URL",
   "share_freej": "Share Freej",
-  "share_freej_message": "Don't miss out on Freej!"
+  "share_freej_message": "Don't miss out on Freej!",
+
+  "no_notifications_yet_alert": "You don't have any notifications yet",
+
+  "my_applications": "My Applications"
 }

@@ -12,7 +12,8 @@ class ReportServices {
       ProgressDialog pr = ProgressDialog(context);
       await pr.show();
       String? comment;
-      if (await AlertDialogBox.showAssertionDialog(context, message: "add_comment_alert", cancelButton: "no") ??
+      if (await AlertDialogBox.showAssertionDialog(context,
+              message: "add_comment_alert".translate, cancelButton: "no".translate) ??
           false) {
         comment = await CustomInput.showCustomInputSheet(context, title: "report");
       }

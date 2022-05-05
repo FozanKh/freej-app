@@ -51,8 +51,9 @@ class _MyAppliedOffersTabState extends State<MyAppliedOffersTab> {
                   posts.data!.length,
                   (index) => PostCard(
                     post: posts.data![index],
-                    onTap: () async => Nav.openPage(context: context, page: MyPostView(post: posts.data![index]))
-                        .then((value) => setState(() {})),
+                    onTap: () {},
+                    // onTap: () async => Nav.openPage(context: context, page: MyPostView(post: posts.data![index]))
+                    //     .then((value) => setState(() {})),
                     editCallback: widget.controller.startEditingPost,
                   ),
                 ).toList(),

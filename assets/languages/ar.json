@@ -309,8 +309,8 @@
   "report_created_successfully": "تم إنشاء التقرير بنجاح",
   "add_report_comment_alert": "هل تريد إضافة تعليق على هذا البلاغ",
 
-  "application": "التطبيق",
-  "applications": "التطبيقات",
+  "application": "طلب",
+  "applications": "الطلبات",
   "accept": "قبول",
   "reject": "رفض",
   "complete": "مكتمل",
@@ -334,5 +334,10 @@
   "choose_your_campus": "اختر جامعتك",
   "university_email": "ايميلك الجامعي",
   "registration": "تسجيل",
-  "notification": "تنبيه"
+  "notification": "تنبيه",
+  "active": "فعال",
+  "add_comment_alert": "هل ترغب في إضافة تعليق على هذا البلاغ",
+  "add_image": "أضف صورة",
+  "image": "صورة",
+  "images": "الصور"
 }

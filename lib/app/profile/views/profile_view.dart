@@ -1,4 +1,6 @@
 import 'package:freej/app/profile/views/building_view.dart';
+import 'package:freej/app/profile/views/contact_us_sheet.dart';
+import 'package:freej/core/components/bottom_sheet.dart';
 import 'package:freej/core/constants/phosphor_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -114,7 +116,15 @@ class _ProfileViewState extends State<ProfileView> {
                   onTap: () => Share.share("share_freej_message".translate),
                   title: 'share_freej'.translate,
                 ),
-                ProfileOptionCard(icon: PhosphorIcons.info_fill, onTap: () {}, title: 'contact_us'.translate),
+                ProfileOptionCard(
+                  icon: PhosphorIcons.info_fill,
+                  onTap: () async => showCustomBottomSheet(
+                    context,
+                    child: const ContactUsSheet(),
+                    title: 'contact_us'.translate,
+                  ),
+                  title: 'contact_us'.translate,
+                ),
                 ProfileOptionCard(
                   icon: PhosphorIcons.translate,
                   title: isArabic() ? 'إنجليزي - English' : 'Arabic - عربي',

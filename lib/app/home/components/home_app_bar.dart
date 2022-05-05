@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:freej/app/notification/models/notifications.dart';
 import 'package:freej/app/notification/views/notifications_view.dart';
 
 import '../../../core/constants/phosphor_icons.dart';

@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
-      controller.preLunchActivities(context);
+      await controller.preLunchActivities(context);
       controller.lunch(context);
     });
     super.initState();

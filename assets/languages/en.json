@@ -333,5 +333,10 @@
   "choose_your_campus": "Choose your campus",
   "university_email": "Your University Email",
   "registration": "Registration",
-  "notification": "Notification"
+  "notification": "Notification",
+  "active": "Active",
+  "add_comment_alert": "Would you like to add a comment to this report",
+  "add_image": "Add an Image",
+  "image": "Image",
+  "images": "Images"
 }

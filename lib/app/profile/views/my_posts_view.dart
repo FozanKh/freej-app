@@ -46,9 +46,9 @@ class _MyPostsViewState extends State<MyPostsView> with SingleTickerProviderStat
               unselectedLabelColor: kDark3,
               indicatorColor: kPrimaryColor,
               tabs: [
-                Tab(child: Text('requests'.translate, textAlign: TextAlign.center)),
-                Tab(child: Text('offers'.translate, textAlign: TextAlign.center)),
-                Tab(child: Text('events'.translate, textAlign: TextAlign.center)),
+                Tab(child: Text('requests'.translate, textAlign: TextAlign.center, style: TextStyles.body1)),
+                Tab(child: Text('offers'.translate, textAlign: TextAlign.center, style: TextStyles.body1)),
+                Tab(child: Text('events'.translate, textAlign: TextAlign.center, style: TextStyles.body1)),
               ],
             ),
           ),

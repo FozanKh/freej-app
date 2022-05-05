@@ -88,7 +88,7 @@ class _MyPostViewState extends State<MyPostView> {
                     const Divider(height: Insets.l * 2),
                     ProfileOptionCard(
                       icon: PhosphorIcons.folder_open_bold,
-                      title: "applications",
+                      title: "applications".translate,
                       onTap: () async {
                         if (await Nav.openPage(context: context, page: PostApplicationsView(widget.post)) == true) {
                           Nav.popPage(context);

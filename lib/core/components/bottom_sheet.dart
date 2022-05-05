@@ -6,10 +6,11 @@ showCustomBottomSheet(
   context, {
   required Widget child,
   required String title,
-  bool locale = false,
   ScrollPhysics? scrollPhysics,
   bool showCancelButton = false,
   bool isDismissible = true,
+  bool scrollable = true,
+  Widget? persistentFooter,
 }) async {
   return showModalBottomSheet(
     isScrollControlled: true,
@@ -33,26 +34,22 @@ showCustomBottomSheet(
         right: 20,
         left: 20,
       ),
-      child: Stack(
+      child: Column(
         children: [
-          SingleChildScrollView(
-            physics: scrollPhysics ?? const BouncingScrollPhysics(),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[const SizedBox(height: kToolbarHeight + 40), child],
-            ),
-          ),
           Container(
-            padding: const EdgeInsets.only(bottom: 10),
+            margin: const EdgeInsets.only(top: 10),
+            height: kToolbarHeight + 10,
             decoration: const BoxDecoration(
-              boxShadow: [BoxShadow(color: kBackgroundColor, blurRadius: 5, offset: Offset(0, 10))],
-              color: kBackgroundColor,
+              border: Border(
+                bottom: BorderSide(
+                  color: kGrey,
+                  width: 0.2,
+                ),
+              ),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const SizedBox(height: 10),
                 Container(
                   height: 5,
                   width: 40,
@@ -65,18 +62,31 @@ showCustomBottomSheet(
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(locale ? title : title,
-                        style: const TextStyle(fontSize: 18, color: kFontsColor, fontWeight: FontWeight.w600)),
+                    Text(
+                      title,
+                      style: TextStyles.t1,
+                      maxLines: 1,
+                    ),
                     if (showCancelButton)
                       ActionButton(
                         title: 'cancel'.translate,
                         onTap: () => Navigator.pop(context),
-                      )
+                      ),
                   ],
                 ),
               ],
             ),
           ),
+          Expanded(
+            child: scrollable
+                ? SingleChildScrollView(
+                    padding: const EdgeInsets.only(top: 10),
+                    physics: scrollPhysics ?? const BouncingScrollPhysics(),
+                    child: child,
+                  )
+                : child,
+          ),
+          if (persistentFooter != null) persistentFooter
         ],
       ),
     ),

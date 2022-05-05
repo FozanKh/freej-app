@@ -199,8 +199,10 @@ class HomeViewController {
   Future<bool> editEvent(String name, EventType type, String description, DateTime date, {int? id}) async {
     pr.show();
     try {
-      if (id == null) return false;
-      await pr.hide();
+      if (id == null) {
+        await pr.hide();
+        return false;
+      }
       await EventServices.editEvent(id, name, type, description, date);
       await eventsRefreshKey.currentState?.show();
       await pr.hide();

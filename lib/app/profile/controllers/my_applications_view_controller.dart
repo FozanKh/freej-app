@@ -34,7 +34,7 @@ class MyApplicationsViewController {
   Future<List<Event>> getMyAppliedEvents({refresh = false}) async {
     try {
       List<Event> events = await EventRepository.instance.getAllEvents(refresh: refresh);
-      List<Event> refinedEvents = events.where(((e) => e.applicationStatus != EventApplicationStatus.unknown)).toList();
+      List<Event> refinedEvents = events.where(((e) => e.applicationStatus == EventApplicationStatus.joined)).toList();
       return refinedEvents;
     } catch (e) {
       AlertDialogBox.showAlert(context, message: e.toString().translate);

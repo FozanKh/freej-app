@@ -185,6 +185,7 @@
   "event": "فعالية",
   "events": "فعاليات",
   "join": "إنضم",
+  "leave": "انسحب",
   "event_left_successfully": "تم الخروج من الفعالية بنجاح",
   "event_joined_successfully": "تم الانضمام الى الفعالية بنجاح",
   "leave_event_assertion": "هل أنت متأكد أنك تريد مغادرة هذه الفعالية؟",
@@ -278,6 +279,9 @@
   "add_review": "أضف تقيمك +",
 
   "order": "طلب",
+  "ordered": "تم الطلب",
+  "provide": "إفزع",
+  "provided": "تمت",
   "answer": "أجب",
 
   "accepted": "مقبول",

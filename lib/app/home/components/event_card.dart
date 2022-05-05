@@ -33,22 +33,21 @@ class _EventCardState extends State<EventCard> {
             showDeleteButton = false;
           } else {
             await widget.onTap();
-            // await Nav.openPage(context: context, page: PostView(post: widget.post));
           }
           setState(() {});
         },
         child: Container(
-          height: Sizes.xxlCardHeight,
           decoration: BoxDecoration(
             color: kGreen,
             borderRadius: BorderRadius.circular(16),
+            image: const DecorationImage(
+              image: AssetImage(Assets.kWavesAsset),
+              fit: BoxFit.fitWidth,
+              matchTextDirection: true,
+            ),
           ),
           child: Stack(
             children: [
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Image.asset(Assets.kWavesAsset, height: Sizes.xxlCardHeight),
-              ),
               Padding(
                 padding: const EdgeInsets.all(Insets.l),
                 child: Column(

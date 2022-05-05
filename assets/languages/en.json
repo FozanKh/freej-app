@@ -185,6 +185,7 @@
   "event": "Event",
   "events": "Events",
   "join": "Join",
+  "leave": "Leave",
   "event_joined_successfully": "Event joined successfully",
   "event_left_successfully": "Event left successfully",
   "leave_event_assertion": "Are you sure you want to leave this event?",
@@ -277,6 +278,9 @@
   "add_review": "Add Review +",
 
   "order": "Order",
+  "ordered": "Ordered",
+  "provide": "provide",
+  "provided": "provided",
   "answer": "Answer",
 
   "accepted": "Accepted",

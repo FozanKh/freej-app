@@ -22,6 +22,8 @@ class PostCard extends StatefulWidget {
 class _PostCardState extends State<PostCard> {
   bool showDeleteButton = false;
   Color get postColor => widget.post.type == PostType.offer ? kBlue : kPrimaryColor;
+  String get postButton => widget.post.type == PostType.offer ? 'order' : 'provide';
+  String get postButton2 => widget.post.type == PostType.offer ? 'ordered' : 'provided';
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
@@ -39,7 +41,11 @@ class _PostCardState extends State<PostCard> {
           decoration: BoxDecoration(
             color: postColor,
             borderRadius: BorderRadius.circular(16),
-            image: const DecorationImage(image: AssetImage(Assets.kWavesAsset), fit: BoxFit.fitWidth),
+            image: const DecorationImage(
+              image: AssetImage(Assets.kWavesAsset),
+              fit: BoxFit.fitWidth,
+              matchTextDirection: true,
+            ),
           ),
           child: Stack(
             children: [
@@ -73,8 +79,8 @@ class _PostCardState extends State<PostCard> {
                             RoundedButton(
                               onTap: () async => await widget.orderCallback!(),
                               title: widget.post.applicationStatus == PostApplicationStatus.unknown
-                                  ? "order".translate
-                                  : "ordered".translate,
+                                  ? postButton.translate
+                                  : postButton2.translate,
                               textStyle: TextStyles.body2
                                   .withColor(widget.post.applicationStatus == PostApplicationStatus.unknown
                                       ? postColor

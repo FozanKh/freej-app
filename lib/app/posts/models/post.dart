@@ -33,7 +33,7 @@ class Post {
 
   final int id;
   final _PostPerson owner;
-  final PostApplicationStatus? applicationStatus;
+  final PostApplicationStatus applicationStatus;
   final List<_PostReview>? reviews;
   final List<String>? images;
   final List<PostApplication>? applications;

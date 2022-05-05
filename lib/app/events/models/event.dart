@@ -5,7 +5,7 @@ import 'package:freej/core/controllers/enum_controller.dart';
 
 enum EventType { sport, study, helpSession, game, other }
 enum EventStatus { open, finished, cancelled }
-enum EventApplicationStatus { joined, cancelled }
+enum EventApplicationStatus { joined, cancelled, unknown }
 
 class Event {
   Event({
@@ -24,7 +24,7 @@ class Event {
   });
 
   final int id;
-  final EventApplicationStatus? applicationStatus;
+  final EventApplicationStatus applicationStatus;
   final DateTime createdAt;
   final DateTime modifiedAt;
   final EventType type;
@@ -72,9 +72,8 @@ class Event {
 
   factory Event.fromMap(Map<String, dynamic> json) => Event(
         id: json["id"],
-        applicationStatus: json["application_status"] != null
-            ? Enums.fromString(EventApplicationStatus.values, json["application_status"])
-            : null,
+        applicationStatus: Enums.fromString(EventApplicationStatus.values, json["application_status"]) ??
+            EventApplicationStatus.unknown,
         createdAt: DateTime.parse(json["created_at"]),
         modifiedAt: DateTime.parse(json["modified_at"]),
         type: Enums.fromString(EventType.values, json["type"]) ?? EventType.other,
@@ -89,7 +88,7 @@ class Event {
 
   Map<String, dynamic> toMap() => {
         "id": id,
-        "application_status": applicationStatus != null ? Enums.valueString(applicationStatus) : null,
+        "application_status": Enums.valueString(applicationStatus),
         "created_at": createdAt.toIso8601String(),
         "modified_at": modifiedAt.toIso8601String(),
         "type": type.name,

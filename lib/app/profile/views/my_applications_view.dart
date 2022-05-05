@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/exports/core.dart';
-import '../controllers/my_posts_view_controller.dart';
-import 'posts/my_events_tab.dart';
-import 'posts/my_offers_tab.dart';
-import 'posts/my_requests_tab.dart';
+import '../controllers/my_applications_view_controller.dart';
+import 'applications/my_applied_events_tab.dart';
+import 'applications/my_applied_offers_tab.dart';
+import 'applications/my_applied_requests_tab.dart';
 
-class MyPostsView extends StatefulWidget {
-  const MyPostsView({Key? key}) : super(key: key);
+class MyApplicationsView extends StatefulWidget {
+  const MyApplicationsView({Key? key}) : super(key: key);
 
   @override
-  State<MyPostsView> createState() => _MyPostsViewState();
+  State<MyApplicationsView> createState() => _MyApplicationsViewState();
 }
 
-class _MyPostsViewState extends State<MyPostsView> with SingleTickerProviderStateMixin {
-  late final MyPostsViewController controller;
+class _MyApplicationsViewState extends State<MyApplicationsView> with SingleTickerProviderStateMixin {
+  late final MyApplicationsViewController controller;
 
   @override
   void initState() {
-    controller = MyPostsViewController(context, this);
+    controller = MyApplicationsViewController(context, this);
     super.initState();
   }
 
@@ -32,7 +32,7 @@ class _MyPostsViewState extends State<MyPostsView> with SingleTickerProviderStat
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('my_posts'.translate),
+        title: Text('my_applications'.translate),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,9 +56,9 @@ class _MyPostsViewState extends State<MyPostsView> with SingleTickerProviderStat
             child: TabBarView(
               controller: controller.tabController,
               children: [
-                MyRequestsTab(controller: controller),
-                MyOffersTab(controller: controller),
-                MyEventsTab(controller: controller),
+                MyAppliedRequestsTab(controller: controller),
+                MyAppliedOffersTab(controller: controller),
+                MyAppliedEventsTab(controller: controller),
               ],
             ),
           )

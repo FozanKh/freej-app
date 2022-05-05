@@ -174,7 +174,13 @@ class ProfileOptionCard extends StatelessWidget {
               style: TextStyles.h1.withColor(color ?? kPrimaryColor),
             ),
             const Spacer(),
-            Icon(PhosphorIcons.caret_right, color: color ?? kPrimaryColor),
+            RotatedBox(
+              quarterTurns: isArabic() ? 2 : 0,
+              child: Icon(
+                PhosphorIcons.caret_right,
+                color: color ?? kPrimaryColor,
+              ),
+            ),
           ],
         ),
       ),

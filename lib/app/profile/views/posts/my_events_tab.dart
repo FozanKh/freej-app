@@ -40,7 +40,7 @@ class _MyEventsTabState extends State<MyEventsTab> {
                   events.data!.length,
                   (index) => EventCard(
                     event: (events.data![index]),
-                    editEventCallback: widget.controller.startEditingPost,
+                    editEventCallback: widget.controller.startEditingEvent,
                     onTap: () {},
                   ),
                 ).toList(),

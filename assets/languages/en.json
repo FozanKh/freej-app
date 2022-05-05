@@ -320,7 +320,9 @@
   "application_accepted_successfully": "Application accepted successfully",
   "application_rejected_successfully": "Application rejected successfully",
   "application_completed_successfully": "Application completed successfully",
-  "application_canceled_successfully": "Application canceled successfully",
+  "application_cancelled_successfully": "Application canceled successfully",
+  "deactivation_done_successfully": "Deactivation done successfully",
+  "activation_done_successfully": "Activation done successfully",
 
   "could_not_update_whatsapp_link": "Sorry, could not update WhatsApp group Link",
   "whatsapp_group_url": "WhatsApp Group URL",

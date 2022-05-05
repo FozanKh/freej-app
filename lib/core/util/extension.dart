@@ -94,56 +94,56 @@ extension PrettyJson on Map {
 extension DateTimeExtension on DateTime {
   /// e.g. 12:00 AM
   String get dayTime12 {
-    return DateFormat('hh:mm a', window.locale.languageCode).format(this);
+    return DateFormat('hh:mm a', MyApp.lang).format(this);
   }
 
   /// e.g. Aug 10, 1999 12:00 AM
   String get yMMMMdhm {
-    return DateFormat.yMMMd(window.locale.languageCode).add_jm().format(this);
+    return DateFormat.yMMMd(MyApp.lang).add_jm().format(this);
   }
 
   /// e.g.  August 10, 1999
   String get yMMMMd {
-    return DateFormat.yMMMMd(window.locale.languageCode).format(this);
+    return DateFormat.yMMMMd(MyApp.lang).format(this);
   }
 
   /// e.g. 10-08-1999
   String get dateString {
-    return DateFormat('dd-MM-y', window.locale.languageCode).format(this);
+    return DateFormat('dd-MM-y', MyApp.lang).format(this);
   }
 
   /// e.g. 10-08-1999 03:49:28 AM
   String get dateTimeString {
-    return DateFormat('dd-MM-y hh:mm:ss a', window.locale.languageCode).format(this);
+    return DateFormat('dd-MM-y hh:mm:ss a', MyApp.lang).format(this);
   }
 
   /// e.g. 22:26
   String get Hm {
-    return DateFormat.Hm(window.locale.languageCode).format(this);
+    return DateFormat.Hm(MyApp.lang).format(this);
   }
 
   /// e.g. 10/8/1999
   String get yMd {
-    return DateFormat.yMd(window.locale.languageCode).format(this);
+    return DateFormat.yMd(MyApp.lang).format(this);
   }
 
   /// 10 August
   String get dMMMM {
-    return DateFormat('dd MMMM', window.locale.languageCode).format(this);
+    return DateFormat('dd MMMM', MyApp.lang).format(this);
   }
 
   /// 10 Aug
   String get dMMM {
-    return DateFormat('dd MMM', window.locale.languageCode).format(this);
+    return DateFormat('dd MMM', MyApp.lang).format(this);
   }
 
   /// e.g. Sun
   String get e {
-    return DateFormat('E', window.locale.languageCode).format(this);
+    return DateFormat('E', MyApp.lang).format(this);
   }
 
   /// e.g. Sunday
   String get eeee {
-    return DateFormat('EEEE', window.locale.languageCode).format(this);
+    return DateFormat('EEEE', MyApp.lang).format(this);
   }
 }

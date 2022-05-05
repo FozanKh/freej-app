@@ -26,7 +26,7 @@ class PostApplicationsViewController {
         PostRepository.instance.getRequests(refresh: true),
       ]);
       await pr.hide();
-      await AlertDialogBox.showAlert(context, message: "application_accepted_successfully");
+      await AlertDialogBox.showAlert(context, message: "application_accepted_successfully".translate);
       Nav.popPage(context, args: true);
     } catch (e) {
       await pr.hide();
@@ -46,7 +46,7 @@ class PostApplicationsViewController {
         PostRepository.instance.getRequests(refresh: true),
       ]);
       await pr.hide();
-      await AlertDialogBox.showAlert(context, message: "application_rejected_successfully");
+      await AlertDialogBox.showAlert(context, message: "application_rejected_successfully".translate);
       Nav.popPage(context, args: true);
     } catch (e) {
       await pr.hide();
@@ -66,7 +66,7 @@ class PostApplicationsViewController {
         PostRepository.instance.getRequests(refresh: true),
       ]);
       await pr.hide();
-      await AlertDialogBox.showAlert(context, message: "application_completed_successfully");
+      await AlertDialogBox.showAlert(context, message: "application_completed_successfully".translate);
       Nav.popPage(context, args: true);
     } catch (e) {
       await pr.hide();
@@ -86,7 +86,7 @@ class PostApplicationsViewController {
         PostRepository.instance.getRequests(refresh: true),
       ]);
       await pr.hide();
-      await AlertDialogBox.showAlert(context, message: "application_canceled_successfully");
+      await AlertDialogBox.showAlert(context, message: "application_cancelled_successfully".translate);
       Nav.popPage(context, args: true);
     } catch (e) {
       await pr.hide();

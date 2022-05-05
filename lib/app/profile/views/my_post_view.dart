@@ -31,35 +31,6 @@ class _MyPostViewState extends State<MyPostView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      bottomSheet: Container(
-        padding: const EdgeInsets.all(Insets.m),
-        decoration: const BoxDecoration(
-          color: kWhite,
-          boxShadow: Styles.boxShadowTop,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            RoundedButton(
-              margin: EdgeInsets.zero,
-              enabled: controller.isButtonEnabled,
-              title: controller.actionButtonTitle,
-              textStyle: TextStyles.callOut.withColor(kWhite).withWeight(FontWeight.bold),
-              onTap: controller.actionButtonOnTap,
-            ),
-            const SizedBox(height: 10),
-            if (widget.post.applicationStatus == PostApplicationStatus.pending)
-              RoundedButton(
-                margin: EdgeInsets.zero,
-                enabled: widget.post.applicationStatus == PostApplicationStatus.pending,
-                title: "cancel".translate,
-                textStyle: TextStyles.callOut.withColor(kWhite).withWeight(FontWeight.bold),
-                buttonColor: kRed2,
-                onTap: controller.cancelApplication,
-              ),
-          ],
-        ),
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.only(bottom: Sizes.lCardHeight * 3, right: Insets.m, top: Insets.m, left: Insets.m),

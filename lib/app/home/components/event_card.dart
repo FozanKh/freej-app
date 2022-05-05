@@ -85,7 +85,7 @@ class _EventCardState extends State<EventCard> {
                           ),
                         if (widget.joinEventCallback != null) const SizedBox(width: Insets.xl),
                         Text(
-                          "${widget.event.date.dMMM}, ${widget.event.date.eeee}",
+                          "${widget.event.date.eeee}, ${widget.event.date.dMMM}",
                           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                         ),
                       ],

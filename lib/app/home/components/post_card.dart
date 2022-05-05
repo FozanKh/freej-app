@@ -96,7 +96,7 @@ class _PostCardState extends State<PostCard> {
                             ),
                           if (widget.orderCallback != null) const SizedBox(width: Insets.xl),
                           Text(
-                            "${widget.post.createdAt.dMMM}, ${widget.post.createdAt.eeee}",
+                            "${widget.post.createdAt.eeee}, ${widget.post.createdAt.dMMM}",
                             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                           ),
                         ],

@@ -331,5 +331,7 @@
 
   "my_applications": "My Applications",
   "choose_your_campus": "Choose your campus",
-  "university_email": "Your University Email"
+  "university_email": "Your University Email",
+  "registration": "Registration",
+  "notification": "Notification"
 }

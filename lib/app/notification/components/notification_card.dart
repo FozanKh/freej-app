@@ -17,42 +17,46 @@ class NotificationCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  // Sender name
-                  Text(notification.title, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
-                  const SizedBox(height: 5),
-                  // First line of the last message
-                  Text(notification.body,
-                      style: const TextStyle(fontSize: 13, color: kFontsColor, fontWeight: FontWeight.w500)),
-                  const SizedBox(height: 10),
-                  IconText(icon: Icons.access_time, text: timeago.format(DateTime(1990))),
-                  // const IconText(icon: Icons.access_time, text: "timeago.format(notification.createdAt)"),
-                ],
-              ),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                // Sender name
+                Text(
+                  notification.title,
+                  style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                  maxLines: 2,
+                ),
+                const SizedBox(height: 5),
+                // First line of the last message
+                Text(
+                  notification.body,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: kFontsColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  maxLines: 1,
+                ),
+                const SizedBox(height: 10),
+                // IconText(icon: Icons.access_time, text: timeago.format(DateTime(1990))),
+                IconText(icon: Icons.access_time, text: timeago.format(notification.createdAt).toString()),
+              ],
+            ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Icon(PhosphorIcons.bell_fill, size: 30, color: kPrimaryColor),
-              ),
+              const Icon(PhosphorIcons.bell_fill, size: 30, color: kPrimaryColor),
               const SizedBox(height: 5),
               FittedBox(
                 child: Container(
                   padding: const EdgeInsets.all(3),
                   decoration: const BoxDecoration(color: kDark4, borderRadius: Borders.sBorderRadius),
-                  child: const Text(
-                    'type',
-                    // '${notification.type.string}',
-                    style: TextStyle(fontSize: 12, color: kWhite, height: 1.1),
+                  child: Text(
+                    (notification.type ?? 'notification').translate,
+                    style: const TextStyle(fontSize: 12, color: kWhite, height: 1.1),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,

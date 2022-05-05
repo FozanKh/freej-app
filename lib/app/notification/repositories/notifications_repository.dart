@@ -13,9 +13,9 @@ class NotificationsRepository {
 
   Future<List<Notifications>> getAllNotifications({bool refresh = false}) async {
     if (_notifications.isEmpty || refresh) {
-      return _notifications = await NotificationServices.getUserNotifications();
-    } else {
-      return _notifications;
+      _notifications = await NotificationServices.getUserNotifications();
+      _notifications.sort();
     }
+    return _notifications;
   }
 }

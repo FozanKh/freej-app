@@ -62,7 +62,8 @@ class _RegistrationViewState extends State<RegistrationView> {
               RoundedTextFormField(
                 title: 'email'.translate,
                 initialValue: controller.email,
-                hint: 'university_email'.translate,
+                hint:
+                    "example@${controller.selectedCampus?.emailDomain ?? "xxx.edu.sa"}", // 'university_email'.translate,
                 clearButton: false,
                 validator: controller.emailValidator,
               ),

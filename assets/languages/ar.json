@@ -280,7 +280,7 @@
 
   "order": "طلب",
   "ordered": "تم الطلب",
-  "provide": "إفزع",
+  "provide": "افزع",
   "provided": "تمت",
   "answer": "أجب",
 
@@ -332,5 +332,7 @@
 
   "my_applications": "طلباتي",
   "choose_your_campus": "اختر جامعتك",
-  "university_email": "ايميلك الجامعي"
+  "university_email": "ايميلك الجامعي",
+  "registration": "تسجيل",
+  "notification": "تنبيه"
 }

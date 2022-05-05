@@ -93,7 +93,7 @@ class _ProfileViewState extends State<ProfileView> {
                   title: translateText('my_posts', context: context),
                 ),
                 ProfileOptionCard(
-                  icon: PhosphorIcons.nut_fill,
+                  icon: PhosphorIcons.folder_open,
                   onTap: () => Nav.openPage(context: context, page: const MyApplicationsView()),
                   title: translateText('my_applications', context: context),
                 ),

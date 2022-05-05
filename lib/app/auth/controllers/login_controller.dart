@@ -12,12 +12,11 @@ class LoginController {
   final BuildContext context;
   String email;
   String password;
-  bool registerMode = true;
   late final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   late final ProgressDialog pr;
 
-  LoginController(this.context, {this.email = '', this.password = '', this.registerMode = true}) {
+  LoginController(this.context, {this.email = '', this.password = ''}) {
     pr = ProgressDialog(context);
   }
 
@@ -66,6 +65,6 @@ class LoginController {
     if (!formKey.currentState!.validate()) {
       return;
     }
-    await Nav.openPage(context: context, page: RegistrationView(email: email)) ?? false;
+    await Nav.openPage(context: context, page: const RegistrationView()) ?? false;
   }
 }

@@ -32,6 +32,7 @@
   "advertisements": "إعلانات",
   "room": "الغرفة",
   "rooms": "غرف",
+  "other": "آخرى",
 
   "welcome_to_freej": "مرحبًا بك في الفريج",
   "login_subtitle": "حيث يمكنك التواصل بشكل أفضل مع جيرانك",
@@ -270,6 +271,7 @@
   "no_requests_available": "لا توجد طلبات متاحة",
   "no_offers_available": "لا توجد عروض متاحة",
   "no_events_available": "لا توجد فعاليات متاحة",
+  "no_announcements_available": "لا توجد إعلانات متاحة",
 
   "review": "تقيم",
   "reviews": "التقيمات",
@@ -324,5 +326,7 @@
 
   "no_notifications_yet_alert": "ليس لديك أي إشعارات حتى الآن",
 
-  "my_applications": "طلباتي"
+  "my_applications": "طلباتي",
+  "choose_your_campus": "اختر جامعتك",
+  "university_email": "ايميلك الجامعي"
 }

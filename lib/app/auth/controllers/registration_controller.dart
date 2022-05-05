@@ -7,6 +7,7 @@ import 'package:freej/app/campus/repositories/building_repository.dart';
 
 import '../../../core/exports/core.dart';
 import '../../campus/models/building.dart';
+import '../../campus/models/campus.dart';
 import '../../campus/models/room.dart';
 import '../views/otp_submission_view.dart';
 
@@ -15,14 +16,15 @@ class RegistrationController {
   Room? selectedRoom;
   Building? selectedBuilding;
   Future<List<Building>>? availableBuildings = BuildingRepository.instance.getAllBuildings();
-  final String email;
+  Campus? selectedCampus;
+  String email = '';
   String password = '';
   String name = '';
   String mobile = '';
   late ProgressDialog pr;
   late final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  RegistrationController(this.context, this.email) {
+  RegistrationController(this.context) {
     pr = ProgressDialog(context);
   }
 
@@ -39,6 +41,32 @@ class RegistrationController {
   String? mobileValidator(String value) {
     if (value.isNotEmpty) mobile = value;
     return !validateMobile(mobile) ? translateText('invalid_error', arguments: ['phone_number']) : null;
+  }
+
+  String? emailValidator(String value) {
+    email = value.validateNumbers;
+    return !validateEmail(email) ? translateText('invalid_error', arguments: ['email']) : null;
+  }
+
+  Future<List<Campus>> getAllCampuses({bool refresh = false}) async {
+    try {
+      return BuildingRepository.instance.getAllCampuses(refresh: refresh);
+    } catch (e) {
+      AlertDialogBox.showAlert(context, message: e.toString().translate);
+    }
+    return [];
+  }
+
+  Future<void> selectCampus(Campus campus, {refresh = false}) async {
+    selectedCampus = campus;
+    selectedBuilding = null;
+    selectedRoom = null;
+    try {
+      availableBuildings = BuildingRepository.instance.getCampusBuildings(campus.id, refresh: refresh);
+      return;
+    } catch (e) {
+      AlertDialogBox.showAlert(context, message: e.toString().translate);
+    }
   }
 
   Future<void> getOtp() async {

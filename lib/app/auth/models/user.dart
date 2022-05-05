@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import '../../campus/models/campus.dart';
+import '../../campus/models/user_campus.dart';
 import '../../campus/models/user_building.dart';
 import 'account.dart';
 
@@ -19,7 +19,7 @@ class User extends ChangeNotifier {
   });
 
   int? id;
-  Campus? campusDetails;
+  UserCampus? campusDetails;
   DateTime? createdAt;
   DateTime? modifiedAt;
   bool? isSupervisor;
@@ -41,7 +41,7 @@ class User extends ChangeNotifier {
 
   User copyWith({
     int? id,
-    Campus? campusDetails,
+    UserCampus? campusDetails,
     DateTime? createdAt,
     DateTime? modifiedAt,
     bool? isSupervisor,
@@ -66,7 +66,7 @@ class User extends ChangeNotifier {
 
   factory User.fromMap(Map<String, dynamic> json) => User(
         id: json["id"],
-        campusDetails: Campus.fromMap(json["campus_details"]),
+        campusDetails: UserCampus.fromMap(json["campus_details"]),
         createdAt: DateTime.parse(json["created_at"]),
         modifiedAt: DateTime.parse(json["modified_at"]),
         isSupervisor: json["is_supervisor"],

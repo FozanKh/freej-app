@@ -60,7 +60,11 @@ class _AnnouncementViewState extends State<AnnouncementView> with SingleTickerPr
             child: FutureBuilder<List<Announcement>>(
                 future: controller.getAnnouncements(),
                 builder: (context, announcements) {
-                  if (!announcements.hasData) return const Center(child: CircularProgressIndicator());
+                  if (!announcements.hasData || announcements.connectionState != ConnectionState.done) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (!announcements.hasData || (announcements.data?.isEmpty ?? true)) {
+                    return Center(child: FullScreenBanner("no_announcements_available".translate));
+                  }
                   return TabBarView(
                     controller: tabController,
                     children: [

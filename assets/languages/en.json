@@ -32,6 +32,7 @@
   "advertisements": "Advertisements",
   "room": "Room",
   "rooms": "Rooms",
+  "other": "Other",
 
   "welcome_to_freej": "Welcome to Freej",
   "login_subtitle": "Where you can communicate better with your neighbors",
@@ -269,6 +270,7 @@
   "no_requests_available": "No Requests Available",
   "no_offers_available": "No Offers Available",
   "no_events_available": "No Events Available",
+  "no_announcements_available": "No Announcement Available",
 
   "review": "Review",
   "reviews": "Reviews",
@@ -323,5 +325,7 @@
 
   "no_notifications_yet_alert": "You don't have any notifications yet",
 
-  "my_applications": "My Applications"
+  "my_applications": "My Applications",
+  "choose_your_campus": "Choose your campus",
+  "university_email": "Your University Email"
 }

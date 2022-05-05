@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freej/app/auth/views/registration_view.dart';
 
 import '../../../core/exports/core.dart';
 import '../controllers/login_controller.dart';
@@ -16,7 +17,7 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   void initState() {
-    controller = LoginController(context, registerMode: widget.registerMode);
+    controller = LoginController(context);
     super.initState();
   }
 
@@ -39,11 +40,9 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ),
               ),
-              Text(controller.registerMode ? 'create_new_account'.translate : 'welcome_to_freej'.translate,
-                  style: TextStyles.t1.withColor(kPrimaryColor)),
+              Text('welcome_to_freej'.translate, style: TextStyles.t1.withColor(kPrimaryColor)),
               const SizedBox(height: 5),
-              Text(controller.registerMode ? 'register_subtitle'.translate : 'login_subtitle'.translate,
-                  style: TextStyles.body2.withColor(kHintFontsColor)),
+              Text('login_subtitle'.translate, style: TextStyles.body2.withColor(kHintFontsColor)),
               const SizedBox(height: 30),
               Form(
                 key: controller.formKey,
@@ -53,33 +52,32 @@ class _LoginViewState extends State<LoginView> {
                   children: [
                     RoundedTextFormField(
                       title: "email".translate,
-                      hint: 'name@example.com',
+                      hint: 'university_email'.translate,
                       keyboardType: TextInputType.text,
                       validator: controller.emailValidator,
                     ),
                     const SizedBox(height: 10),
-                    if (!controller.registerMode)
-                      RoundedTextFormField(
-                        title: "password".translate,
-                        hint: '**********',
-                        validator: controller.passwordValidator,
-                        obscureText: true,
-                        onSubmitted: (_) => controller.registerMode ? controller.register() : controller.signIn(),
-                      ),
+                    RoundedTextFormField(
+                      title: "password".translate,
+                      hint: '**********',
+                      validator: controller.passwordValidator,
+                      obscureText: true,
+                      onSubmitted: (_) => controller.signIn(),
+                    ),
                   ],
                 ),
               ),
               RoundedButton(
                 title: 'next'.translate,
-                onTap: controller.registerMode ? controller.register : controller.signIn,
+                onTap: controller.signIn,
               ),
               const Spacer(),
               if (MediaQuery.of(context).viewInsets.bottom == 0)
                 FadeIn(
                   duration: const Duration(milliseconds: 200),
                   child: RoundedButton(
-                    title: controller.registerMode ? 'have_account'.translate : 'dont_have_account'.translate,
-                    onTap: () => setState(() => controller.registerMode = !controller.registerMode),
+                    title: 'dont_have_account'.translate,
+                    onTap: () => Nav.openPage(context: context, page: const RegistrationView()),
                   ),
                 ),
             ],

@@ -1,15 +1,16 @@
 import 'dart:convert';
 
-class Campus {
-  Campus({
+import 'user_building.dart';
+
+class UserCampus {
+  UserCampus({
     required this.id,
     required this.createdAt,
     required this.modifiedAt,
     required this.nameAr,
     required this.nameEn,
     required this.emailDomain,
-    required this.locationUrl,
-    required this.image,
+    required this.building,
   });
 
   final int id;
@@ -18,43 +19,39 @@ class Campus {
   final String nameAr;
   final String nameEn;
   final String emailDomain;
-  final String? locationUrl;
-  final String image;
+  final UserBuilding building;
 
-  Campus copyWith({
+  UserCampus copyWith({
     int? id,
     DateTime? createdAt,
     DateTime? modifiedAt,
     String? nameAr,
     String? nameEn,
     String? emailDomain,
-    String? locationUrl,
-    String? image,
+    UserBuilding? building,
   }) =>
-      Campus(
+      UserCampus(
         id: id ?? this.id,
         createdAt: createdAt ?? this.createdAt,
         modifiedAt: modifiedAt ?? this.modifiedAt,
         nameAr: nameAr ?? this.nameAr,
         nameEn: nameEn ?? this.nameEn,
         emailDomain: emailDomain ?? this.emailDomain,
-        locationUrl: locationUrl ?? this.locationUrl,
-        image: image ?? this.image,
+        building: building ?? this.building,
       );
 
-  factory Campus.fromJson(String str) => Campus.fromMap(json.decode(str));
+  factory UserCampus.fromJson(String str) => UserCampus.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Campus.fromMap(Map<String, dynamic> json) => Campus(
+  factory UserCampus.fromMap(Map<String, dynamic> json) => UserCampus(
         id: json["id"],
         createdAt: DateTime.parse(json["created_at"]),
         modifiedAt: DateTime.parse(json["modified_at"]),
         nameAr: json["name_ar"],
         nameEn: json["name_en"],
         emailDomain: json["email_domain"],
-        locationUrl: json["location_url"],
-        image: json["image"],
+        building: UserBuilding.fromMap(json["building"]),
       );
 
   Map<String, dynamic> toMap() => {
@@ -64,7 +61,6 @@ class Campus {
         "name_ar": nameAr,
         "name_en": nameEn,
         "email_domain": emailDomain,
-        "location_url": locationUrl,
-        "image": image,
+        "building": building.toMap(),
       };
 }

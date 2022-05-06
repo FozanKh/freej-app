@@ -77,18 +77,21 @@ class _PostViewState extends State<PostView> {
                   boxShadow: Styles.boxShadow,
                   color: Colors.white,
                 ),
-                child: Column(
+                child: SeparatedColumn(
+                  separator: const Divider(thickness: 2, height: 40),
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      widget.post.title,
-                      style: TextStyles.h1.withWeight(FontWeight.bold),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.post.title,
+                          style: TextStyles.h1.withWeight(FontWeight.bold),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(widget.post.description, style: TextStyles.body1),
+                      ],
                     ),
-                    const SizedBox(height: Insets.m),
-                    Text(widget.post.description, style: TextStyles.body1),
-                    const SizedBox(height: 40),
-                    const Divider(thickness: 2),
-                    const SizedBox(height: 10),
                     Titled(
                       title: "by".translate,
                       padding: EdgeInsets.zero,
@@ -105,8 +108,6 @@ class _PostViewState extends State<PostView> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 20),
-                    const Divider(thickness: 2),
                     if (widget.post.reviews?.isNotEmpty ?? false)
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

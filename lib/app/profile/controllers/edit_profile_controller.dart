@@ -62,7 +62,7 @@ class EditProfileController {
     }
     pr.show();
     try {
-      User newUser = await ProfileServices.updateProfile(name, lastName, mobile, photoUrl);
+      User newUser = await ProfileServices.updateProfile(name, lastName, mobile, photoUrl, selectedRoom);
       context.read<User>().updateFromUser(newUser);
       pr.hide();
       Nav.popPage(context);

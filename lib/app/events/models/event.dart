@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:freej/app/events/models/host.dart';
+import 'package:freej/app/events/models/person.dart';
 import 'package:freej/core/controllers/enum_controller.dart';
 
 enum EventType { sport, study, helpSession, game, other }
@@ -33,7 +33,7 @@ class Event {
   final String? locationUrl;
   final DateTime date;
   final String status;
-  final Host host;
+  final Person host;
   final int campus;
   bool get isJoined => applicationStatus == EventApplicationStatus.joined;
 
@@ -48,7 +48,7 @@ class Event {
     String? locationUrl,
     DateTime? date,
     String? status,
-    Host? host,
+    Person? host,
     int? campus,
   }) =>
       Event(
@@ -82,7 +82,7 @@ class Event {
         locationUrl: json["location_url"],
         date: DateTime.parse(json["date"]),
         status: json["status"],
-        host: Host.fromMap(json["host"]),
+        host: Person.fromMap(json["host"]),
         campus: json["campus"],
       );
 

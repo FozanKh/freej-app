@@ -68,52 +68,58 @@ class _AnnouncementViewState extends State<AnnouncementView> with SingleTickerPr
                   return TabBarView(
                     controller: tabController,
                     children: [
-                      RefreshIndicator(
-                        key: controller.buildingAnnouncementsRefreshKey,
-                        onRefresh: () => controller.getAnnouncements(refresh: true).then((value) => setState(() {})),
-                        child: SingleChildScrollView(
-                          padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
-                          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(
-                              minHeight: MediaQuery.of(context).size.height - kToolbarHeight,
-                              minWidth: MediaQuery.of(context).size.width,
-                            ),
-                            child: Column(
-                              children: List.generate(
-                                controller.buildingAnnouncements.length,
-                                (index) => AnnouncementCard(
-                                  announcement: controller.buildingAnnouncements[index],
-                                  deleteAnnouncementCallback: controller.deleteAnnouncement,
-                                ),
-                              ).toList(),
-                            ),
-                          ),
-                        ),
-                      ),
-                      RefreshIndicator(
-                        key: controller.campusAnnouncementsRefreshKey,
-                        onRefresh: () => controller.getAnnouncements(refresh: true).then((value) => setState(() {})),
-                        child: SingleChildScrollView(
-                          padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
-                          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(
-                              minHeight: MediaQuery.of(context).size.height - kToolbarHeight,
-                              minWidth: MediaQuery.of(context).size.width,
-                            ),
-                            child: Column(
-                              children: List.generate(
-                                controller.campusAnnouncements.length,
-                                (index) => AnnouncementCard(
-                                  announcement: controller.campusAnnouncements[index],
-                                  deleteAnnouncementCallback: () {},
-                                ),
-                              ).toList(),
+                      if (controller.buildingAnnouncements.isEmpty)
+                        Center(child: FullScreenBanner("no_announcements_available".translate))
+                      else
+                        RefreshIndicator(
+                          key: controller.buildingAnnouncementsRefreshKey,
+                          onRefresh: () => controller.getAnnouncements(refresh: true).then((value) => setState(() {})),
+                          child: SingleChildScrollView(
+                            padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
+                            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(
+                                minHeight: MediaQuery.of(context).size.height - kToolbarHeight,
+                                minWidth: MediaQuery.of(context).size.width,
+                              ),
+                              child: Column(
+                                children: List.generate(
+                                  controller.buildingAnnouncements.length,
+                                  (index) => AnnouncementCard(
+                                    announcement: controller.buildingAnnouncements[index],
+                                    deleteAnnouncementCallback: controller.deleteAnnouncement,
+                                  ),
+                                ).toList(),
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                      if (controller.campusAnnouncements.isEmpty)
+                        Center(child: FullScreenBanner("no_announcements_available".translate))
+                      else
+                        RefreshIndicator(
+                          key: controller.campusAnnouncementsRefreshKey,
+                          onRefresh: () => controller.getAnnouncements(refresh: true).then((value) => setState(() {})),
+                          child: SingleChildScrollView(
+                            padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
+                            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(
+                                minHeight: MediaQuery.of(context).size.height - kToolbarHeight,
+                                minWidth: MediaQuery.of(context).size.width,
+                              ),
+                              child: Column(
+                                children: List.generate(
+                                  controller.campusAnnouncements.length,
+                                  (index) => AnnouncementCard(
+                                    announcement: controller.campusAnnouncements[index],
+                                    deleteAnnouncementCallback: () {},
+                                  ),
+                                ).toList(),
+                              ),
+                            ),
+                          ),
+                        ),
                     ],
                   );
                 }),

@@ -61,13 +61,14 @@ class _PostCardState extends State<PostCard> {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      widget.post.owner.firstName ?? '',
-                      style: TextStyles.body3,
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
                       widget.post.description,
                       maxLines: 2,
+                      style: TextStyles.body1,
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      '${'by'.translate} ${widget.post.owner.firstName ?? ''}',
+                      style: TextStyles.body3,
                     ),
                     const SizedBox(height: 16),
                     Align(

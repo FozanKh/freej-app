@@ -85,14 +85,28 @@ class _PostViewState extends State<PostView> {
                       style: TextStyles.h1.withWeight(FontWeight.bold),
                     ),
                     const SizedBox(height: Insets.m),
-                    // Text(
-                    //   widget.post.owner.firstName,
-                    //   style: TextStyles.body2.withWeight(FontWeight.bold),
-                    // ),
-                    // const SizedBox(height: Insets.m),
                     Text(widget.post.description, style: TextStyles.body1),
-                    if (widget.post.images?.isNotEmpty ?? false) const Divider(height: Insets.l * 2),
-                    // const SizedBox(height: 40),
+                    const SizedBox(height: 40),
+                    const Divider(thickness: 2),
+                    const SizedBox(height: 10),
+                    Titled(
+                      title: "by".translate,
+                      padding: EdgeInsets.zero,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            widget.post.owner.firstName ?? '',
+                            style: TextStyles.h2.withWeight(FontWeight.bold),
+                          ),
+                          const SizedBox(width: 10),
+                          Text("(${widget.post.owner.numberOfRaters}) ${widget.post.owner.stars}",
+                              style: TextStyles.h2),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    const Divider(thickness: 2),
                     if (widget.post.reviews?.isNotEmpty ?? false)
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

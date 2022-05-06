@@ -8,6 +8,7 @@ import 'package:freej/core/controllers/enum_controller.dart';
 import 'package:provider/provider.dart';
 
 import '../../auth/models/user.dart';
+import '../../events/models/person.dart';
 
 enum PostType { offer, request, post }
 //! DON'T TOUCH THIS! vv
@@ -32,7 +33,7 @@ class Post {
   });
 
   final int id;
-  final _PostPerson owner;
+  final Person owner;
   final PostApplicationStatus applicationStatus;
   final List<_PostReview>? reviews;
   final List<String>? images;
@@ -51,7 +52,7 @@ class Post {
 
   Post copyWith({
     int? id,
-    _PostPerson? owner,
+    Person? owner,
     PostApplicationStatus? applicationStatus,
     List<_PostReview>? reviews,
     List<String>? images,
@@ -86,7 +87,7 @@ class Post {
 
   factory Post.fromMap(Map<String, dynamic> json) => Post(
         id: json["id"],
-        owner: _PostPerson.fromMap(json["owner"]),
+        owner: Person.fromMap(json["owner"]),
         applicationStatus:
             Enums.fromString(PostApplicationStatus.values, json["application_status"]) ?? PostApplicationStatus.unknown,
         reviews: List<_PostReview>.from(json["reviews"].map((x) => _PostReview.fromMap(x))),
@@ -131,7 +132,7 @@ class PostApplication {
   });
 
   final int id;
-  final _PostPerson beneficiary;
+  final Person beneficiary;
   final DateTime createdAt;
   final DateTime modifiedAt;
   final PostApplicationStatus status;
@@ -143,7 +144,7 @@ class PostApplication {
 
   PostApplication copyWith({
     int? id,
-    _PostPerson? beneficiary,
+    Person? beneficiary,
     DateTime? createdAt,
     DateTime? modifiedAt,
     PostApplicationStatus? status,
@@ -168,7 +169,7 @@ class PostApplication {
 
   factory PostApplication.fromMap(Map<String, dynamic> json) => PostApplication(
         id: json["id"],
-        beneficiary: _PostPerson.fromMap(json["beneficiary"]),
+        beneficiary: Person.fromMap(json["beneficiary"]),
         createdAt: DateTime.parse(json["created_at"]),
         modifiedAt: DateTime.parse(json["modified_at"]),
         status: Enums.fromString(PostApplicationStatus.values, json["status"]) ?? PostApplicationStatus.unknown,
@@ -186,51 +187,6 @@ class PostApplication {
         "status_updated_at": statusUpdatedAt.toIso8601String(),
         "description": description,
         "post": post,
-      };
-}
-
-class _PostPerson {
-  _PostPerson({
-    required this.firstName,
-    required this.lastName,
-    required this.mobileNumber,
-    required this.id,
-  });
-
-  final String? firstName;
-  final String? lastName;
-  final String? mobileNumber;
-  final int id;
-
-  _PostPerson copyWith({
-    String? firstName,
-    String? lastName,
-    String? mobileNumber,
-    int? id,
-  }) =>
-      _PostPerson(
-        firstName: firstName ?? this.firstName,
-        lastName: lastName ?? this.lastName,
-        mobileNumber: mobileNumber ?? this.mobileNumber,
-        id: id ?? this.id,
-      );
-
-  factory _PostPerson.fromJson(String str) => _PostPerson.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory _PostPerson.fromMap(Map<String, dynamic> json) => _PostPerson(
-        firstName: json["first_name"],
-        lastName: json["last_name"],
-        mobileNumber: json["mobile_number"],
-        id: json["id"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "first_name": firstName,
-        "last_name": lastName,
-        "mobile_number": mobileNumber,
-        "id": id,
       };
 }
 

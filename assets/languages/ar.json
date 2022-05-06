@@ -182,6 +182,7 @@
   "services": "الخدمات",
   "item": "Item",
   "items": "Items",
+  "post": "طلب",
   "event": "فعالية",
   "events": "فعاليات",
   "join": "إنضم",
@@ -341,5 +342,6 @@
   "add_comment_alert": "هل ترغب في إضافة تعليق على هذا البلاغ",
   "add_image": "أضف صورة",
   "image": "صورة",
-  "images": "الصور"
+  "images": "الصور",
+  "by": "بواسطة"
 }

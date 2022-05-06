@@ -182,6 +182,7 @@
   "services": "Services",
   "item": "Item",
   "items": "Items",
+  "post": "Post",
   "event": "Event",
   "events": "Events",
   "join": "Join",
@@ -340,5 +341,6 @@
   "add_comment_alert": "Would you like to add a comment to this report",
   "add_image": "Add an Image",
   "image": "Image",
-  "images": "Images"
+  "images": "Images",
+  "by": "By"
 }

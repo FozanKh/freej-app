@@ -60,12 +60,28 @@ class _EventCardState extends State<EventCard> {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      //TODO: add host name
-                      widget.event.host.toString(),
-                      style: TextStyles.body3,
+                      widget.event.description,
+                      maxLines: 2,
+                      style: TextStyles.body1,
                     ),
-                    const SizedBox(height: 16),
-                    Text(widget.event.description),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Text(
+                          '${'by'.translate} ${widget.event.host.firstName ?? ''}',
+                          style: TextStyles.body3,
+                        ),
+                        // const SizedBox(width: 20),
+                        // Text("(${widget.event.host.numberOfRaters}) ${widget.event.host.stars}",
+                        //     style: TextStyles.body3),
+                      ],
+                    ),
+                    Text("(${widget.event.host.numberOfRaters}) ${widget.event.host.stars}", style: TextStyles.body3),
+                    // Text(
+                    //   //TODO: add host name
+                    //   widget.event.host.toString(),
+                    //   style: TextStyles.body3,
+                    // ),
                     const SizedBox(height: 16),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,

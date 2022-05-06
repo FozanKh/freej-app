@@ -299,9 +299,10 @@
 
   "application_done_successfully": "تم تقديم الطلب بنجاح",
   "cancellation_done_successfully": "تم الإلغاء بنجاح",
-  "Accept_done_successfully": "تم القبول بنجاح",
+  "acceptance_done_successfully": "تم القبول بنجاح",
   "rejection_done_successfully": "تم الرفض بنجاح",
-  "complete_done_successfully": "تم الإكمال بنجاح",
+  "completion_done_successfully": "تم الإكمال بنجاح",
+  "review_added_successfully": "تم إضافة المرجعة بنجاح",
   "no_application_found": "لم يتم العثور على الطلب",
   "delete_post": "حذف هذه الملف الخدمة",
   "edit_post": "تعديل الخدمة",
@@ -343,5 +344,7 @@
   "add_image": "أضف صورة",
   "image": "صورة",
   "images": "الصور",
-  "by": "بواسطة"
+  "by": "بواسطة",
+  "create_issue": "إنشاء طلب صيانة",
+  "comment": "تعليق"
 }

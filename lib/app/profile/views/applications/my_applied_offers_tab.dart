@@ -55,6 +55,7 @@ class _MyAppliedOffersTabState extends State<MyAppliedOffersTab> {
                     onTap: () async => Nav.openPage(context: context, page: PostView(post: posts.data![index]))
                         .then((value) => setState(() {})),
                     editCallback: widget.controller.startEditingPost,
+                    orderCallback: () {},
                   ),
                 ).toList(),
               ),

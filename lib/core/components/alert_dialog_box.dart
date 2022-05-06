@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../exports/core.dart';
 
@@ -40,7 +39,7 @@ class AlertDialogBox {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
                     child: RoundedButton(
                       buttonColor: Colors.black,
                       title: buttonTitle.translate,
@@ -79,7 +78,7 @@ class AlertDialogBox {
             title: title != ''
                 ? Text(
                     locale ? title.translate : title,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   )
                 : null,
@@ -157,7 +156,7 @@ class AlertDialogBox {
               title: title != null
                   ? Text(
                       locale ? title.translate : title,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     )
                   : null,

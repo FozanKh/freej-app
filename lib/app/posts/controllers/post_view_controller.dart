@@ -138,7 +138,7 @@ class PostViewController {
           ? await PostRepository.instance.getOffers(refresh: true)
           : await PostRepository.instance.getRequests(refresh: true);
       await pr.hide();
-      await AlertDialogBox.showAlert(context, message: "completion_done_successfully".translate);
+      await AlertDialogBox.showAlert(context, message: translateText("review_added_successfully"));
       return true;
     } catch (e) {
       await pr.hide();

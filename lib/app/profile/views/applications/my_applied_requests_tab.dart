@@ -45,6 +45,7 @@ class _MyAppliedRequestsTabState extends State<MyAppliedRequestsTab> {
                     onTap: () async => Nav.openPage(context: context, page: PostView(post: posts.data![index]))
                         .then((value) => setState(() {})),
                     editCallback: widget.controller.startEditingPost,
+                    orderCallback: () {},
                   ),
                 ).toList(),
               ),

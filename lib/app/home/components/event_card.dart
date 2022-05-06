@@ -65,23 +65,11 @@ class _EventCardState extends State<EventCard> {
                       style: TextStyles.body1,
                     ),
                     const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Text(
-                          '${'by'.translate} ${widget.event.host.firstName ?? ''}',
-                          style: TextStyles.body3,
-                        ),
-                        // const SizedBox(width: 20),
-                        // Text("(${widget.event.host.numberOfRaters}) ${widget.event.host.stars}",
-                        //     style: TextStyles.body3),
-                      ],
+                    Text(
+                      '${'by'.translate} ${widget.event.host.firstName ?? ''}',
+                      style: TextStyles.body3,
                     ),
                     Text("(${widget.event.host.numberOfRaters}) ${widget.event.host.stars}", style: TextStyles.body3),
-                    // Text(
-                    //   //TODO: add host name
-                    //   widget.event.host.toString(),
-                    //   style: TextStyles.body3,
-                    // ),
                     const SizedBox(height: 16),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,

@@ -203,6 +203,7 @@
     "bathrooms": "Bathrooms",
     "other": "Other"
   },
+  
   "are_you_sure_the_problem_is_solved": "Are you sure the problem is solved?",
   "no_whatsapp_group_for_your_building_yet_contact": "No WhatsApp group for your building yet, please contact your building supervisor.",
   "solved": "Solved",
@@ -301,6 +302,7 @@
   "acceptance_done_successfully": "Acceptance done successfully",
   "rejection_done_successfully": "Rejection done successfully",
   "completion_done_successfully": "Completion done successfully",
+  "review_added_successfully": "Review added successfully",
   "no_application_found": "No application found",
   "delete_post": "Delete Post",
   "edit_post": "Edit Post",
@@ -342,5 +344,7 @@
   "add_image": "Add an Image",
   "image": "Image",
   "images": "Images",
-  "by": "By"
+  "by": "By",
+  "create_issue": "Create a Issue",
+  "comment": "Comment"
 }

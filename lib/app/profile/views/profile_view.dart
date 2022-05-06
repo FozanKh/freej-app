@@ -142,7 +142,8 @@ class _ProfileViewState extends State<ProfileView> {
                 // ProfileOptionCard(
                 //   icon: PhosphorIcons.intersect,
                 //   onTap: () async {
-                //     await FirebaseFirestore.instance.collection('test').doc("test1").set({"data": "test"});
+                //     print(translateText("completion_done_successfully"));
+                //     await AlertDialogBox.showAlert(context, message: translateText("completion_done_successfully"));
                 //   },
                 //   title: 'test',
                 // ),

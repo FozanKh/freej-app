@@ -23,7 +23,7 @@ class _PostCardState extends State<PostCard> {
   bool showDeleteButton = false;
   Color get postColor => widget.post.type == PostType.offer ? kBlue : kPrimaryColor;
   String get postButton => widget.post.type == PostType.offer ? 'order' : 'provide';
-  String get postButton2 => widget.post.type == PostType.offer ? 'ordered' : 'provided';
+  String get postButton2 => widget.post.applicationStatus.name.translate;
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
@@ -70,6 +70,7 @@ class _PostCardState extends State<PostCard> {
                       '${'by'.translate} ${widget.post.owner.firstName ?? ''}',
                       style: TextStyles.body3,
                     ),
+                    Text("(${widget.post.owner.numberOfRaters}) ${widget.post.owner.stars}", style: TextStyles.body3),
                     const SizedBox(height: 16),
                     Align(
                       alignment: Alignment.bottomCenter,

@@ -1,3 +1,5 @@
+import 'package:freej/core/services/local/shared_pref.dart';
+
 import '../models/notifications.dart';
 import '../services/notification_services.dart';
 
@@ -17,5 +19,18 @@ class NotificationsRepository {
       _notifications.sort();
     }
     return _notifications;
+  }
+
+  Future<bool> showNotificationRedDot() async {
+    try {
+      return _notifications.first.createdAt.millisecondsSinceEpoch >
+          ((await SharedPreference.instance.getLastNotificationCheck())?.millisecondsSinceEpoch ?? 0);
+    } catch (e) {
+      return false;
+    }
+  }
+
+  void clear() {
+    _notifications.clear();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freej/core/exports/core.dart';
+import 'package:freej/core/services/local/shared_pref.dart';
 
 import '../components/notification_card.dart';
 import '../controllers/notifications_view_controller.dart';
@@ -18,6 +19,7 @@ class _NotificationsViewState extends State<NotificationsView> {
 
   @override
   void initState() {
+    SharedPreference.instance.setLastNotificationCheck();
     controller = NotificationsViewController(context);
     super.initState();
   }

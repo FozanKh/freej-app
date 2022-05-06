@@ -10,8 +10,8 @@ class PostRepository {
   List<Post> _requests = [];
 
   Future<void> init() async {
-    await getOffers();
-    await getRequests();
+    await getOffers(refresh: true);
+    await getRequests(refresh: true);
   }
 
   Future<List<Post>> getOffers({bool refresh = false}) async {
@@ -32,5 +32,6 @@ class PostRepository {
 
   void clear() {
     _offers.clear();
+    _requests.clear();
   }
 }

@@ -8,7 +8,7 @@ class MaintenanceIssueRepository {
   List<MaintenanceIssue> _maintenanceIssues = [];
 
   Future<void> init() async {
-    await getAllMaintenanceIssues();
+    await getAllMaintenanceIssues(refresh: true);
   }
 
   Future<List<MaintenanceIssue>> getAllMaintenanceIssues({bool refresh = false}) async {
@@ -27,5 +27,9 @@ class MaintenanceIssueRepository {
     });
     _maintenanceIssues.add(issue);
     _maintenanceIssues.sort();
+  }
+
+  void clear() {
+    _maintenanceIssues.clear();
   }
 }

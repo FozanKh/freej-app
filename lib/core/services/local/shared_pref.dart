@@ -99,4 +99,13 @@ class SharedPreference {
     await remove('refresh-token');
     await remove('access-token');
   }
+
+  Future<void> setLastNotificationCheck() async {
+    await save('last-notification-check', DateTime.now().toIso8601String());
+  }
+
+  Future<DateTime?> getLastNotificationCheck() async {
+    String date = await read('last-notification-check');
+    return DateTime.tryParse(date);
+  }
 }

@@ -1,10 +1,16 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:freej/app/announcement/repository/announcement_repository.dart';
+import 'package:freej/app/campus/repositories/building_repository.dart';
+import 'package:freej/app/events/repositories/event_repository.dart';
+import 'package:freej/app/posts/post_repository.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/services/api/request_manager.dart';
 import '../../../core/services/local/shared_pref.dart';
+import '../../building/repositories/maintenance_issue_repository.dart';
+import '../../notification/repositories/notifications_repository.dart';
 import '../models/auth_token.dart';
 import '../models/user.dart';
 import 'package:http/http.dart' as http;
@@ -96,6 +102,11 @@ class AuthServices {
   static Future<void> logout(BuildContext context, {bool notify = true}) async {
     log(context.read<AuthToken>().access?.token ?? 'No token', name: ('AuthService/logout'));
     await SharedPreference.instance.removeToken();
+    AnnouncementRepository.instance.clear();
+    MaintenanceIssueRepository.instance.clear();
+    EventRepository.instance.clear();
+    PostRepository.instance.clear();
+    NotificationsRepository.instance.clear();
     context.read<AuthToken>().remove(notify: notify);
     context.read<User>().remove(notify: notify);
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freej/app/notification/repositories/notifications_repository.dart';
 import 'package:freej/app/notification/views/notifications_view.dart';
 
 import '../../../core/constants/phosphor_icons.dart';
@@ -36,20 +37,48 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             ],
           ),
           const Spacer(),
-          GestureDetector(
-            onTap: () => Nav.openPage(context: context, page: const NotificationsView()),
-            child: Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(Insets.m),
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: kPrimaryColorLight,
+          Stack(
+            children: [
+              GestureDetector(
+                onTap: () => Nav.openPage(context: context, page: const NotificationsView()),
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: kPrimaryColorLight,
+                  ),
+                  child: Stack(
+                    alignment: Alignment.topRight,
+                    children: [
+                      FutureBuilder<bool>(
+                        future: NotificationsRepository.instance.showNotificationRedDot(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData && snapshot.data == true) {
+                            return Container(
+                              height: 15,
+                              width: 15,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: kRed2,
+                              ),
+                            );
+                          } else {
+                            return const SizedBox();
+                          }
+                        },
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.all(Insets.m),
+                        child: Icon(
+                          PhosphorIcons.bell_fill,
+                          color: kPrimaryColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              child: const Icon(
-                PhosphorIcons.bell_fill,
-                color: kPrimaryColor,
-              ),
-            ),
+            ],
           )
         ],
       ),

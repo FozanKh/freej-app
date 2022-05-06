@@ -10,7 +10,7 @@ class AnnouncementRepository {
   List<CommercialAnnouncement> _commercialAnnouncements = [];
 
   Future<void> init() async {
-    await getAllAnnouncements();
+    await getAllAnnouncements(refresh: true);
   }
 
   Future<List<Announcement>> getAllAnnouncements({bool refresh = false}) async {
@@ -27,5 +27,10 @@ class AnnouncementRepository {
     } else {
       return _commercialAnnouncements;
     }
+  }
+
+  void clear() {
+    _announcement.clear();
+    _commercialAnnouncements.clear();
   }
 }

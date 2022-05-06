@@ -8,7 +8,7 @@ class EventRepository {
   List<Event> _events = [];
 
   Future<void> init() async {
-    await getAllEvents();
+    await getAllEvents(refresh: true);
   }
 
   Future<List<Event>> getAllEvents({bool refresh = false}) async {
@@ -17,5 +17,9 @@ class EventRepository {
     } else {
       return _events;
     }
+  }
+
+  void clear() {
+    _events.clear();
   }
 }

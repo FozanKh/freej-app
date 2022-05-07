@@ -103,7 +103,7 @@ class _CreateEventViewState extends State<CreateEventView> {
       builder: (BuildContext context) => DatePickerDialog(
         initialDate: DateTime.now(),
         firstDate: DateTime.now(),
-        lastDate: DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch + 31556952 * 10 ^ 4),
+        lastDate: DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch + 3.154e+10.toInt()),
       ),
     );
     if (newDate != null) {

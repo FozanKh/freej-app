@@ -16,9 +16,13 @@ class PostViewController {
     pr = ProgressDialog(context);
   }
 
+  Color get postColor => post.type == PostType.offer ? kBlue : kPrimaryColor;
+  String get postButton => post.type == PostType.offer ? 'order' : 'provide';
+  String get postButton2 => post.applicationStatus.name.translate;
+
   String get actionButtonTitle {
     if (post.applicationStatus == PostApplicationStatus.unknown) {
-      return 'order'.translate;
+      return postButton.translate;
     } else {
       return post.applicationStatus.toString().translate;
     }

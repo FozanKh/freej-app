@@ -5,9 +5,22 @@ import '../models/maintenance_issue.dart';
 
 class BuildingServices {
   static final _maintenanceIssuesUrl = "${RequestManger.baseUrl}/campuses/residents/me/building-issues/";
+  static final _buildingProfileUrl = "${RequestManger.baseUrl}/campuses/residents/me/building/";
   static final _fixMaintenanceIssueUrl = "${RequestManger.baseUrl}/campuses/residents/me/fix-building-issues/<pk>/";
   static final _buildingsUrl = "${RequestManger.baseUrl}/campuses/<pk>/buildings/";
   static final _campusesUrl = "${RequestManger.baseUrl}/campuses/";
+
+  static Future<void> updateBuildingWhatsapp(String url) async {
+    Map<String, dynamic> body = {
+      "whatsApp_link": url,
+      "location_url": "https://google.com",
+    };
+    await RequestManger.fetchObject(
+      url: _buildingProfileUrl,
+      method: Method.PATCH,
+      body: body,
+    );
+  }
 
   static Future<List<Campus>> getAllCampuses() async {
     return (await RequestManger.fetchList(

@@ -25,6 +25,7 @@ class HomeViewController {
   late final GlobalKey<RefreshIndicatorState> eventsRefreshKey;
   late final GlobalKey<RefreshIndicatorState> offersRefreshKey;
   late final GlobalKey<RefreshIndicatorState> requestsRefreshKey;
+  bool myBuildingOnly = false;
 
   HomeViewController(this.context, state) {
     pr = ProgressDialog(context);
@@ -74,7 +75,12 @@ class HomeViewController {
 
   Future<List<Event>> getAllEvents({refresh = false}) async {
     try {
-      return EventRepository.instance.getAllEvents(refresh: refresh);
+      List<Event> events = await EventRepository.instance.getAllEvents(refresh: refresh);
+      if (myBuildingOnly) {
+        return events.where(((e) => e.host.building == context.read<User>().building.name)).toList();
+      } else {
+        return events;
+      }
     } catch (e) {
       AlertDialogBox.showAlert(context, message: e.toString().translate);
     }
@@ -85,6 +91,9 @@ class HomeViewController {
     try {
       List<Post> posts = await PostRepository.instance.getOffers(refresh: refresh);
       List<Post> refinedPosts = posts.where(((e) => e.owner.id != context.read<User>().id)).toList();
+      if (myBuildingOnly) {
+        refinedPosts = refinedPosts.where(((e) => e.owner.building == context.read<User>().building.name)).toList();
+      }
       return refinedPosts;
     } catch (e) {
       AlertDialogBox.showAlert(context, message: e.toString().translate);
@@ -96,6 +105,9 @@ class HomeViewController {
     try {
       List<Post> posts = await PostRepository.instance.getRequests(refresh: refresh);
       List<Post> refinedPosts = posts.where(((e) => e.owner.id != context.read<User>().id)).toList();
+      if (myBuildingOnly) {
+        refinedPosts = refinedPosts.where(((e) => e.owner.building == context.read<User>().building.name)).toList();
+      }
       return refinedPosts;
     } catch (e) {
       AlertDialogBox.showAlert(context, message: e.toString().translate);

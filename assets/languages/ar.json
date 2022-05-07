@@ -192,8 +192,8 @@
   "leave_event_assertion": "هل أنت متأكد أنك تريد مغادرة هذه الفعالية؟",
   "join_event_assertion": "هل أنت متأكد أنك تريد الانضمام إلى هذه الفعالية؟",
   "edit_your_profile": "عدل معلوماتك",
-  "join_building_whatsapp_group": "لمبناك انضم إلى مجموعة الـ Whatsapp",
-  "manage_building_whatsapp_group": "لمبناك تعديل إلى مجموعة الـ Whatsapp",
+  "join_building_whatsapp_group": "انضم إلى مجموعة الواتساب الخاص لمبناك",
+  "manage_building_whatsapp_group": "تعديل إلى مجموعة الواتساب لمبناك",
 
   "is_the_problem_solved": "هل تم حل المشكلة؟",
 
@@ -205,7 +205,7 @@
   },
 
   "are_you_sure_the_problem_is_solved": "هل أنت متأكد أنه تم حل المشكلة؟",
-  "no_whatsapp_group_for_your_building_yet_contact": "لا توجد مجموعة WhatsApp للمبنى الخاص بك حتى الآن ، يرجى التواصل مع مشرف المبنى.",
+  "no_whatsapp_group_for_your_building_yet_contact": "لا توجد مجموعة واتساب للمبنى الخاص بك حتى الآن ، يرجى التواصل مع مشرف المبنى.",
   "solved": "تم الحل",
   "maintenance_issue_type": "نوع طلب الصيانة",
   "submit": "إرسال",
@@ -328,8 +328,9 @@
   "deactivation_done_successfully": "تم إلغاء التفعيل بنجاح",
   "activation_done_successfully": "تم التفعيل بنجاح",
 
-  "could_not_update_whatsapp_link": "عذرًا ، تعذر تحديث رابط مجموعة WhatsApp",
-  "whatsapp_group_url": "رابط مجموعة WhatsApp",
+  "could_not_update_whatsapp_link": "عذرًا ، تعذر تحديث رابط مجموعة الواتساب",
+  "whatsapp_group_link_updated_successfully": "تم تحديث رابط مجموعة الواتساب بنجاح",
+  "whatsapp_group_url": "رابط مجموعة الواتساب",
   "share_freej": "مشاركة فريج",
   "share_freej_message": "لا تفوت فرصة زيارة فريج!",
 
@@ -348,5 +349,6 @@
   "by": "بواسطة",
   "create_issue": "إنشاء طلب صيانة",
   "comment": "تعليق",
-  "show_me": "أطلع على العرض"
+  "show_me": "أطلع على العرض",
+  "my_building_only": "المبنى الخاص بك"
 }

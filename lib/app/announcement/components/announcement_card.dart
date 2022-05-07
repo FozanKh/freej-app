@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freej/app/announcement/services/announcement_services.dart';
 import 'package:provider/provider.dart';
 
 import 'package:freej/core/exports/core.dart';
@@ -92,7 +93,10 @@ class _AnnouncementCardState extends State<AnnouncementCard> {
                                   if (announcement.link != null)
                                     RoundedButton(
                                       title: 'show_me'.translate,
-                                      onTap: () => Nav.openUrl(context, url: announcement.link!),
+                                      onTap: () async {
+                                        AnnouncementServices.addImpression(announcement);
+                                        Nav.openUrl(context, url: announcement.link!);
+                                      },
                                     )
                                 ],
                               );

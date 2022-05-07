@@ -82,15 +82,20 @@ class BuildingViewController {
         initialValue: context.read<User>().building.whatsAppLink,
       );
       if (newUrl == null) return;
-      if (validateWhatsappGroupLink(newUrl)) await pr.show();
-      await Nav.openUrl(context, url: context.read<User>().building.whatsAppLink!);
-      await pr.hide();
+      if (validateWhatsappGroupLink(newUrl)) {
+        await pr.show();
+        await BuildingServices.updateBuildingWhatsapp(newUrl);
+        await pr.hide();
+        await AlertDialogBox.showAlert(context, message: 'whatsapp_group_link_updated_successfully'.translate);
+      } else {
+        throw (translateText('invalid_error', arguments: ['whatsapp_group_url']));
+      }
     } on String catch (e) {
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: e.toString());
     } catch (e) {
       await pr.hide();
-      await AlertDialogBox.showAlert(context, message: 'could_not_update_whatsapp_link');
+      await AlertDialogBox.showAlert(context, message: 'could_not_update_whatsapp_link'.translate);
     }
   }
 }

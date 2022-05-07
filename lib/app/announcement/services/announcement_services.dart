@@ -7,6 +7,8 @@ class AnnouncementServices {
   static final _announcementUrl = "${RequestManger.baseUrl}/announcements/<pk>/";
   static final _sendAnnouncementUrl = "${RequestManger.baseUrl}/announcements/send/";
   static final _commercialAnnouncementsUrl = "${RequestManger.baseUrl}/announcements/commercial/";
+  static final _commercialAnnouncementsImpressionUrl =
+      "${RequestManger.baseUrl}/announcements/commercial/<pk>/impression/";
 
   static Future<List<Announcement>> getAllAnnouncements() async {
     return (await RequestManger.fetchList(
@@ -46,6 +48,13 @@ class AnnouncementServices {
         url: _announcementUrl.replaceAll("<pk>", announcement.id.toString()),
         method: Method.DELETE,
       ),
+    );
+  }
+
+  static Future<void> addImpression(Announcement announcement) async {
+    await RequestManger.fetchObject(
+      url: _commercialAnnouncementsImpressionUrl.replaceAll("<pk>", announcement.id.toString()),
+      method: Method.POST,
     );
   }
 }

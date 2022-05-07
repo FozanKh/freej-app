@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:freej/app/home/components/home_app_bar.dart';
 import 'package:freej/app/home/views/tabs/offers_tab.dart';
 import 'package:freej/app/home/views/tabs/requests_tab.dart';
+import 'package:freej/core/constants/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/exports/core.dart';
@@ -59,6 +61,36 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
                 Tab(child: Text('offers'.translate, textAlign: TextAlign.center, style: TextStyles.body1)),
                 Tab(child: Text('events'.translate, textAlign: TextAlign.center, style: TextStyles.body1)),
               ],
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey.shade300))),
+            child: IntrinsicHeight(
+              child: InkWell(
+                onTap: () {
+                  setState(() => controller.myBuildingOnly = !controller.myBuildingOnly);
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                      child: Icon(PhosphorIcons.buildings),
+                    ),
+                    Text(
+                      'my_building_only'.translate,
+                    ),
+                    const Spacer(),
+                    Switch(
+                      value: controller.myBuildingOnly,
+                      onChanged: (value) {
+                        setState(() => controller.myBuildingOnly = !controller.myBuildingOnly);
+                      },
+                      activeColor: kPrimaryColor,
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
           Expanded(

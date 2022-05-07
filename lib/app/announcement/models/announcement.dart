@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:freej/core/controllers/enum_controller.dart';
+import 'package:freej/core/util/util.dart';
 
 enum AnnouncementType { building, campus, advertisement }
 
@@ -46,15 +47,18 @@ class Announcement {
 
   String toJson() => json.encode(toMap());
 
-  factory Announcement.fromMap(Map<String, dynamic> json) => Announcement(
-        id: json["id"],
-        createdAt: DateTime.parse(json["created_at"]),
-        modifiedAt: DateTime.parse(json["modified_at"]),
-        type: Enums.fromString(AnnouncementType.values, json["type"]) ?? AnnouncementType.building,
-        title: json["title"],
-        body: json["body"],
-        sender: json["sender"],
-      );
+  factory Announcement.fromMap(Map<String, dynamic> json) {
+    print(json.prettyJson);
+    return Announcement(
+      id: json["id"],
+      createdAt: DateTime.parse(json["created_at"]),
+      modifiedAt: DateTime.parse(json["modified_at"]),
+      type: Enums.fromString(AnnouncementType.values, json["type"]) ?? AnnouncementType.building,
+      title: json["title"],
+      body: json["body"],
+      sender: json["sender"],
+    );
+  }
 
   Map<String, dynamic> toMap() => {
         "id": id,

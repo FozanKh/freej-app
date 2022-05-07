@@ -6,6 +6,8 @@ class Person {
   Person({
     required this.firstName,
     required this.lastName,
+    required this.room,
+    required this.building,
     required this.mobileNumber,
     required this.id,
     required this.numberOfRaters,
@@ -14,6 +16,8 @@ class Person {
 
   final String? firstName;
   final String? lastName;
+  final String? room;
+  final String? building;
   final String? mobileNumber;
   final int id;
   final int? numberOfRaters;
@@ -32,6 +36,8 @@ class Person {
     String? firstName,
     String? lastName,
     String? mobileNumber,
+    String? room,
+    String? building,
     int? id,
     int? numberOfRaters,
     double? rating,
@@ -43,6 +49,8 @@ class Person {
         id: id ?? this.id,
         numberOfRaters: numberOfRaters ?? this.numberOfRaters,
         rating: rating ?? this.rating,
+        room: room ?? this.room,
+        building: building ?? this.building,
       );
 
   factory Person.fromJson(String str) => Person.fromMap(json.decode(str));
@@ -50,12 +58,15 @@ class Person {
   String toJson() => json.encode(toMap());
 
   factory Person.fromMap(Map<String, dynamic> json) => Person(
-      firstName: json["first_name"],
-      lastName: json["last_name"],
-      mobileNumber: json["mobile_number"],
-      id: json["id"],
-      numberOfRaters: json["num_of_raters"],
-      rating: json["rating"]);
+        firstName: json["first_name"],
+        lastName: json["last_name"],
+        mobileNumber: json["mobile_number"],
+        id: json["id"],
+        numberOfRaters: json["num_of_raters"],
+        rating: json["rating"],
+        room: json["room_name"],
+        building: json["building_name"],
+      );
 
   Map<String, dynamic> toMap() => {
         "first_name": firstName,
@@ -64,5 +75,7 @@ class Person {
         "id": id,
         "num_of_raters": numberOfRaters,
         "rating": rating,
+        "room_name": room,
+        "building_name": building,
       };
 }

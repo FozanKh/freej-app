@@ -21,8 +21,11 @@ class NotificationsRepository {
     return _notifications;
   }
 
-  Future<bool> showNotificationRedDot() async {
+  Future<bool> showNotificationBadge() async {
     try {
+      if (_notifications.isEmpty) {
+        await getAllNotifications();
+      }
       return _notifications.first.createdAt.millisecondsSinceEpoch >
           ((await SharedPreference.instance.getLastNotificationCheck())?.millisecondsSinceEpoch ?? 0);
     } catch (e) {

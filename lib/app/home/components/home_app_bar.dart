@@ -6,14 +6,21 @@ import '../../../core/constants/phosphor_icons.dart';
 import '../../../core/exports/core.dart';
 import '../../auth/models/user.dart';
 
-class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
+class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
   final double height;
   final User user;
   const HomeAppBar({Key? key, required this.height, required this.user}) : super(key: key);
 
   @override
-  Size get preferredSize => Size.fromHeight(height);
+  State<HomeAppBar> createState() => _HomeAppBarState();
 
+  @override
+  // TODO: implement preferredSize
+  Size get preferredSize => Size.fromHeight(height);
+}
+
+class _HomeAppBarState extends State<HomeAppBar> {
+  @override
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,12 +33,12 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                user.name,
+                widget.user.name,
                 style: TextStyles.t1,
               ),
               // Add user.building.number
               Text(
-                '${'your_are_in_building'.translate} ${user.building.name}',
+                '${'your_are_in_building'.translate} ${widget.user.building.name}',
                 style: TextStyles.caption.copyWith(color: Colors.grey),
               ),
             ],
@@ -40,7 +47,8 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           Stack(
             children: [
               GestureDetector(
-                onTap: () => Nav.openPage(context: context, page: const NotificationsView()),
+                onTap: () =>
+                    Nav.openPage(context: context, page: const NotificationsView()).then((value) => setState(() {})),
                 child: Container(
                   alignment: Alignment.center,
                   decoration: const BoxDecoration(
@@ -48,10 +56,10 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                     color: kPrimaryColorLight,
                   ),
                   child: Stack(
-                    alignment: Alignment.topRight,
+                    alignment: Alignment.topRight.relative(),
                     children: [
                       FutureBuilder<bool>(
-                        future: NotificationsRepository.instance.showNotificationRedDot(),
+                        future: NotificationsRepository.instance.showNotificationBadge(),
                         builder: (context, snapshot) {
                           if (snapshot.hasData && snapshot.data == true) {
                             return Container(

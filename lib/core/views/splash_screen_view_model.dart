@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:freej/app/notification/repositories/notifications_repository.dart';
 import 'package:provider/provider.dart';
 import 'package:freej/core/views/wrapper.dart';
 
@@ -22,12 +23,13 @@ class SplashScreenViewModel {
     // Keep User Signed in
     AuthToken? authToken = await SharedPreference.instance.getToken();
     if (authToken?.refresh?.isActive ?? false) {
-      // TODO: Refresh access token
-      context.read<AuthToken>().updateFromToken(authToken!);
-      authToken = context.read<AuthToken>();
-      // TODO: initialize user repositories
       try {
+        // TODO: Refresh access token
+        context.read<AuthToken>().updateFromToken(authToken!);
+        authToken = context.read<AuthToken>();
+        // TODO: initialize user repositories
         context.read<User>().updateFromUser(await AuthServices.getUserProfile(), switchTab: false);
+        await NotificationsRepository.instance.init();
       } catch (e) {
         log("Error Getting User info", name: "SplashScreen/load");
         log('ERROR:' + e.toString());

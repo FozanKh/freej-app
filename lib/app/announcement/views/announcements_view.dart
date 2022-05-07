@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:freej/app/announcement/componenets/announcement_card.dart';
+import 'package:freej/app/announcement/components/announcement_card.dart';
+import 'package:freej/app/announcement/views/campus_announcements_tab.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/exports/core.dart';
 import '../../auth/models/user.dart';
 import '../../home/components/home_app_bar.dart';
-import '../../home/components/post_card.dart';
 import '../controllers/announcement_view_controller.dart';
 import '../models/announcement.dart';
 
@@ -97,29 +97,7 @@ class _AnnouncementViewState extends State<AnnouncementView> with SingleTickerPr
                       if (controller.campusAnnouncements.isEmpty)
                         Center(child: FullScreenBanner("no_announcements_available".translate))
                       else
-                        RefreshIndicator(
-                          key: controller.campusAnnouncementsRefreshKey,
-                          onRefresh: () => controller.getAnnouncements(refresh: true).then((value) => setState(() {})),
-                          child: SingleChildScrollView(
-                            padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
-                            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                            child: ConstrainedBox(
-                              constraints: BoxConstraints(
-                                minHeight: MediaQuery.of(context).size.height - kToolbarHeight,
-                                minWidth: MediaQuery.of(context).size.width,
-                              ),
-                              child: Column(
-                                children: List.generate(
-                                  controller.campusAnnouncements.length,
-                                  (index) => AnnouncementCard(
-                                    announcement: controller.campusAnnouncements[index],
-                                    deleteAnnouncementCallback: () {},
-                                  ),
-                                ).toList(),
-                              ),
-                            ),
-                          ),
-                        ),
+                        CampusAnnouncementsTab(controller: controller),
                     ],
                   );
                 }),

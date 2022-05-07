@@ -37,7 +37,7 @@ class AnnouncementViewController {
 
   Future<List<Announcement>> getAnnouncements({bool refresh = false}) async {
     List<Announcement> announcement = await AnnouncementRepository.instance.getAllAnnouncements(refresh: refresh);
-    campusAnnouncements = announcement.where((element) => element.type == AnnouncementType.campus).toList();
+    campusAnnouncements = announcement.where((element) => element.type != AnnouncementType.building).toList();
     buildingAnnouncements = announcement.where((element) => element.type == AnnouncementType.building).toList();
     return announcement;
   }

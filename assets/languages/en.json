@@ -203,7 +203,7 @@
     "bathrooms": "Bathrooms",
     "other": "Other"
   },
-  
+
   "are_you_sure_the_problem_is_solved": "Are you sure the problem is solved?",
   "no_whatsapp_group_for_your_building_yet_contact": "No WhatsApp group for your building yet, please contact your building supervisor.",
   "solved": "Solved",
@@ -346,5 +346,6 @@
   "images": "Images",
   "by": "By",
   "create_issue": "Create a Issue",
-  "comment": "Comment"
+  "comment": "Comment",
+  "show_me": "Show Me"
 }

@@ -7,6 +7,7 @@ import '../../../core/constants/phosphor_icons.dart';
 import '../../auth/models/user.dart';
 import '../../report/services/report_services.dart';
 import '../models/announcement.dart';
+import '../models/commercial_announcement.dart';
 
 class AnnouncementCard extends StatefulWidget {
   final Announcement announcement;
@@ -77,6 +78,26 @@ class _AnnouncementCardState extends State<AnnouncementCard> {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
+                        if (widget.announcement.type == AnnouncementType.advertisement)
+                          Builder(
+                            builder: (context) {
+                              CommercialAnnouncement announcement = widget.announcement as CommercialAnnouncement;
+                              return Column(
+                                children: [
+                                  const SizedBox(height: 30),
+                                  if (announcement.image != null)
+                                    CachedImage(
+                                      url: announcement.image,
+                                    ),
+                                  if (announcement.link != null)
+                                    RoundedButton(
+                                      title: 'show_me'.translate,
+                                      onTap: () => Nav.openUrl(context, url: announcement.link!),
+                                    )
+                                ],
+                              );
+                            },
+                          )
                       ],
                     ),
                   ),

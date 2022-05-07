@@ -15,10 +15,10 @@ class AnnouncementRepository {
 
   Future<List<Announcement>> getAllAnnouncements({bool refresh = false}) async {
     if (_announcement.isEmpty || refresh) {
-      return _announcement = await AnnouncementServices.getAllAnnouncements();
-    } else {
-      return _announcement;
+      _announcement = await AnnouncementServices.getAllAnnouncements();
+      _announcement.addAll(await AnnouncementServices.getAllCommercialAnnouncements());
     }
+    return _announcement;
   }
 
   Future<List<CommercialAnnouncement>> getAllCommercialAnnouncements({bool refresh = false}) async {

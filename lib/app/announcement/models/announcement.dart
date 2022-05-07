@@ -5,17 +5,6 @@ import 'package:freej/core/controllers/enum_controller.dart';
 enum AnnouncementType { building, campus, advertisement }
 
 class Announcement {
-  static final sample = Announcement.fromMap(
-    {
-      "id": 2,
-      "created_at": "2022-03-27T18:22:24.101681Z",
-      "modified_at": "2022-03-27T18:22:24.101716Z",
-      "type": "campus",
-      "title": "First campus announcement",
-      "body": "This is the first campus announcement",
-      "sender": 1
-    },
-  );
   Announcement({
     required this.id,
     required this.createdAt,

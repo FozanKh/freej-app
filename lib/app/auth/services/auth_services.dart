@@ -8,6 +8,7 @@ import 'package:freej/app/posts/post_repository.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/services/api/request_manager.dart';
+import '../../../core/services/firebase/fcm_services.dart';
 import '../../../core/services/local/shared_pref.dart';
 import '../../building/repositories/maintenance_issue_repository.dart';
 import '../../notification/repositories/notifications_repository.dart';
@@ -107,6 +108,7 @@ class AuthServices {
     EventRepository.instance.clear();
     PostRepository.instance.clear();
     NotificationsRepository.instance.clear();
+    await FCM.removeFcmTokenFromDatabase().catchError((_) => {});
     context.read<AuthToken>().remove(notify: notify);
     context.read<User>().remove(notify: notify);
   }

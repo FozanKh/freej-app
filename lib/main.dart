@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:freej/app/auth/models/auth_token.dart';
+import 'package:timeago/timeago.dart';
 import 'app/auth/models/user.dart';
 import 'core/exports/core.dart';
 import 'core/services/env/env_manager.dart';
@@ -46,6 +47,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     EnvironmentManager.init();
+    setLocaleMessages('ar', ArMessages());
     super.initState();
   }
 

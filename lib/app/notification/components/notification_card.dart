@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freej/core/constants/phosphor_icons.dart';
+import 'package:freej/main.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../../core/exports/core.dart';
@@ -37,11 +38,12 @@ class NotificationCard extends StatelessWidget {
                     color: kFontsColor,
                     fontWeight: FontWeight.w500,
                   ),
-                  maxLines: 1,
+                  // maxLines: 1,
                 ),
                 const SizedBox(height: 10),
-                // IconText(icon: Icons.access_time, text: timeago.format(DateTime(1990))),
-                IconText(icon: Icons.access_time, text: timeago.format(notification.createdAt).toString()),
+                IconText(
+                    icon: Icons.access_time,
+                    text: timeago.format(notification.createdAt, locale: MyApp.lang).toString()),
               ],
             ),
           ),

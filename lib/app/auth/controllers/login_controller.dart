@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/exports/core.dart';
+import '../../../core/services/firebase/fcm_services.dart';
 import '../../../core/services/local/shared_pref.dart';
 import '../models/auth_token.dart';
 import '../models/user.dart';
@@ -58,6 +59,7 @@ class LoginController {
     }
     context.read<User>().notifyListeners();
     context.read<AuthToken>().notifyListeners();
+    if (context.read<AuthToken>().access?.isActive ?? false) FCM.init();
     return;
   }
 

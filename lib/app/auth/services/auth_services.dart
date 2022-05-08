@@ -149,7 +149,9 @@ class AuthServices {
     EventRepository.instance.clear();
     PostRepository.instance.clear();
     NotificationsRepository.instance.clear();
-    await FCM.removeFcmTokenFromDatabase().catchError((_) => {});
+    if (context.read<AuthToken>().access?.isActive ?? false) {
+      await FCM.removeFcmTokenFromDatabase().catchError((_) => {});
+    }
     context.read<AuthToken>().remove(notify: notify);
     context.read<User>().remove(notify: notify);
   }

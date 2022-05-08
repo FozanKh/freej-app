@@ -11,6 +11,7 @@ import '../../app/auth/models/user.dart';
 import '../../app/auth/services/auth_services.dart';
 import '../controllers/enum_controller.dart';
 import '../services/env/env_manager.dart';
+import '../services/firebase/fcm_services.dart';
 import '../services/local/shared_pref.dart';
 
 class SplashScreenViewModel {

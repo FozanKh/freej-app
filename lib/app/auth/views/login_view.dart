@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freej/app/auth/views/forgot_password_view.dart';
 import 'package:freej/app/auth/views/registration_view.dart';
 
 import '../../../core/exports/core.dart';
@@ -49,6 +50,7 @@ class _LoginViewState extends State<LoginView> {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 onChanged: () => setState(() {}),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     RoundedTextFormField(
                       title: "email".translate,
@@ -63,6 +65,11 @@ class _LoginViewState extends State<LoginView> {
                       validator: controller.passwordValidator,
                       obscureText: true,
                       onSubmitted: (_) => controller.signIn(),
+                    ),
+                    const SizedBox(height: 5),
+                    InkWell(
+                      onTap: () => Nav.openPage(context: context, page: const ForgotPasswordView()),
+                      child: Text('forgot_password'.translate, style: TextStyles.clickable),
                     ),
                   ],
                 ),

@@ -150,6 +150,8 @@
   "old_password": "كلمة سر قديمة",
   "new_password": "كلمة السر الجديدة",
   "re_enter_your_new_password": "أعد إدخال كلمة مرورك الجديدة",
+  "passwords_dont_match": "كلمات المرور غير متطابقة ، حاول مرة أخرى",
+  "password_changed_successfully": "تم تغيير كلمة المرور بنجاح",
   "edit_date_of_birth": "تحرير تاريخ الميلاد",
 
   "search": "بحث",

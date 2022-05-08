@@ -150,6 +150,8 @@
   "old_password": "Old Password",
   "new_password": "New Password",
   "re_enter_your_new_password": "Re Enter Your New Password",
+  "passwords_dont_match": "Passwords don't match, please try again",
+  "password_changed_successfully": "Password changed successfully",
   "edit_date_of_birth": "Edit Date Of Birth",
 
   "search": "Search",

@@ -21,6 +21,9 @@ class AuthServices {
   static final _registerUrl = "${RequestManger.baseUrl}/auth/register/";
   static final _conformRegistrationUrl = "${RequestManger.baseUrl}/auth/register-confirmation/";
   static final _userProfileUrl = "${RequestManger.baseUrl}/campuses/residents/me/";
+  static final _requestForgotPasswordOtpUrl = "${RequestManger.baseUrl}/auth/request-change-password/";
+  static final _checkForgotPasswordOtpUrl = "${RequestManger.baseUrl}/auth/otp-check/";
+  static final _changePasswordUrl = "${RequestManger.baseUrl}/auth/change-password/";
   static final refreshTokenUrl = "${RequestManger.baseUrl}/auth/refresh/";
 
   static Future<AuthToken> login({required String username, required String password}) async {
@@ -98,6 +101,44 @@ class AuthServices {
     } else {
       throw ('Error, could not validate your information, please try again');
     }
+  }
+
+  static Future<Map<String, dynamic>> getForgotPasswordOtp({
+    required String email,
+  }) async {
+    Map<String, dynamic> body = {
+      "username": email,
+    };
+    log('hitting forgot password otp endpoint', name: 'getForgotPasswordOtp/AuthService');
+    return await RequestManger.fetchObject(
+        url: _requestForgotPasswordOtpUrl, method: Method.POST, body: body, needsAuth: false);
+  }
+
+  static Future<String> conformForgotPasswordOtp({
+    required String email,
+    required String otp,
+  }) async {
+    Map<String, dynamic> body = {
+      "username": email,
+      "otp": otp,
+    };
+    log('hitting register endpoint', name: 'conformForgotPasswordOtp/AuthService');
+    return (await RequestManger.fetchObject(
+        url: _checkForgotPasswordOtpUrl, method: Method.POST, body: body, needsAuth: false))['token'];
+  }
+
+  static Future<void> changePassword({
+    required String email,
+    required String password,
+    required String token,
+  }) async {
+    Map<String, dynamic> body = {
+      "username": email,
+      "new_password": password,
+      "token": token,
+    };
+    log('hitting changePassword endpoint', name: 'changePassword/AuthService');
+    await RequestManger.fetchObject(url: _changePasswordUrl, method: Method.POST, body: body, needsAuth: false);
   }
 
   static Future<void> logout(BuildContext context, {bool notify = true}) async {

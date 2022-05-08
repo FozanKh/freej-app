@@ -26,7 +26,17 @@ class _RequestsTabState extends State<RequestsTab> {
         if (!posts.hasData || posts.connectionState != ConnectionState.done) {
           return const Center(child: CircularProgressIndicator());
         } else if (!posts.hasData || (posts.data?.isEmpty ?? true)) {
-          return Center(child: FullScreenBanner("no_requests_available".translate));
+          RefreshIndicator(
+            onRefresh: () async => widget.controller.getAllRequests(refresh: true).then((value) => setState(() {})),
+            child: SizedBox.expand(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                child: Center(
+                  child: FullScreenBanner("no_requests_available".translate),
+                ),
+              ),
+            ),
+          );
         }
         return RefreshIndicator(
           key: widget.controller.requestsRefreshKey,

@@ -69,7 +69,17 @@ class _AnnouncementViewState extends State<AnnouncementView> with SingleTickerPr
                     controller: tabController,
                     children: [
                       if (controller.buildingAnnouncements.isEmpty)
-                        Center(child: FullScreenBanner("no_announcements_available".translate))
+                        RefreshIndicator(
+                          onRefresh: () => controller.getAnnouncements(refresh: true).then((value) => setState(() {})),
+                          child: SizedBox.expand(
+                            child: SingleChildScrollView(
+                              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                              child: Center(
+                                child: FullScreenBanner("no_announcements_available".translate),
+                              ),
+                            ),
+                          ),
+                        )
                       else
                         RefreshIndicator(
                           key: controller.buildingAnnouncementsRefreshKey,
@@ -95,7 +105,17 @@ class _AnnouncementViewState extends State<AnnouncementView> with SingleTickerPr
                           ),
                         ),
                       if (controller.campusAnnouncements.isEmpty)
-                        Center(child: FullScreenBanner("no_announcements_available".translate))
+                        RefreshIndicator(
+                          onRefresh: () => controller.getAnnouncements(refresh: true).then((value) => setState(() {})),
+                          child: SizedBox.expand(
+                            child: SingleChildScrollView(
+                              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                              child: Center(
+                                child: FullScreenBanner("no_announcements_available".translate),
+                              ),
+                            ),
+                          ),
+                        )
                       else
                         CampusAnnouncementsTab(controller: controller),
                     ],

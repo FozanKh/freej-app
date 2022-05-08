@@ -12,7 +12,7 @@ class NotificationsViewController {
     pr = ProgressDialog(context);
   }
 
-  Future<List<Notifications>> getAllNotifications({refresh: true}) async {
+  Future<List<Notifications>> getAllNotifications({refresh = false}) async {
     try {
       return await NotificationsRepository.instance.getAllNotifications(refresh: refresh);
     } catch (e) {

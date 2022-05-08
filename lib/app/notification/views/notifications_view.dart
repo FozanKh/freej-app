@@ -36,15 +36,30 @@ class _NotificationsViewState extends State<NotificationsView> {
           if (!snapshot.hasData || snapshot.connectionState != ConnectionState.done) {
             return const Center(child: CircularProgressIndicator());
           } else if (!snapshot.hasData || (snapshot.data?.isEmpty ?? true)) {
-            return Center(child: FullScreenBanner("no_notifications_yet_alert".translate));
+            RefreshIndicator(
+              onRefresh: () async => controller.getAllNotifications(refresh: true).then((value) => setState(() {})),
+              child: SizedBox.expand(
+                child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                    child: Center(child: FullScreenBanner("no_notifications_yet_alert".translate))),
+              ),
+            );
           }
-
-          return ListView.separated(
-            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-            padding: const EdgeInsets.fromLTRB(20, 15, 20, 50),
-            itemCount: snapshot.data!.length,
-            separatorBuilder: (context, index) => const Divider(),
-            itemBuilder: (context, index) => NotificationCard(notification: snapshot.data![index]),
+          return RefreshIndicator(
+            onRefresh: () async => controller.getAllNotifications(refresh: true).then((value) => setState(() {})),
+            child: SizedBox.expand(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: Insets.l, vertical: Insets.xl),
+                physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                child: SeparatedColumn(
+                  separator: const Divider(color: kTransparent),
+                  children: List.generate(
+                    snapshot.data!.length,
+                    (index) => NotificationCard(notification: snapshot.data![index]),
+                  ).toList(),
+                ),
+              ),
+            ),
           );
         },
       ),

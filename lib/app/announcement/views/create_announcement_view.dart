@@ -31,9 +31,9 @@ class _CreateAnnouncementViewState extends State<CreateAnnouncementView> {
           title: "submit".translate,
           onTap: () async {
             if (title.length < 4) {
-              AlertDialogBox.showAlert(context, message: 'please_enter_proper_title');
+              AlertDialogBox.showAlert(context, message: 'please_enter_proper_title'.translate);
             } else if (description.length < 5) {
-              AlertDialogBox.showAlert(context, message: 'please_enter_proper_description');
+              AlertDialogBox.showAlert(context, message: 'please_enter_proper_description'.translate);
             } else if (await widget.callback(title, description)) {
               Nav.popPage(context);
             }

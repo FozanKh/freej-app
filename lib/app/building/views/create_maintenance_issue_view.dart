@@ -42,9 +42,9 @@ class _CreateMaintenanceIssueViewState extends State<CreateMaintenanceIssueView>
           title: "submit".translate,
           onTap: () async {
             if (type == null) {
-              AlertDialogBox.showAlert(context, message: 'please_choose_issue_type');
+              AlertDialogBox.showAlert(context, message: 'please_choose_issue_type'.translate);
             } else if (description.length < 5) {
-              AlertDialogBox.showAlert(context, message: 'please_enter_proper_description');
+              AlertDialogBox.showAlert(context, message: 'please_enter_proper_description'.translate);
             } else if (await widget.callback(type, description)) {
               Nav.popPage(context);
             }

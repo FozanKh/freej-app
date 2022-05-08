@@ -49,7 +49,7 @@ class BuildingViewController {
       await BuildingServices.createMaintenanceIssue(type, description);
       MaintenanceIssueRepository.instance.getAllMaintenanceIssues(refresh: true);
       await pr.hide();
-      await AlertDialogBox.showAlert(context, message: 'maintenance_issue_created_successfully');
+      await AlertDialogBox.showAlert(context, message: 'maintenance_issue_created_successfully'.translate);
       return true;
     } catch (e) {
       await pr.hide();
@@ -60,7 +60,7 @@ class BuildingViewController {
 
   Future<void> openWhatsappGroup() async {
     if (context.read<User>().building.whatsAppLink == null) {
-      await AlertDialogBox.showAlert(context, message: "no_whatsapp_group_for_your_building_yet_contact");
+      await AlertDialogBox.showAlert(context, message: "no_whatsapp_group_for_your_building_yet_contact".translate);
       return;
     }
     await pr.show();

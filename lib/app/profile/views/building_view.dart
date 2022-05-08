@@ -110,7 +110,7 @@ class _BuildingViewState extends State<BuildingView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('statistics', style: TextStyles.h2.withColor(kWhite)),
+                        Text('statistics'.translate, style: TextStyles.h2.withColor(kWhite)),
                         RotatedBox(
                           quarterTurns: controller.showStats ? 2 : 0,
                           child: const Icon(Icons.arrow_drop_down, color: kWhite),

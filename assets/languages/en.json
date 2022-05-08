@@ -219,7 +219,7 @@
   "maintenance_issue_created_successfully": "Maintenance issue created successfully",
   "complete_your_profile": "Complete Your Profile",
   "announcements": "Announcements",
-  "announcement": "Announcement",
+  "announcement": "Ancmnt",
   "send_announcement": "Send announcement",
   "send_building_announcement": "Send Building Announcement",
   "title": "Title",
@@ -368,5 +368,7 @@
 
   "contacts": "Contacts",
 
-  "at": "at"
+  "at": "at",
+
+  "statistics": "Statistics"
 }

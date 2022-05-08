@@ -50,7 +50,8 @@ class NotificationCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Icon(PhosphorIcons.bell_fill, size: 30, color: kPrimaryColor),
+              Icon(notification.type == 'announcement' ? Icons.campaign : PhosphorIcons.bell_fill,
+                  size: 30, color: kPrimaryColor),
               const SizedBox(height: 5),
               FittedBox(
                 child: Container(

@@ -17,7 +17,7 @@ class PostViewController {
   }
 
   Color get postColor => post.type == PostType.offer ? kBlue : kPrimaryColor;
-  String get postButton => post.type == PostType.offer ? 'order' : 'provide';
+  String get postButton => post.type == PostType.offer ? 'benefit' : 'serve';
   String get postButton2 => post.applicationStatus.name.translate;
 
   String get actionButtonTitle {
@@ -79,6 +79,7 @@ class PostViewController {
           : await PostRepository.instance.getRequests(refresh: true);
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: "cancellation_done_successfully".translate);
+      Nav.popPage(context);
     } catch (e) {
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: e.toString());
@@ -131,7 +132,7 @@ class PostViewController {
   }
 
   Future<void> startAddingReview() async {
-    await showCustomBottomSheet(context, child: AddReviewView(callback: addReview), title: 'create_request'.translate);
+    await showCustomBottomSheet(context, child: AddReviewView(callback: addReview), title: 'add_review'.translate);
   }
 
   Future<bool> addReview(int rating, String comment) async {

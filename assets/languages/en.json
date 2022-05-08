@@ -282,8 +282,8 @@
 
   "order": "Order",
   "ordered": "Ordered",
-  "provide": "provide",
-  "provided": "provided",
+  "provide": "Provide",
+  "provided": "Provided",
   "answer": "Answer",
 
   "accepted": "Accepted",
@@ -350,5 +350,21 @@
   "create_issue": "Create a Issue",
   "comment": "Comment",
   "show_me": "Show Me",
-  "my_building_only": "My Building Only"
+  "my_building_only": "My Building Only",
+
+  "serve": "Serve",
+  "benefit": "Benefit",
+  "coco": "coco",
+
+  "num_of_residents": "Number of residents",
+  "num_of_blocked_residents": "Number of blocked residents",
+  "num_of_posts": "Number of posts",
+  "num_of_issues": "Number of issues",
+  "num_of_events": "Number of events",
+  "num_of_building_announcements": "Number of building announcements",
+  "num_of_transactions": "Number of transactions",
+
+  "contacts": "Contacts",
+
+  "at": "at"
 }

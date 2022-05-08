@@ -76,11 +76,11 @@ class HomeViewController {
   Future<List<Event>> getAllEvents({refresh = false}) async {
     try {
       List<Event> events = await EventRepository.instance.getAllEvents(refresh: refresh);
+      List<Event> refinedEvents = events.where((e) => e.host.id != context.read<User>().id).toList();
       if (myBuildingOnly) {
-        return events.where(((e) => e.host.building == context.read<User>().building.name)).toList();
-      } else {
-        return events;
+        refinedEvents = refinedEvents.where(((e) => e.host.building == context.read<User>().building.name)).toList();
       }
+      return refinedEvents;
     } catch (e) {
       AlertDialogBox.showAlert(context, message: e.toString().translate);
     }

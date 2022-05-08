@@ -350,5 +350,21 @@
   "create_issue": "إنشاء طلب صيانة",
   "comment": "تعليق",
   "show_me": "أطلع على العرض",
-  "my_building_only": "المبنى الخاص بك"
+  "my_building_only": "المبنى الخاص بك",
+
+  "benefit": "أطلب",
+  "serve": "افزع",
+  "coco": "coco",
+
+  "num_of_residents": "عدد المقيمين",
+  "num_of_blocked_residents": "عدد السكان المحظورين",
+  "num_of_posts": "عدد الخدمات",
+  "num_of_issues": "عدد طلبات الصيانة",
+  "num_of_events": "عدد االفعاليات",
+  "num_of_building_announcements": "عدد إعلانات المبنى",
+  "num_of_transactions": "عدد الطلبات العمليات / الخدمات",
+
+  "contacts": "التواصل",
+
+  "at": "في"
 }

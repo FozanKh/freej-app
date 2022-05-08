@@ -22,7 +22,7 @@ class PostCard extends StatefulWidget {
 class _PostCardState extends State<PostCard> {
   bool showDeleteButton = false;
   Color get postColor => widget.post.type == PostType.offer ? kBlue : kPrimaryColor;
-  String get postButton => widget.post.type == PostType.offer ? 'order' : 'provide';
+  String get postButton => widget.post.type == PostType.offer ? 'benefit' : 'serve';
   String get postButton2 => widget.post.applicationStatus.name.translate;
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,7 @@ class _PostCardState extends State<PostCard> {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      '${'by'.translate} ${widget.post.owner.firstName ?? ''}',
+                      '${'by'.translate} ${widget.post.owner.firstName ?? ''} ${'at'.translate} ${widget.post.owner.building}',
                       style: TextStyles.body3,
                     ),
                     Text("(${widget.post.owner.numberOfRaters}) ${widget.post.owner.stars}", style: TextStyles.body3),

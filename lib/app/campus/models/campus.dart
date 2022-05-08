@@ -17,7 +17,7 @@ class Campus {
   final DateTime modifiedAt;
   final String nameAr;
   final String nameEn;
-  final String emailDomain;
+  final String? emailDomain;
   final String? locationUrl;
   final String image;
 

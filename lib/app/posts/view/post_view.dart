@@ -71,14 +71,15 @@ class _PostViewState extends State<PostView> {
               Container(
                 width: MediaQuery.of(context).size.width,
                 margin: const EdgeInsets.only(top: 60),
-                padding: const EdgeInsets.only(top: 210, right: Insets.m, left: Insets.m, bottom: Insets.m),
+                padding: const EdgeInsets.only(top: 210, bottom: Insets.m),
                 decoration: const BoxDecoration(
                   borderRadius: Borders.mBorderRadius,
                   boxShadow: Styles.boxShadow,
                   color: Colors.white,
                 ),
                 child: SeparatedColumn(
-                  separator: const Divider(thickness: 2, height: 40),
+                  separator: const Divider(thickness: 1, height: 40),
+                  contentPadding: const EdgeInsets.only(right: Insets.m, left: Insets.m),
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Column(
@@ -95,16 +96,46 @@ class _PostViewState extends State<PostView> {
                     Titled(
                       title: "by".translate,
                       padding: EdgeInsets.zero,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            widget.post.owner.firstName ?? '',
-                            style: TextStyles.h2.withWeight(FontWeight.bold),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                widget.post.owner.firstName ?? '',
+                                style: TextStyles.h2.withWeight(FontWeight.bold),
+                              ),
+                              const SizedBox(width: 10),
+                              Text("(${widget.post.owner.numberOfRaters}) ${widget.post.owner.stars}",
+                                  style: TextStyles.h2),
+                            ],
                           ),
-                          const SizedBox(width: 10),
-                          Text("(${widget.post.owner.numberOfRaters}) ${widget.post.owner.stars}",
-                              style: TextStyles.h2),
+                          const SizedBox(height: 15),
+                          Titled(
+                            title: "contacts".translate,
+                            padding: EdgeInsets.zero,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("building".translate, style: TextStyles.body1.withWeight(FontWeight.bold)),
+                                const SizedBox(height: 5),
+                                Text(widget.post.owner.building!, style: TextStyles.body2),
+                                if (widget.post.applicationStatus == PostApplicationStatus.accepted)
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(height: 15),
+                                      Text("phone_number".translate,
+                                          style: TextStyles.body1.withWeight(FontWeight.bold)),
+                                      const SizedBox(height: 5),
+                                      Text(widget.post.owner.mobileNumber!, style: TextStyles.body2),
+                                    ],
+                                  ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -116,7 +147,7 @@ class _PostViewState extends State<PostView> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text('reviews'.translate, style: TextStyles.h1),
+                              Text('reviews'.translate, style: TextStyles.t2),
                               if (widget.post.applicationStatus == PostApplicationStatus.completed)
                                 Bounce(
                                   onTap: controller.startAddingReview,
@@ -131,7 +162,7 @@ class _PostViewState extends State<PostView> {
                                 ),
                             ],
                           ),
-                          const Divider(thickness: 2),
+                          const Divider(thickness: 1, height: 5),
                           const SizedBox(height: 10),
                           SeparatedColumn(
                             separator: const Divider(height: 30),

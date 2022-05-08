@@ -13,49 +13,66 @@ class NotificationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                // Sender name
-                Text(
-                  notification.title,
-                  style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                  maxLines: 2,
-                ),
-                const SizedBox(height: 5),
-                // First line of the last message
-                Text(
-                  notification.body,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    color: kFontsColor,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  // maxLines: 1,
-                ),
-                const SizedBox(height: 10),
-                IconText(
-                    icon: Icons.access_time,
-                    text: timeago.format(notification.createdAt, locale: MyApp.lang).toString()),
-              ],
-            ),
-          ),
-          Column(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                flex: 3,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    // Sender name
+                    Text(
+                      notification.title,
+                      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                      maxLines: 2,
+                    ),
+                    const SizedBox(height: 5),
+                    // First line of the last message
+                    Text(
+                      notification.body,
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: kFontsColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      // maxLines: 1,
+                    ),
+                    const SizedBox(height: 10),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Center(
+                  child: Icon(
+                    notification.type == 'announcement' ? Icons.campaign : PhosphorIcons.bell_fill,
+                    size: 30,
+                    color: kPrimaryColor,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 5)
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(notification.type == 'announcement' ? Icons.campaign : PhosphorIcons.bell_fill,
-                  size: 30, color: kPrimaryColor),
-              const SizedBox(height: 5),
-              FittedBox(
+              Expanded(
+                flex: 3,
+                child: IconText(
+                  icon: Icons.access_time,
+                  text: timeago.format(notification.createdAt, locale: MyApp.lang).toString(),
+                ),
+              ),
+              Expanded(
+                flex: 1,
                 child: Container(
-                  padding: const EdgeInsets.all(3),
+                  padding: const EdgeInsets.all(5),
                   decoration: const BoxDecoration(color: kDark4, borderRadius: Borders.sBorderRadius),
                   child: Text(
                     (notification.type ?? 'notification').translate,

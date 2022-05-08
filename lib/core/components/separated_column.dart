@@ -35,6 +35,8 @@ class SeparatedColumn extends StatelessWidget {
     final children = <Widget>[];
 
     if (this.children.isNotEmpty) {
+      if (startingSeparator) children.add(separator);
+
       for (int i = 0; i < this.children.length; i++) {
         children.add(Padding(
           padding: contentPadding ?? EdgeInsets.zero,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freej/app/building/models/maintenance_issue.dart';
 import 'package:freej/app/building/services/building_services.dart';
-import 'package:freej/core/components/bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/exports/core.dart';
@@ -12,6 +11,7 @@ class BuildingViewController {
   final BuildContext context;
   late final ProgressDialog pr;
   List<MaintenanceIssue> maintenanceIssues = [];
+  bool showStats = false;
   GlobalKey<RefreshIndicatorState> maintenanceIssuesRefreshKey = GlobalKey<RefreshIndicatorState>();
 
   BuildingViewController(this.context) {

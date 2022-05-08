@@ -49,7 +49,6 @@ class _BuildingViewState extends State<BuildingView> {
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 4,
             decoration: const BoxDecoration(
               boxShadow: Styles.boxShadow,
               color: kWhite,
@@ -80,7 +79,6 @@ class _BuildingViewState extends State<BuildingView> {
                 Text("${"building".translate} ${user.building.name}",
                     style: TextStyles.h1.withColor(kPrimaryColor).withWeight(FontWeight.bold)),
                 const SizedBox(height: 5),
-                const Spacer(),
                 Bounce(
                   onTap: () =>
                       (user.isSupervisor ?? false) ? controller.editWhatsappGroup() : controller.openWhatsappGroup(),
@@ -106,6 +104,42 @@ class _BuildingViewState extends State<BuildingView> {
                   ),
                 ),
                 const SizedBox(height: 15),
+                if (user.isSupervisor ?? false)
+                  RoundedButton(
+                    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('statistics', style: TextStyles.h2.withColor(kWhite)),
+                        RotatedBox(
+                          quarterTurns: controller.showStats ? 2 : 0,
+                          child: const Icon(Icons.arrow_drop_down, color: kWhite),
+                        ),
+                      ],
+                    ),
+                    onTap: () => setState(() => controller.showStats = !controller.showStats),
+                  ),
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  constraints: BoxConstraints(
+                    maxHeight: controller.showStats ? 1000 : 0,
+                  ),
+                  child: SeparatedColumn(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: Insets.l),
+                    separator: const Divider(height: 2),
+                    children: user.building.statistics!.keys
+                        .map(
+                          (key) => Container(
+                            margin: const EdgeInsets.all(5),
+                            padding: const EdgeInsets.all(5),
+                            child: Text("${key.translate}: ${user.building.statistics![key]}"),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                )
               ],
             ),
           ),

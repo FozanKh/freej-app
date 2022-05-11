@@ -7,6 +7,7 @@ import 'package:freej/app/profile/views/edit_profile_view.dart';
 import 'package:freej/core/exports/core.dart';
 import 'package:freej/core/services/firebase/storage_services.dart';
 import 'package:provider/provider.dart';
+import 'package:add_2_calendar/add_2_calendar.dart' as cal;
 import '../../../core/components/bottom_sheet.dart';
 import '../../../core/constants/phosphor_icons.dart';
 import '../../auth/models/user.dart';
@@ -125,6 +126,22 @@ class HomeViewController {
       await EventServices.joinEvent(event);
       await pr.hide();
       await AlertDialogBox.showAlert(context, message: "event_joined_successfully".translate);
+      if ((await AlertDialogBox.showAssertionDialog(context, message: "add_to_calendar".translate) ?? false)) {
+        final cal.Event calEvent = cal.Event(
+          title: event.name,
+          description: event.description,
+          location: event.host.building ?? event.host.firstName ?? '',
+          startDate: event.date,
+          endDate: DateTime.fromMillisecondsSinceEpoch(event.date.millisecondsSinceEpoch + 3.6e+6.toInt()),
+          // iosParams: cal.IOSParams(
+          //   reminder: Duration(/* Ex. hours:1 */), // on iOS, you can set alarm notification after your event.
+          // ),
+          // androidParams: AndroidParams(
+          //   emailInvites: [], // on Android, you can add invite emails to your event.
+          // ),
+        );
+        cal.Add2Calendar.addEvent2Cal(calEvent);
+      }
       await eventsRefreshKey.currentState?.show();
     } catch (e) {
       pr.hide();

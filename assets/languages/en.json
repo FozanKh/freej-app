@@ -370,5 +370,7 @@
 
   "at": "at",
 
-  "statistics": "Statistics"
+  "statistics": "Statistics",
+
+  "add_to_calendar": "Do you want to add this event to your calendar?"
 }

@@ -1,7 +1,7 @@
 import '../exports/core.dart';
 
 class UtilitiesServices {
-  static const contactNumber = '996548766248';
+  static const contactNumber = '966548766248';
   static const contactEmail = 'app.freej@gmail.com';
 
   static String encodeQueryParameters(Map<String, String> params) {

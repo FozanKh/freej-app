@@ -133,12 +133,6 @@ class HomeViewController {
           location: event.host.building ?? event.host.firstName ?? '',
           startDate: event.date,
           endDate: DateTime.fromMillisecondsSinceEpoch(event.date.millisecondsSinceEpoch + 3.6e+6.toInt()),
-          // iosParams: cal.IOSParams(
-          //   reminder: Duration(/* Ex. hours:1 */), // on iOS, you can set alarm notification after your event.
-          // ),
-          // androidParams: AndroidParams(
-          //   emailInvites: [], // on Android, you can add invite emails to your event.
-          // ),
         );
         cal.Add2Calendar.addEvent2Cal(calEvent);
       }

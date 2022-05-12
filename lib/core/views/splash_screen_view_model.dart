@@ -9,9 +9,6 @@ import 'package:freej/core/views/wrapper.dart';
 import '../../app/auth/models/auth_token.dart';
 import '../../app/auth/models/user.dart';
 import '../../app/auth/services/auth_services.dart';
-import '../controllers/enum_controller.dart';
-import '../services/env/env_manager.dart';
-import '../services/firebase/fcm_services.dart';
 import '../services/local/shared_pref.dart';
 
 class SplashScreenViewModel {
@@ -48,14 +45,14 @@ class SplashScreenViewModel {
           transitionsBuilder:
               (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) =>
                   FadeTransition(opacity: animation, child: child),
-          // pageBuilder: (_, __, ___) => const Wrapper(),
-          pageBuilder: (_, __, ___) => EnvironmentManager.isProduction
-              ? const Wrapper()
-              : Banner(
-                  message: Enums.valueString(EnvironmentManager.env),
-                  location: BannerLocation.topEnd,
-                  child: const Wrapper(),
-                ),
+          pageBuilder: (_, __, ___) => const Wrapper(),
+          // pageBuilder: (_, __, ___) => EnvironmentManager.isProduction
+          //     ? const Wrapper()
+          //     : Banner(
+          //         message: Enums.valueString(EnvironmentManager.env),
+          //         location: BannerLocation.topEnd,
+          //         child: const Wrapper(),
+          //       ),
         ),
       ),
     );
